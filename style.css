@@ -1,3 +1,14 @@
+.up {
+	border:3px solid green;
+	float:left;
+	width:15px;
+	height:15px;
+	position: sticky;
+	left: 100%;
+	bottom: 10px;
+	text-align:center;
+}
+
 .tl mark{
 	background-color:white;
 }
