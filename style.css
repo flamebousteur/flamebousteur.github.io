@@ -1,3 +1,32 @@
+html{
+	background-color:#202020;
+	background-image: url('img/vrac/font-bw.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+.msg{
+	transition-property: opacity;
+	transition-duration: 0.25s;
+	opacity: 0;
+	padding: 5px;
+	border-bottom: 3px solid red;
+	background-color:white;
+	position: fixed;
+	top: 0%;
+}
+
+footer{
+	color:white;
+}
+footer a{
+	color:white;
+}
+footer a:hover{
+	color: silver;
+}
+
 .up {
 	border:3px solid green;
 	float:left;
