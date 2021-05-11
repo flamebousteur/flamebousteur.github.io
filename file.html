@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+
+<html>
+	<head>
+		<title>
+			flame bousteur datapack craftS+
+		</title>
+		<meta name="description" content="Flame Bousteur Web-site. craftS+">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="flamebousteur">
+		<meta property="og:title" content="Flamebousteur craftS+ datapack">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://flamebousteur.github.io/zip/craftS+/craftS+.html">
+		<meta property="og:image" content="http://flamebousteur.github.io/img/zip/craftS+.jpg">
+		<meta property="og:description" content="New craft for minecraft survival">
+		<meta name="theme-color" content="#417505">
+		<link rel="icon" href="img/favicon.ico">
+		<link rel="stylesheet" href="style.css">
+		<script src="data.js"></script>
+		<script src="script.js"></script>
+	</head>
+
+	<script>
+if($_GET['f']){
+	var desc = data[$_GET['f']]["desc"]
+	var descfr = data[$_GET['f']]["descfr"]
+	var type = data[$_GET['f']]["type"]
+	var photo = data[$_GET['f']]["photo"]
+}
+function système(){
+	document.getElementById("type").innerHTML = type+'\n';
+	document.getElementById("desc").innerHTML = 'description:<br>'+desc;
+	document.getElementById("descfr").innerHTML = 'fr:<br>'+descfr;
+	document.getElementById("tele").style.backgroundImage = "url(\"img/zip/"+$_GET['f']+".png\")";
+
+	document.getElementById("download").href = "zip/"+$_GET['f']+"/"+$_GET['f']+".zip";
+
+	document.getElementById("img1a").href = "img/zip/"+$_GET['f']+".png";
+	document.getElementById("img1").src = "img/zip/"+$_GET['f']+".png";
+}
+	</script>
+
+	<body>
+		<div style="margin-left:auto; margin-right:auto; width:6em;">
+			<span id="msg" class="msg">copy to clipboard</span>
+		</div>
+		<h4><a href="../../index.html">back</a></h4>
+		<div class="tl" id="tele" style='background-image:url("img/zip/craftS+.png");'>
+			<p style="text-align:right;"><a id="download"><mark><img src="../../img/Nether_Star.gif" width="20">download</mark></a></p>
+			<p><pre>
+<mark id="type"></mark>
+<mark id="desc"></mark></p>
+<p><mark id="descfr"></mark>
+			</pre></p>
+		</div>
+		<div id="galery">
+			<a id="img1a"><img id="img1" width="300"></a>
+			<!-- <a href="img/1.jpg"><img src="img/1.jpg" width="300"></a> -->
+		</div>
+	</body>
+	<script>
+système()
+	</script>
+</html>
