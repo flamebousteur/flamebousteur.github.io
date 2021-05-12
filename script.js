@@ -82,4 +82,4 @@ function load(){
 
 	document.getElementById("img1a").href = "img/zip/"+$_GET['f']+".png";
 	document.getElementById("img1").src = "img/zip/"+$_GET['f']+".png";
-
+}
