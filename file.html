@@ -2,18 +2,21 @@
 
 <html>
 	<head>
-		<title>
-			flame bousteur datapack craftS+
+		<title id="title">
+			flame bousteur
 		</title>
 		<meta name="description" content="Flame Bousteur Web-site. craftS+">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="flamebousteur">
-		<meta property="og:title" content="Flamebousteur craftS+ datapack">
-		<meta property="og:type" content="website">
-		<meta property="og:url" content="https://flamebousteur.github.io/zip/craftS+/craftS+.html">
-		<meta property="og:image" content="http://flamebousteur.github.io/img/zip/craftS+.jpg">
-		<meta property="og:description" content="New craft for minecraft survival">
-		<meta name="theme-color" content="#417505">
+
+		<meta property="og:title"		content="Flamebousteur">
+		<meta property="og:type"		content="website">
+		<meta property="og:url"			content="https://flamebousteur.github.io/file.html">
+		<meta property="og:image"		content="https://flamebousteur.github.io/img/favicon.ico">
+		<meta property="og:description"		content="flamebousteur's datapack and map">
+
+		<meta name="theme-color" content="#ffffff">
+
 		<link rel="icon" href="img/favicon.ico">
 		<link rel="stylesheet" href="style.css">
 		<script src="data.js"></script>
@@ -21,13 +24,20 @@
 	</head>
 
 	<script>
-if($_GET['f']){
-	var desc = data[$_GET['f']]["desc"]
-	var descfr = data[$_GET['f']]["descfr"]
-	var type = data[$_GET['f']]["type"]
-	var photo = data[$_GET['f']]["photo"]
-}
-function système(){
+function load(){
+	let desc = data[$_GET['f']]["desc"]
+	let descfr = data[$_GET['f']]["descfr"]
+	let type = data[$_GET['f']]["type"]
+	let photo = data[$_GET['f']]["photo"]
+	let color = data[$_GET['f']]["color"]
+
+	document.querySelector('meta[property="og:url"]').setAttribute("content","https://flamebousteur.github.io/file.html?f="+$_GET['f']);
+	document.querySelector('meta[property="og:image"]').setAttribute("content","https://flamebousteur.github.io/img/zip/"+$_GET['f']+".png");
+	document.querySelector('meta[property="og:description"]').setAttribute("content",type+"\n "+desc);
+	document.querySelector('meta[name="theme-color"]').setAttribute("content",color);
+
+	document.getElementById("title").innerHTML = "Flame Bousteur "+$_GET['f']+" : "+type;
+
 	document.getElementById("type").innerHTML = type+'\n';
 	document.getElementById("desc").innerHTML = 'description:<br>'+desc;
 	document.getElementById("descfr").innerHTML = 'fr:<br>'+descfr;
@@ -59,6 +69,10 @@ function système(){
 		</div>
 	</body>
 	<script>
-système()
+if($_GET['f']){
+	if($_GET['f'] != ''){
+		load()
+	}
+}
 	</script>
 </html>
