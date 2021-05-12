@@ -59,7 +59,7 @@ function load(){
 	function a(){
 		if(max != n){
 			n += 1
-			txt = txt + '<a href="zip/'+$_GET['f']+'/img/'+n+'.png"><img alt="oups the image '+n+' can\'t charged" src="zip/'+$_GET['f']+'/img/'+n+'.png" width="300"></a>'
+			txt = txt + '<a href="zip/'+$_GET['f']+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="zip/'+$_GET['f']+'/img/'+n+'.png" width="300"></a>'
 			a()
 		}
 		document.getElementById("galery").innerHTML = txt;
