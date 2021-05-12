@@ -51,26 +51,35 @@ function $_GET(param) {
 var $_GET = $_GET()
 
 function load(){
-	let desc = data[$_GET['f']]["desc"]
-	let descfr = data[$_GET['f']]["descfr"]
-	let type = data[$_GET['f']]["type"]
-	let photo = data[$_GET['f']]["photo"]
-	let color = data[$_GET['f']]["color"]
+	f = [$_GET['f']]
+
+	let n = 0
+	let max = data[f]["photo"]
+	let txt = '<a id="img1a"><img id="img1" width="300"></a>';
+	function a(){
+		if(max != n){
+			n += 1
+			txt = txt + '<a href="zip/'+$_GET['f']+'/img/'+n+'.png"><img alt="oups the image '+n+' can\'t charged" src="zip/'+$_GET['f']+'/img/'+n+'.png" width="300"></a>'
+			a()
+		}
+		document.getElementById("galery").innerHTML = txt;
+	}
+	a()
 
 	document.querySelector('meta[property="og:url"]').setAttribute("content","https://flamebousteur.github.io/file.html?f="+$_GET['f']);
 	document.querySelector('meta[property="og:image"]').setAttribute("content","https://flamebousteur.github.io/img/zip/"+$_GET['f']+".png");
-	document.querySelector('meta[property="og:description"]').setAttribute("content",type+"\n "+desc);
-	document.querySelector('meta[name="theme-color"]').setAttribute("content",color);
+	document.querySelector('meta[property="og:description"]').setAttribute("content",type+"\n "+data[f]["desc"]);
+	document.querySelector('meta[name="theme-color"]').setAttribute("content",data[f]["color"]);
 
 	document.getElementById("title").innerHTML = "Flame Bousteur "+$_GET['f']+" : "+type;
 
-	document.getElementById("type").innerHTML = type+'\n';
-	document.getElementById("desc").innerHTML = 'description:<br>'+desc;
-	document.getElementById("descfr").innerHTML = 'fr:<br>'+descfr;
+	document.getElementById("type").innerHTML = data[f]["type"]+'\n';
+	document.getElementById("desc").innerHTML = 'description:<br>'+data[f]["desc"];
+	document.getElementById("descfr").innerHTML = 'fr:<br>'+data[f]["descfr"];
 	document.getElementById("tele").style.backgroundImage = "url(\"img/zip/"+$_GET['f']+".png\")";
-
+	document.getElementById("tele").style.borderBottom = "3px solid "+data[f]["color"]
 	document.getElementById("download").href = "zip/"+$_GET['f']+"/"+$_GET['f']+".zip";
 
 	document.getElementById("img1a").href = "img/zip/"+$_GET['f']+".png";
 	document.getElementById("img1").src = "img/zip/"+$_GET['f']+".png";
-}
+
