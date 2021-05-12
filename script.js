@@ -49,3 +49,28 @@ function $_GET(param) {
 	return vars;
 }
 var $_GET = $_GET()
+
+function load(){
+	let desc = data[$_GET['f']]["desc"]
+	let descfr = data[$_GET['f']]["descfr"]
+	let type = data[$_GET['f']]["type"]
+	let photo = data[$_GET['f']]["photo"]
+	let color = data[$_GET['f']]["color"]
+
+	document.querySelector('meta[property="og:url"]').setAttribute("content","https://flamebousteur.github.io/file.html?f="+$_GET['f']);
+	document.querySelector('meta[property="og:image"]').setAttribute("content","https://flamebousteur.github.io/img/zip/"+$_GET['f']+".png");
+	document.querySelector('meta[property="og:description"]').setAttribute("content",type+"\n "+desc);
+	document.querySelector('meta[name="theme-color"]').setAttribute("content",color);
+
+	document.getElementById("title").innerHTML = "Flame Bousteur "+$_GET['f']+" : "+type;
+
+	document.getElementById("type").innerHTML = type+'\n';
+	document.getElementById("desc").innerHTML = 'description:<br>'+desc;
+	document.getElementById("descfr").innerHTML = 'fr:<br>'+descfr;
+	document.getElementById("tele").style.backgroundImage = "url(\"img/zip/"+$_GET['f']+".png\")";
+
+	document.getElementById("download").href = "zip/"+$_GET['f']+"/"+$_GET['f']+".zip";
+
+	document.getElementById("img1a").href = "img/zip/"+$_GET['f']+".png";
+	document.getElementById("img1").src = "img/zip/"+$_GET['f']+".png";
+}
