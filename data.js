@@ -39,7 +39,7 @@ var data = {
 		"descfr":"",
 		"type":"map",
 		"photo":2,
-		"color":"40ffe8"
+		"color":"#40ffe8"
 	},
 	"cove-in-minecraft":{
 		"desc":"",
