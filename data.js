@@ -39,20 +39,23 @@ var data = {
 		"descfr":"",
 		"type":"map",
 		"photo":2,
-		"color":"#40ffe8"
+		"color":"#40ffe8",
+		"video":"vRSrmEOO9lI"
 	},
 	"cove-in-minecraft":{
 		"desc":"",
 		"descfr":"",
 		"type":"map",
 		"photo":2,
-		"color":"#61b44b"
+		"color":"#61b44b",
+		"video":"W2fUQjmN2w4"
 	},
 	"wisard-tower":{
 		"desc":"",
 		"descfr":"",
 		"type":"map",
 		"photo":2,
-		"color":"#462100"
+		"color":"#462100",
+		"video":"ge1WMCKf-yA"
 	}
 }
