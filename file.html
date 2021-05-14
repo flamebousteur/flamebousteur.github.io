@@ -3,7 +3,7 @@
 <html>
 	<head>
 		<title id="title">
-			flame bousteur
+			Flame Bousteur
 		</title>
 		<script src="data.js"></script>
 		<script src="script.js"></script>
@@ -31,20 +31,27 @@
 		<h4><a href="../">back</a></h4>
 		<div class="tl" id="tele" style='background-image:url("img/zip/craftS+.png");'>
 			<p style="text-align:right;"><a id="download"><mark><img src="../../img/Nether_Star.gif" width="20">download</mark></a></p>
-			<p><pre>
+			<pre>
 <mark id="type"></mark>
-<mark id="desc"></mark></p>
-<p><mark id="descfr"></mark>
-			</pre></p>
+<p><mark id="desc"></mark></p>
+<p><mark id="descfr"></mark></p>
+			</pre>
 		</div>
+		<noscript>
+			<div>
+				plz active JS
+			</div>
+		</noscript>
+		<iframe id="ifr" src=""></iframe>
+		<hr>
 		<div id="galery">
-			<a id="img1a"><img id="img1" width="300"></a>
+			problèmes
 		</div>
 	</body>
 	<script>
 if($_GET['f']){
-	if($_GET['f'] != ''){
-		load()
+	if(data[$_GET['f']]){
+		load();
 	}
 }
 	</script>
