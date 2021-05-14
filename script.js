@@ -51,7 +51,7 @@ function $_GET(param) {
 var $_GET = $_GET()
 
 function load(){
-	f = [$_GET['f']]
+	f = $_GET['f']
 
 	let n = 0
 	let max = data[f]["photo"]
@@ -59,26 +59,32 @@ function load(){
 	function a(){
 		if(max != n){
 			n += 1
-			txt = txt + '<a href="zip/'+$_GET['f']+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="zip/'+$_GET['f']+'/img/'+n+'.png" width="300"></a>'
+			txt = txt + '<a href="zip/'+f+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="zip/'+f+'/img/'+n+'.png" width="300"></a>'
 			a()
 		}
 		document.getElementById("galery").innerHTML = txt;
 	}
 	a()
 
-	document.querySelector('meta[property="og:url"]').setAttribute("content","https://flamebousteur.github.io/file.html?f="+$_GET['f']);
-	document.querySelector('meta[property="og:image"]').setAttribute("content","https://flamebousteur.github.io/img/zip/"+$_GET['f']+".png");
+	document.querySelector('meta[property="og:url"]').setAttribute("content","https://flamebousteur.github.io/file.html?f="+f);
+	document.querySelector('meta[property="og:image"]').setAttribute("content","https://flamebousteur.github.io/img/zip/"+f+".png");
 	document.querySelector('meta[property="og:description"]').setAttribute("content",type+"\n "+data[f]["desc"]);
 	document.querySelector('meta[name="theme-color"]').setAttribute("content",data[f]["color"]);
 
-	document.getElementById("title").innerHTML = "Flame Bousteur "+$_GET['f']+" : "+type;
+	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+type;
 
 	document.getElementById("type").innerHTML = data[f]["type"]+'\n';
 	document.getElementById("desc").innerHTML = 'description:<br>'+data[f]["desc"];
 	document.getElementById("descfr").innerHTML = 'fr:<br>'+data[f]["descfr"];
-	document.getElementById("tele").style.backgroundImage = "url(\"img/zip/"+$_GET['f']+".png\")";
+	document.getElementById("tele").style.backgroundImage = "url(\"img/zip/"+f+".png\")";
 	document.getElementById("tele").style.borderBottom = "3px solid "+data[f]["color"]
-	document.getElementById("download").href = "zip/"+$_GET['f']+"/"+$_GET['f']+".zip";
+	document.getElementById("download").href = "zip/"+f+"/"+f+".zip";
+
+	if(data[f]["video"]){
+		document.getElementById("ifr").src = "https://www.youtube.com/embed/"+data[f]["video"];
+		document.getElementById("ifr").style.position = "static"
+		document.getElementById("ifr").style.visibility = "visible"
+	}
 
 	document.getElementById("img1a").href = "img/zip/"+$_GET['f']+".png";
 	document.getElementById("img1").src = "img/zip/"+$_GET['f']+".png";
