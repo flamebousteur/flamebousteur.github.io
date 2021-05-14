@@ -17,6 +17,13 @@
 	top: 0%;
 }
 
+#ifr{
+	border:none;
+	width:300;
+	visibility:hidden;
+	position:fixed;
+}
+
 footer{
 	color:white;
 }
