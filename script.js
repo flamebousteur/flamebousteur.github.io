@@ -92,7 +92,7 @@ function load(){
 
 if($_GET['f']){
 	if(data[$_GET['f']]){
-		document.getElementById("body").innerHTML = '<div style="margin-left:auto; margin-right:auto; width:6em;"><span id="msg" class="msg">msg</span></div><h4><a href="../">back</a></h4><div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png");\'><p style="text-align:right;"><a id="download"><mark><img src="../../img/Nether_Star.gif" width="20">download</mark></a></p><pre><mark id="type"></mark><p><mark id="desc"></mark></p><p><mark id="descfr"></mark></p></pre></div><iframe id="ifr" src=""></iframe><hr><div id="galery">problèmes</div>'
+		document.querySelector("body").innerHTML = '<div style="margin-left:auto; margin-right:auto; width:6em;"><span id="msg" class="msg">msg</span></div><h4><a href="../">back</a></h4><div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png");\'><p style="text-align:right;"><a id="download"><mark><img src="../../img/Nether_Star.gif" width="20">download</mark></a></p><pre><mark id="type"></mark><p><mark id="desc"></mark></p><p><mark id="descfr"></mark></p></pre></div><iframe id="ifr" src=""></iframe><hr><div id="galery">problèmes</div>'
 		document.querySelector("html").className = ''
 		load();
 	}
