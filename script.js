@@ -1,3 +1,5 @@
+console.log('v1')
+
 if(screen.width < 400){
 	let dpmap = document.getElementById("dp-map");
 	dpmap.style.textAlign = "center";
