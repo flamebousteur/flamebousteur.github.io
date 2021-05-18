@@ -1,3 +1,10 @@
+*{
+	margin: 0px;
+	padding: 0px;
+	scrollbar-color: #2e4053 #85929e;
+	scrollbar-width: thin;
+}
+
 .index{
 	background-color:#202020;
 	background-image: url('/img/vrac/font-bw.png');
@@ -69,13 +76,6 @@ body::-webkit-scrollbar-track {
 
 body::-webkit-scrollbar-thumb {
 	background-color: #85929e;
-}
-
-*{
-    margin: 0px;
-    padding: 0px;
-	scrollbar-color: #2e4053 #85929e;
-	scrollbar-width: thin;
 }
 
 nav{
