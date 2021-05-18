@@ -186,8 +186,9 @@ function pr(){
 	}
 }
 
-if($_GET['f']){
-	if(data[$_GET['f']]){
-		load($_GET['f']);
-	}
+if(data[$_GET['f']]){
+	load($_GET['f']);
+}else{
+	document.querySelector("body").innerHTML = page1
+	document.querySelector("html").className = 'index'
 }
