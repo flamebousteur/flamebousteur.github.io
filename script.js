@@ -1,5 +1,60 @@
 console.log('v2.2')
 
+const page1 =
+'<div style="margin-left:auto; margin-right:auto; width:6em;">'+
+'	<span id="msg" class="msg">msg</span>'+
+'</div>'+
+'<p id="up" align="center" style="background-image:url(\'img/end portal hd.png\');background-size: cover;">'+
+'	<img src="img/flamebousteur.png" width="100%" alt="a">'+
+'</p>'+
+'<nav>'+
+'	<ul>'+
+'		<li class="deroulant">'+
+'			<a>Social Media</a>'+
+'			<ul class="sous">'+
+'				<li><a href="https://www.youtube.com/channel/UCpb9cOY9nklRXTQEC6Jxctg" target="_blank">Youtube</a></li>'+
+'				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
+'				<li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li>'+
+'				<li><a onclick="copi(\'flamebousteur#5111\')">Discord: flamebousteur#5111</a></li>'+
+'				<li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li>'+
+'			</ul>'+
+'		</li>'+
+'		<li class="deroulant">'+
+'			<a>minecraft</a>'+
+'			<ul class="sous">'+
+'				<li>map</li>'+
+'				<li><a onclick="load(\'floating-island\');" >floating island</a></li>'+
+'				<li><a onclick="load(\'cove-in-minecraft\')">cove in minecraft</a></li>'+
+'				<li><a onclick="load(\'wisard-tower\')">wisard tower</a></li>'+
+'				<li>DataPack</li>'+
+'				<li><a onclick="load(\'the-floor-is-lava\')">the floor is lava</a></li>'+
+'				<li><a onclick="load(\'craftS+\')">CraftS+</a></li>'+
+'				<li><a onclick="load(\'utility-item\')">utilitys item</a></li>'+
+'				<li><a onclick="load(\'shield\')">sheld</a></li>'+
+'				<li><a onclick="load(\'spawner-generator\')">spawner generator</a></li>'+
+'			</ul>'+
+'		</li>'+
+'	</ul>'+
+'</nav>'+
+'<div style="background-color:white;">'+
+'	<br>'+
+'</div>'+
+'<div id="dp-map" class="cr">'+
+'	<a onclick="load(\'floating-island\')"><img alt="floating-island" src="img/zip/floating-island.png" width="200"></a>'+
+'	<a onclick="load(\'cove-in-minecraft\')"><img alt="cove-in-minecraft" src="/img/zip/cove-in-minecraft.png" width="200"></a>'+
+'	<a onclick="load(\'wisard-tower\')"><img alt="wisard-tower" src="img/zip/wisard-tower.png" width="200"></a>'+
+'	<br><hr><br>'+
+'	<a onclick="load(\'the-floor-is-lava\')"><img alt="the-floor-is-lava" src="img/zip/the-floor-is-lava.png" width="200"></a>'+
+'	<a onclick="load(\'craftS+\')"><img alt="craftS+" src="img/zip/craftS+.png" width="200"></a>'+
+'	<a onclick="load(\'utility-item\')"><img alt="utility-item" src="img/zip/utility-item.png" width="200"></a>'+
+'	<a onclick="load(\'shield\')"><img alt="Shield.png" src="img/zip/shield.png" width="200"></a>'+
+'	<a onclick="load(\'spawner-generator\')"><img alt="spawner-generator" src="img/zip/spawner-generator.png" width="200"></a>'+
+'</div>'+
+'<footer>'+
+'	<div align="center">Flamebousteur</div>'+
+'	<a target="_blank" href="https://github.com/flamebousteur/flamebousteur.github.io">github</a>'+
+'</footer>';
+
 if(screen.width < 400){
 	let dpmap = document.getElementById("dp-map");
 	dpmap.style.textAlign = "center";
@@ -53,7 +108,36 @@ function $_GET(param) {
 var $_GET = $_GET()
 
 function load(f){
-	document.querySelector("body").innerHTML = '<div style="margin-left:auto; margin-right:auto; width:6em;"><span id="msg" class="msg">msg</span></div><h4><a style="cursor:pointer;" onclick="pr()">back</a></h4><div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png");\'><p style="text-align:right;"><a id="download"><mark><img src="../../img/Nether_Star.gif" width="20">download</mark></a><br><a id="p" onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')"><mark>copy link</mark></a></p><pre><mark id="type"></mark><p><mark id="desc"></mark></p><p><mark id="descfr"></mark></p></pre></div><iframe id="ifr" src=""></iframe><hr><div id="galery">problèmes</div>'
+	const page2 =
+'<div style="margin-left:auto; margin-right:auto; width:6em;">'+
+'	<span id="msg" class="msg">msg</span>'+
+'</div>'+
+'<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
+'<div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png");\'>'+
+'	<p style="text-align:right;">'+
+'		<a id="download"><mark>'+
+'			<img src="../../img/Nether_Star.gif" width="20">download'+
+'		</mark></a>'+
+'		<br>'+
+'		<a id="p" onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')">'+
+'			<mark>copy link</mark>'+
+'		</a>'+
+'	</p>'+
+'	<pre>'+
+'<mark id="type"></mark>'+
+'<p>'+
+'<mark id="desc"></mark>'+
+'</p>'+
+'<p>'+
+'<mark id="descfr"></mark>'+
+'</p>'+
+'	</pre>'+
+'</div>'+
+'<iframe id="ifr" src=""></iframe>'+
+'<hr>'+
+'<div id="galery">problèmes</div>';
+
+	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
 
 	let n = 0
@@ -94,7 +178,7 @@ function load(f){
 }
 
 function pr(){
-	document.querySelector("body").innerHTML = '<div style="margin-left:auto; margin-right:auto; width:6em;"><span id="msg" class="msg">msg</span></div><p id="up" align="center" style="background-image:url(\'img/end portal hd.png\');background-size: cover;"><img src="img/flamebousteur.png" width="100%" alt="a"></p><nav><ul><li class="deroulant"><a>Social Media</a><ul class="sous"><li><a href="https://www.youtube.com/channel/UCpb9cOY9nklRXTQEC6Jxctg" target="_blank">Youtube</a></li><li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li><li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li><li><a style="cursor:pointer;" onclick="copi(\'flamebousteur#5111\')">Discord: flamebousteur#5111</a></li><li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li></ul></li><li class="deroulant"><a>minecraft</a><ul class="sous"><li>map</li><li><a style="cursor:pointer;" onclick="load(\'floating-island\');" >floating island</a></li><li><a style="cursor:pointer;" onclick="load(\'cove-in-minecraft\')">cove in minecraft</a></li><li><a style="cursor:pointer;" onclick="load(\'wisard-tower\')">wisard tower</a></li><li>DataPack</li><li><a style="cursor:pointer;" onclick="load(\'the-floor-is-lava\')">the floor is lava</a></li><li><a style="cursor:pointer;" onclick="load(\'craftS+\')">CraftS+</a></li><li><a style="cursor:pointer;" onclick="load(\'utility-item\')">utilitys item</a></li><li><a style="cursor:pointer;" onclick="load(\'shield\')">sheld</a></li><li><a style="cursor:pointer;" onclick="load(\'spawner-generator\')">spawner generator</a></li></ul></li></ul></nav><div style="background-color:white;"><br></div><div id="dp-map" class="cr"><a style="cursor:pointer;" onclick="load(\'floating-island\')"><img alt="floating-island" src="img/zip/floating-island.png" width="200"></a><a style="cursor:pointer;" onclick="load(\'cove-in-minecraft\')"><img alt="cove-in-minecraft" src="/img/zip/cove-in-minecraft.png" width="200"></a><a style="cursor:pointer;" onclick="load(\'wisard-tower\')"><img alt="wisard-tower" src="img/zip/wisard-tower.png" width="200"></a><br><hr><br><a style="cursor:pointer;" onclick="load(\'the-floor-is-lava\')"><img alt="the-floor-is-lava" src="img/zip/the-floor-is-lava.png" width="200"></a><a style="cursor:pointer;" onclick="load(\'craftS+\')"><img alt="craftS+" src="img/zip/craftS+.png" width="200"></a><a style="cursor:pointer;" onclick="load(\'utility-item\')"><img alt="utility-item" src="img/zip/utility-item.png" width="200"></a><a style="cursor:pointer;" onclick="load(\'shield\')"><img alt="Shield.png" src="img/zip/shield.png" width="200"></a><a style="cursor:pointer;" onclick="load(\'spawner-generator\')"><img alt="spawner-generator" src="img/zip/spawner-generator.png" width="200"></a></div><footer><div align="center">Flamebousteur</div><a target="_blank" href="https://github.com/flamebousteur">github</a></footer>'
+	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
 }
 
