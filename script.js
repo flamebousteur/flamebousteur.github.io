@@ -178,8 +178,12 @@ function load(f){
 }
 
 function pr(){
-	document.querySelector("body").innerHTML = page1
-	document.querySelector("html").className = 'index'
+	if(window.location.origin != window.location.href){
+		window.location.href = window.location.origin
+	}else{
+		document.querySelector("body").innerHTML = page1
+		document.querySelector("html").className = 'index'
+	}
 }
 
 if($_GET['f']){
