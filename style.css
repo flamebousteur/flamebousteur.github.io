@@ -5,6 +5,14 @@
 	scrollbar-width: thin;
 }
 
+.nojs{
+	background-color:#b6f31e;
+	background-image: url('/img/vrac/font.png');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
 .index{
 	background-color:#202020;
 	background-image: url('/img/vrac/font-bw.png');
