@@ -1,4 +1,4 @@
-console.log('v2.2')
+console.log('v2.2.1')
 
 const page1 =
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
