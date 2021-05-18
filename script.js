@@ -53,7 +53,7 @@ function $_GET(param) {
 var $_GET = $_GET()
 
 function load(f){
-	document.querySelector("body").innerHTML = '<div style="margin-left:auto; margin-right:auto; width:6em;"><span id="msg" class="msg">msg</span></div><h4><a style="cursor:pointer;" onclick="pr()">back</a></h4><div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png");\'><p style="text-align:right;"><a id="download"><mark><img src="../../img/Nether_Star.gif" width="20">download</mark></a></p><pre><mark id="type"></mark><p><mark id="desc"></mark></p><p><mark id="descfr"></mark></p></pre></div><iframe id="ifr" src=""></iframe><hr><div id="galery">problèmes</div>'
+	document.querySelector("body").innerHTML = '<div style="margin-left:auto; margin-right:auto; width:6em;"><span id="msg" class="msg">msg</span></div><h4><a style="cursor:pointer;" onclick="pr()">back</a></h4><div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png");\'><p style="text-align:right;"><a id="download"><mark><img src="../../img/Nether_Star.gif" width="20">download</mark></a><br><a id="p" onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')"><mark>copy link</mark></a></p><pre><mark id="type"></mark><p><mark id="desc"></mark></p><p><mark id="descfr"></mark></p></pre></div><iframe id="ifr" src=""></iframe><hr><div id="galery">problèmes</div>'
 	document.querySelector("html").className = ''
 
 	let n = 0
