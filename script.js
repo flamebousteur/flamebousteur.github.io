@@ -1,4 +1,4 @@
-console.log('v2.2.1')
+console.log('v2.2.3')
 
 const page1 =
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
@@ -113,30 +113,29 @@ function load(f){
 '	<span id="msg" class="msg">msg</span>'+
 '</div>'+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
-'<div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png");\'>'+
+'<div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png"); border-bottom: 3px solid '+data[f]["color"]+'\';>'+
 '	<p style="text-align:right;">'+
-'		<a id="download"><mark>'+
+'		<a href="zip/'+f+'/'+f+'.zip"><mark>'+
 '			<img src="../../img/Nether_Star.gif" width="20">download'+
 '		</mark></a>'+
 '		<br>'+
-'		<a id="p" onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')">'+
+'		<a onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')">'+
 '			<mark>copy link</mark>'+
 '		</a>'+
 '	</p>'+
 '	<pre>'+
-'<mark id="type"></mark>'+
+'<mark>'+data[f]["type"]+'\n</mark>'+
 '<p>'+
-'<mark id="desc"></mark>'+
+'<mark>description:<br>'+data[f]["desc"]+'</mark>'+
 '</p>'+
 '<p>'+
-'<mark id="descfr"></mark>'+
+'<mark>fr:<br>'+data[f]["descfr"]+'</mark>'+
 '</p>'+
 '	</pre>'+
 '</div>'+
 '<iframe id="ifr" src=""></iframe>'+
 '<hr>'+
 '<div id="galery">problèmes</div>';
-
 	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
 
@@ -155,17 +154,11 @@ function load(f){
 
 	document.querySelector('meta[property="og:url"]').setAttribute("content","https://flamebousteur.github.io/file.html?f="+f);
 	document.querySelector('meta[property="og:image"]').setAttribute("content","https://flamebousteur.github.io/img/zip/"+f+".png");
-	document.querySelector('meta[property="og:description"]').setAttribute("content",type+"\n "+data[f]["desc"]);
+	document.querySelector('meta[property="og:description"]').setAttribute("content",data[f]["type"]+"\n "+data[f]["desc"]);
 	document.querySelector('meta[name="theme-color"]').setAttribute("content",data[f]["color"]);
 
-	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+type;
-
-	document.getElementById("type").innerHTML = data[f]["type"]+'\n';
-	document.getElementById("desc").innerHTML = 'description:<br>'+data[f]["desc"];
-	document.getElementById("descfr").innerHTML = 'fr:<br>'+data[f]["descfr"];
+	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+data[f]["type"];
 	document.getElementById("tele").style.backgroundImage = "url(\"img/zip/"+f+".png\")";
-	document.getElementById("tele").style.borderBottom = "3px solid "+data[f]["color"]
-	document.getElementById("download").href = "zip/"+f+"/"+f+".zip";
 
 	if(data[f]["video"]){
 		document.getElementById("ifr").src = "https://www.youtube.com/embed/"+data[f]["video"];
@@ -176,7 +169,6 @@ function load(f){
 	document.getElementById("img1a").href = "img/zip/"+f+".png";
 	document.getElementById("img1").src = "img/zip/"+f+".png";
 }
-
 function pr(){
 	if(window.location.origin != window.location.href){
 		window.location.href = window.location.origin
