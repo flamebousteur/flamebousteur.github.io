@@ -170,7 +170,7 @@ function load(f){
 	document.getElementById("img1").src = "img/zip/"+f+".png";
 }
 function pr(){
-	if(window.location.origin != window.location.href){
+	if(window.location.origin+'/' != window.location.href){
 		window.location.href = window.location.origin
 	}else{
 		document.querySelector("body").innerHTML = page1
