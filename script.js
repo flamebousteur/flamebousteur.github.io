@@ -36,7 +36,7 @@ const page1 =
 '		</li>'+
 '	</ul>'+
 '</nav>'+
-'<div id="dp-map" class="cr"><br>'+
+'<div id="dp-map" class="cr">'+
 '	<a onclick="load(\'floating-island\')"><img alt="floating-island" src="img/zip/floating-island.png" width="200"></a>'+
 '	<a onclick="load(\'cove-in-minecraft\')"><img alt="cove-in-minecraft" src="/img/zip/cove-in-minecraft.png" width="200"></a>'+
 '	<a onclick="load(\'wisard-tower\')"><img alt="wisard-tower" src="img/zip/wisard-tower.png" width="200"></a>'+
