@@ -1,4 +1,4 @@
-console.log('v2.2.3')
+console.log('v2.2.4')
 
 const page1 =
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
@@ -170,11 +170,18 @@ function load(f){
 	document.getElementById("img1").src = "img/zip/"+f+".png";
 }
 function pr(){
-	if(window.location.origin+'/' != window.location.href){
-		window.location.href = window.location.origin
-	}else{
+	function res(){
 		document.querySelector("body").innerHTML = page1
 		document.querySelector("html").className = 'index'
+	}
+	if(window.location.origin+'/' != window.location.href){
+		if(navigator.onLine){
+			window.location.href = window.location.origin
+		}else{
+			res()
+		}
+	}else{
+		res()
 	}
 }
 
@@ -184,3 +191,6 @@ if(data[$_GET['f']]){
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
 }
+window.onoffline = (event) => {
+	msg('connection lost')
+};
