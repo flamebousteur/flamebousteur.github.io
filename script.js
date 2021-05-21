@@ -1,4 +1,5 @@
 console.log('v2.2.4')
+console.log('last creation: modern-office')
 
 const page1 =
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
