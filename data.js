@@ -1,4 +1,4 @@
-var data = {
+const data = {
 	"craftS+":{
 		"desc":"New craft for minecraft survival.",
 		"descfr":"De nouveau craft pour votre survie.",
@@ -57,5 +57,13 @@ var data = {
 		"photo":2,
 		"color":"#462100",
 		"video":"ge1WMCKf-yA"
+	},
+	"modern-office":{
+		"desc":"",
+		"descfr":"",
+		"type":"map",
+		"photo":0,
+		"color":"#999999",
+		"video":"nxw75apm6bs"
 	}
 }
