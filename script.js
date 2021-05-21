@@ -26,6 +26,7 @@ const page1 =
 '				<li><a onclick="load(\'floating-island\');" >floating island</a></li>'+
 '				<li><a onclick="load(\'cove-in-minecraft\')">cove in minecraft</a></li>'+
 '				<li><a onclick="load(\'wisard-tower\')">wisard tower</a></li>'+
+'				<li><a onclick="load(\'modern-office\')">modern office</a></li>'+
 '				<li>DataPack</li>'+
 '				<li><a onclick="load(\'the-floor-is-lava\')">the floor is lava</a></li>'+
 '				<li><a onclick="load(\'craftS+\')">CraftS+</a></li>'+
@@ -40,6 +41,7 @@ const page1 =
 '	<a onclick="load(\'floating-island\')"><img alt="floating-island" src="img/zip/floating-island.png" width="200"></a>'+
 '	<a onclick="load(\'cove-in-minecraft\')"><img alt="cove-in-minecraft" src="/img/zip/cove-in-minecraft.png" width="200"></a>'+
 '	<a onclick="load(\'wisard-tower\')"><img alt="wisard-tower" src="img/zip/wisard-tower.png" width="200"></a>'+
+'	<a onclick="load(\'modern-office\')"><img alt="modern-office" src="img/zip/modern-office.png" width="200"></a>'+
 '	<br><hr><br>'+
 '	<a onclick="load(\'the-floor-is-lava\')"><img alt="the-floor-is-lava" src="img/zip/the-floor-is-lava.png" width="200"></a>'+
 '	<a onclick="load(\'craftS+\')"><img alt="craftS+" src="img/zip/craftS+.png" width="200"></a>'+
@@ -188,6 +190,7 @@ if(data[$_GET['f']]){
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
 }
+
 window.onoffline = (event) => {
 	msg('connection lost')
 };
