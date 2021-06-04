@@ -110,6 +110,7 @@ var $_GET = $_GET()
 
 function load(f){
 	const page2 =
+'<link rel="stylesheet" href="style.css">'+
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
 '	<span id="msg" class="msg">msg</span>'+
 '</div>'+
