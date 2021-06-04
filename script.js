@@ -138,6 +138,7 @@ function load(f){
 '<div id="galery">problèmes</div>';
 	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
+	document.querySelector("body").className = 'bin'
 
 	let n = 0
 	let max = data[f]["photo"]
@@ -173,6 +174,7 @@ function pr(){
 	function res(){
 		document.querySelector("body").innerHTML = page1
 		document.querySelector("html").className = 'index'
+		document.querySelector("body").className = ''
 	}
 	if(window.location.origin+'/' != window.location.href){
 		if(navigator.onLine){
@@ -190,8 +192,17 @@ if(data[$_GET['f']]){
 }else{
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
+	document.querySelector("html").className = ''
 }
 
 window.onoffline = (event) => {
 	msg('connection lost')
 };
+
+function mod(black){
+	if(black == true){
+		document.getElementById("style").href = "black.css"
+	}else{
+		document.getElementById("style").href = ""
+	}
+}
