@@ -2,7 +2,7 @@ console.log('v2.2.4')
 console.log('last creation: modern-office')
 
 const page1 =
-'<link rel="stylesheet" href="style.css">'+
+'<div class="mod">change theme</div>'+
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
 '	<span id="msg" class="msg">msg</span>'+
 '</div>'+
@@ -110,7 +110,7 @@ var $_GET = $_GET()
 
 function load(f){
 	const page2 =
-'<link rel="stylesheet" href="style.css">'+
+'<div class="mod">change theme</div>'+
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
 '	<span id="msg" class="msg">msg</span>'+
 '</div>'+
