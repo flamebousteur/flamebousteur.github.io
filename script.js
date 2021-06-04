@@ -203,8 +203,8 @@ window.onoffline = (event) => {
 
 function mod(black){
 	if(black == true){
-		document.getElementById("style").href = "black.css"
+		document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
 	}else{
-		document.getElementById("style").href = ""
+		document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
 	}
 }
