@@ -1,5 +1,9 @@
-console.log('v2.3.1')
+console.log('v2.3.2')
 console.log('last creation: modern-office')
+
+function murl(url){
+	history.pushState("", "", url)
+}
 
 function type(type){
 	function findex(list,type) {
@@ -140,6 +144,7 @@ function load(f){
 '<div id="galery">problèmes</div>';
 	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
+	murl("?f="+f)
 
 	let n = 0
 	let max = data[f]["photo"]
@@ -172,30 +177,20 @@ function load(f){
 	document.getElementById("img1").src = "img/zip/"+f+".png";
 }
 function pr(){
-	function res(){
-		document.querySelector("body").innerHTML = page1
-		document.querySelector("html").className = 'index'
-		document.getElementById("title").innerHTML = "Flame Bousteur";
-		let txt = '';
-		type('map').forEach(element =>{
-			txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
-			document.getElementById("map").innerHTML = txt;
-		})
-		txt = '';
-		type('data pack').forEach(element =>{
-			txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
-			document.getElementById("dp").innerHTML = txt;
-		})
-	}
-	if(window.location.origin+'/' != window.location.href){
-		if(navigator.onLine){
-			window.location.href = window.location.origin
-		}else{
-			res()
-		}
-	}else{
-		res()
-	}
+	document.querySelector("body").innerHTML = page1
+	document.querySelector("html").className = 'index'
+	document.getElementById("title").innerHTML = "Flame Bousteur";
+	murl(window.location.origin)
+	let txt = '';
+	type('map').forEach(element =>{
+		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
+		document.getElementById("map").innerHTML = txt;
+	})
+	txt = '';
+	type('data pack').forEach(element =>{
+		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
+		document.getElementById("dp").innerHTML = txt;
+	})
 }
 
 if(data[$_GET['f']]){
