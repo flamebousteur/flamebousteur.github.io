@@ -1,4 +1,4 @@
-console.log('v2.2.4')
+console.log('v2.2.5')
 console.log('last creation: modern-office')
 
 var mod = "l"
