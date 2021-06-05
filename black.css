@@ -6,6 +6,15 @@
 	scrollbar-width: thin;
 }
 
+#mod{
+	padding: 5px;
+	border-bottom: 1px solid #202020;
+	background-color:white;
+	position: fixed;
+	color:#202020;
+	top: 0%;
+}
+
 .nojs{
 	background-color:#b6f31e;
 	background-image: url('/img/vrac/font.png');
