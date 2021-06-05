@@ -1,5 +1,23 @@
-console.log('v2.2.5')
+console.log('v2.3')
 console.log('last creation: modern-office')
+
+function type(type){
+	function findex(list,type) {
+		let result = [];
+		for (let[key,value] of Object.entries(list)) {
+			result.push(key);
+		}
+		return result;
+	}
+	let index = findex(data)
+	let result = []
+	index.forEach(element => {
+		if(data[element]['type'] == type){
+			result.push(element)
+		}
+	})
+	return (result)
+}
 
 const page1 =
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
@@ -23,32 +41,16 @@ const page1 =
 '		<li class="deroulant">'+
 '			<a>minecraft</a>'+
 '			<ul class="sous">'+
-'				<li>map</li>'+
-'				<li><a onclick="load(\'floating-island\');" >floating island</a></li>'+
-'				<li><a onclick="load(\'cove-in-minecraft\')">cove in minecraft</a></li>'+
-'				<li><a onclick="load(\'wisard-tower\')">wisard tower</a></li>'+
-'				<li><a onclick="load(\'modern-office\')">modern office</a></li>'+
-'				<li>DataPack</li>'+
-'				<li><a onclick="load(\'the-floor-is-lava\')">the floor is lava</a></li>'+
-'				<li><a onclick="load(\'craftS+\')">CraftS+</a></li>'+
-'				<li><a onclick="load(\'utility-item\')">utilitys item</a></li>'+
-'				<li><a onclick="load(\'shield\')">sheld</a></li>'+
-'				<li><a onclick="load(\'spawner-generator\')">spawner generator</a></li>'+
+'				<li><a href="#map">map</a></li>'+
+'				<li><a href="#dp">DataPack</a></li>'+
 '			</ul>'+
 '		</li>'+
 '	</ul>'+
 '</nav>'+
 '<div id="dp-map" class="cr">'+
-'	<a onclick="load(\'floating-island\')"><img alt="floating-island" src="img/zip/floating-island.png" width="200"></a>'+
-'	<a onclick="load(\'cove-in-minecraft\')"><img alt="cove-in-minecraft" src="/img/zip/cove-in-minecraft.png" width="200"></a>'+
-'	<a onclick="load(\'wisard-tower\')"><img alt="wisard-tower" src="img/zip/wisard-tower.png" width="200"></a>'+
-'	<a onclick="load(\'modern-office\')"><img alt="modern-office" src="img/zip/modern-office.png" width="200"></a>'+
-'	<br><hr><br>'+
-'	<a onclick="load(\'the-floor-is-lava\')"><img alt="the-floor-is-lava" src="img/zip/the-floor-is-lava.png" width="200"></a>'+
-'	<a onclick="load(\'craftS+\')"><img alt="craftS+" src="img/zip/craftS+.png" width="200"></a>'+
-'	<a onclick="load(\'utility-item\')"><img alt="utility-item" src="img/zip/utility-item.png" width="200"></a>'+
-'	<a onclick="load(\'shield\')"><img alt="Shield.png" src="img/zip/shield.png" width="200"></a>'+
-'	<a onclick="load(\'spawner-generator\')"><img alt="spawner-generator" src="img/zip/spawner-generator.png" width="200"></a>'+
+'	<div id="map">'+
+'	</div><br><hr><br><div id="dp">'+
+'	</div>'+
 '</div>'+
 '<footer>'+
 '	<div align="center">Flamebousteur</div>'+
@@ -191,6 +193,17 @@ if(data[$_GET['f']]){
 }else{
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
+	let txt = '';
+	type('map').forEach(element =>{
+		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
+		document.getElementById("map").innerHTML = txt;
+	})
+	txt = '';
+	type('data pack').forEach(element =>{
+		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
+		document.getElementById("dp").innerHTML = txt;
+	})
+	
 }
 
 window.onoffline = (event) => {
