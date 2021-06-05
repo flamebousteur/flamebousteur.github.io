@@ -1,8 +1,10 @@
 console.log('v2.2.4')
 console.log('last creation: modern-office')
 
+var mod = "l"
+
 const page1 =
-'<div class="mod">change theme</div>'+
+'<a id="mod" onclick="mod()">change theme</a>'+
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
 '	<span id="msg" class="msg">msg</span>'+
 '</div>'+
@@ -110,7 +112,7 @@ var $_GET = $_GET()
 
 function load(f){
 	const page2 =
-'<div class="mod">change theme</div>'+
+'<a id="mod" onclick="mod()">change theme</a>'+
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
 '	<span id="msg" class="msg">msg</span>'+
 '</div>'+
@@ -141,6 +143,13 @@ function load(f){
 	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
 	document.querySelector("body").className = 'bin'
+	if(mod == "l"){
+		document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
+		mod = "b"
+	}else{
+		document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
+		mod = "l"
+	}
 
 	let n = 0
 	let max = data[f]["photo"]
@@ -177,6 +186,13 @@ function pr(){
 		document.querySelector("body").innerHTML = page1
 		document.querySelector("html").className = 'index'
 		document.querySelector("body").className = ''
+		if(mod == "l"){
+			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
+			mod = "b"
+		}else{
+			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
+			mod = "l"
+		}
 	}
 	if(window.location.origin+'/' != window.location.href){
 		if(navigator.onLine){
@@ -195,6 +211,13 @@ if(data[$_GET['f']]){
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
 	document.querySelector("html").className = ''
+	if(mod == "l"){
+		document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
+		mod = "b"
+	}else{
+		document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
+		mod = "l"
+	}
 }
 
 window.onoffline = (event) => {
@@ -202,9 +225,21 @@ window.onoffline = (event) => {
 };
 
 function mod(black){
-	if(black == true){
-		document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
+	if(black){
+		if(black == true){
+			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
+			mod = "b"
+		}else{
+			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
+			mod = "l"
+		}
 	}else{
-		document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
+		if(mod == "l"){
+			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
+			mod = "b"
+		}else{
+			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
+			mod = "l"
+		}
 	}
 }
