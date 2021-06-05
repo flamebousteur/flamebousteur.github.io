@@ -173,6 +173,7 @@ function pr(){
 	function res(){
 		document.querySelector("body").innerHTML = page1
 		document.querySelector("html").className = 'index'
+		document.getElementById("title").innerHTML = "Flame Bousteur";
 	}
 	if(window.location.origin+'/' != window.location.href){
 		if(navigator.onLine){
