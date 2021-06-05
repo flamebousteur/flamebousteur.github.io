@@ -1,5 +1,6 @@
 console.log('v2.2.5')
 console.log('last creation: modern-office')
+console.log('last modif: patch')
 
 var mode = "l"
 
