@@ -1,11 +1,7 @@
 console.log('v2.2.5')
 console.log('last creation: modern-office')
-console.log('last modif: patch')
-
-var mode = "l"
 
 const page1 =
-'<a id="mod" onclick="mod()">change theme</a>'+
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
 '	<span id="msg" class="msg">msg</span>'+
 '</div>'+
@@ -113,7 +109,6 @@ var $_GET = $_GET()
 
 function load(f){
 	const page2 =
-'<a id="mod" onclick="mod()">change theme</a>'+
 '<div style="margin-left:auto; margin-right:auto; width:6em;">'+
 '	<span id="msg" class="msg">msg</span>'+
 '</div>'+
@@ -143,14 +138,6 @@ function load(f){
 '<div id="galery">problèmes</div>';
 	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
-	document.querySelector("body").className = 'bin'
-	if(mode == "l"){
-		document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-		mode = "b"
-	}else{
-		document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-		mode = "l"
-	}
 
 	let n = 0
 	let max = data[f]["photo"]
@@ -186,14 +173,6 @@ function pr(){
 	function res(){
 		document.querySelector("body").innerHTML = page1
 		document.querySelector("html").className = 'index'
-		document.querySelector("body").className = ''
-		if(mode == "l"){
-			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-			mode = "b"
-		}else{
-			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-			mode = "l"
-		}
 	}
 	if(window.location.origin+'/' != window.location.href){
 		if(navigator.onLine){
@@ -211,36 +190,8 @@ if(data[$_GET['f']]){
 }else{
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
-	document.querySelector("html").className = ''
-	if(mode == "l"){
-		document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-		mode = "b"
-	}else{
-		document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-		mode = "l"
-	}
 }
 
 window.onoffline = (event) => {
 	msg('connection lost')
 };
-
-function mod(black){
-	if(black){
-		if(black == true){
-			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-			mode = "b"
-		}else{
-			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-			mode = "l"
-		}
-	}else{
-		if(mode == "l"){
-			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-			mode = "b"
-		}else{
-			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-			mode = "l"
-		}
-	}
-}
