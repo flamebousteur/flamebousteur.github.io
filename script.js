@@ -1,7 +1,7 @@
 console.log('v2.2.5')
 console.log('last creation: modern-office')
 
-var mod = "l"
+var mode = "l"
 
 const page1 =
 '<a id="mod" onclick="mod()">change theme</a>'+
@@ -143,12 +143,12 @@ function load(f){
 	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
 	document.querySelector("body").className = 'bin'
-	if(mod == "l"){
+	if(mode == "l"){
 		document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-		mod = "b"
+		mode = "b"
 	}else{
 		document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-		mod = "l"
+		mode = "l"
 	}
 
 	let n = 0
@@ -186,12 +186,12 @@ function pr(){
 		document.querySelector("body").innerHTML = page1
 		document.querySelector("html").className = 'index'
 		document.querySelector("body").className = ''
-		if(mod == "l"){
+		if(mode == "l"){
 			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-			mod = "b"
+			mode = "b"
 		}else{
 			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-			mod = "l"
+			mode = "l"
 		}
 	}
 	if(window.location.origin+'/' != window.location.href){
@@ -211,12 +211,12 @@ if(data[$_GET['f']]){
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
 	document.querySelector("html").className = ''
-	if(mod == "l"){
+	if(mode == "l"){
 		document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-		mod = "b"
+		mode = "b"
 	}else{
 		document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-		mod = "l"
+		mode = "l"
 	}
 }
 
@@ -228,18 +228,18 @@ function mod(black){
 	if(black){
 		if(black == true){
 			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-			mod = "b"
+			mode = "b"
 		}else{
 			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-			mod = "l"
+			mode = "l"
 		}
 	}else{
-		if(mod == "l"){
+		if(mode == "l"){
 			document.querySelector('link[rel="stylesheet"]').setAttribute("href","black.css");
-			mod = "b"
+			mode = "b"
 		}else{
 			document.querySelector('link[rel="stylesheet"]').setAttribute("href","style.css");
-			mod = "l"
+			mode = "l"
 		}
 	}
 }
