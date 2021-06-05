@@ -1,4 +1,4 @@
-console.log('v2.3')
+console.log('v2.3.1')
 console.log('last creation: modern-office')
 
 function type(type){
@@ -176,6 +176,16 @@ function pr(){
 		document.querySelector("body").innerHTML = page1
 		document.querySelector("html").className = 'index'
 		document.getElementById("title").innerHTML = "Flame Bousteur";
+		let txt = '';
+		type('map').forEach(element =>{
+			txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
+			document.getElementById("map").innerHTML = txt;
+		})
+		txt = '';
+		type('data pack').forEach(element =>{
+			txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
+			document.getElementById("dp").innerHTML = txt;
+		})
 	}
 	if(window.location.origin+'/' != window.location.href){
 		if(navigator.onLine){
@@ -191,19 +201,7 @@ function pr(){
 if(data[$_GET['f']]){
 	load($_GET['f']);
 }else{
-	document.querySelector("body").innerHTML = page1
-	document.querySelector("html").className = 'index'
-	let txt = '';
-	type('map').forEach(element =>{
-		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
-		document.getElementById("map").innerHTML = txt;
-	})
-	txt = '';
-	type('data pack').forEach(element =>{
-		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
-		document.getElementById("dp").innerHTML = txt;
-	})
-	
+	pr()
 }
 
 window.onoffline = (event) => {
