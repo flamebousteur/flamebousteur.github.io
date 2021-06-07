@@ -1,4 +1,4 @@
-console.log('v2.3.2')
+console.log('v2.3.3')
 console.log('last creation: modern-office')
 
 function murl(url){
@@ -24,8 +24,8 @@ function type(type){
 }
 
 const page1 =
-'<div style="margin-left:auto; margin-right:auto; width:6em;">'+
-'	<span id="msg" class="msg">msg</span>'+
+'<div>'+
+'	<div id="msg">msg</div>'+
 '</div>'+
 '<p id="up" align="center" style="background-image:url(\'img/end portal hd.png\');background-size: cover;">'+
 '	<img src="img/flamebousteur.png" width="100%" alt="a">'+
@@ -115,9 +115,7 @@ var $_GET = $_GET()
 
 function load(f){
 	const page2 =
-'<div style="margin-left:auto; margin-right:auto; width:6em;">'+
-'	<span id="msg" class="msg">msg</span>'+
-'</div>'+
+'<div id="msg">msg</div>'+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
 '<div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png"); border-bottom: 3px solid '+data[f]["color"]+'\';>'+
 '	<p style="text-align:right;">'+
