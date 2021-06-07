@@ -1,18 +1,8 @@
-/*light*/
 *{
 	margin: 0px;
 	padding: 0px;
 	scrollbar-color: #2e4053 #85929e;
 	scrollbar-width: thin;
-}
-
-#mod{
-	padding: 5px;
-	border-bottom: 1px solid white;
-	background-color:#202020;
-	position: fixed;
-	color:white;
-	top: 0%;
 }
 
 .nojs{
@@ -31,15 +21,22 @@
 	background-size: cover;
 }
 
-.msg{
+#msg{
+	position: fixed;
+	margin: auto;
+	right: 0;
+	left: 0;
 	transition-property: opacity;
 	transition-duration: 0.25s;
 	opacity: 0;
 	padding: 5px;
 	border-bottom: 3px solid red;
 	background-color:white;
-	position: fixed;
 	top: 0%;
+	width:50%;
+	font-size:15px;
+	text-align:center;
+	z-index:2;
 }
 
 #ifr{
@@ -54,9 +51,6 @@ footer{
 }
 footer a{
 	color:white;
-}
-footer a:hover{
-	color: silver;
 }
 
 .up {
@@ -97,21 +91,20 @@ body::-webkit-scrollbar-thumb {
 }
 
 nav{
-    width: 100%;
-    margin: 0 auto;
-    background-color: white;
-    position: sticky;
-    top: 0px;
+	width: 100%;
+	margin: 0 auto;
+	background-color: white;
+	top: 0px;
 }
 
 nav ul{
-    list-style-type: none;
+	list-style-type: none;
 }
 
 nav ul li{
-    float: left;
-    width: 50%;
-    text-align: center;
+	float: left;
+	width: 50%;
+	text-align: center;
     position: relative;
 }
 
@@ -140,7 +133,7 @@ nav a:hover{
     background-color: white;
     position: absolute;
     width: 100%;
-    z-index: 1000;
+    z-index: 1;
 }
 nav > ul li:hover .sous{
     display: block;
