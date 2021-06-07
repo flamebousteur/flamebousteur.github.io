@@ -1,4 +1,4 @@
-console.log('v2.3.3')
+console.log('v2.3.2')
 console.log('last creation: modern-office')
 
 function murl(url){
@@ -60,11 +60,6 @@ const page1 =
 '	<div align="center">Flamebousteur</div>'+
 '	<a target="_blank" href="https://github.com/flamebousteur/flamebousteur.github.io">github</a>'+
 '</footer>';
-
-if(screen.width < 400){
-	let dpmap = document.getElementById("dp-map");
-	dpmap.style.textAlign = "center";
-}
 
 if(screen.width < 51){
 	if(screen.width < 51){
@@ -195,6 +190,11 @@ if(data[$_GET['f']]){
 	load($_GET['f']);
 }else{
 	pr()
+}
+
+if(screen.width < 400){
+	let dpmap = document.getElementById("dp-map");
+	dpmap.style.textAlign = "center";
 }
 
 window.onoffline = (event) => {
