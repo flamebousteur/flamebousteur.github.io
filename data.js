@@ -1,4 +1,4 @@
-const data = {
+export const data = {
 	"the-floor-is-lava":{
 		"desc":"just the floor is lava no more good luck 😉.",
 		"descfr":"le sol c'est de la lave donc BONNE CHANCE!.",
