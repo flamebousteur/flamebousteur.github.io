@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-
 <html class="nojs">
 	<head>
 		<title id="title">
 			Flame Bousteur
 		</title>
+		<meta charset="utf-8">
 		<meta name="description" content="Flame Bousteur Web-site">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="flamebousteur">
@@ -12,24 +12,29 @@
 		<meta property="og:title"		content="Flame Bousteur">
 		<meta property="og:type"		content="website">
 		<meta property="og:url"			content="https://flamebousteur.github.io">
-		<meta property="og:image"		content="https://flamebousteur.github.io/img/favicon.svg">
-		<meta property="og:description"		content="Flamebousteur's datapacks and creation">
-
+		<meta property="og:image"		content="https://flamebousteur.github.io/img/favicon.ico">
+		<meta property="og:description"	content="Flamebousteur's datapacks and creation">
 		<meta name="theme-color" content="#ffffff">
-		<link rel="icon" href="img/favicon.svg">
-		<link rel="stylesheet" id="style" href="style.css">
+
+		<link rel="icon" href="img/favicon.ico">
+		<link rel="stylesheet" href="style.css">
 	</head>
 	<body>
-		<noscript>
-			<div style="background-color:white;">
-				plz active javascript<br>
-				svp activez le javascript
-			</div>
-		</noscript>
-		<div style="background-color:white;">
+		<div id="if" style="background-color:white;">
 			a problem has occurred<br>
-			un problème est survenue
+			un problème est survenue<br>
+			<noscript>
+				<br>
+				<div>
+					plz active javascript<br>
+					svp activez le javascript
+				</div>
+			</noscript>
 		</div>
+		<script>
+			let nosite = "<h1>the site is currently down</h1><p>I'm sorry about that</p>"
+			document.getElementById("if").innerHTML = nosite
+		</script>
 	</body>
 	<script src="data.js"></script>
 	<script src="script.js"></script>
