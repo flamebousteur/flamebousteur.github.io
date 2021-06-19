@@ -1,5 +1,35 @@
-console.log('v2.3.2')
+console.log('v2.4')
 console.log('last creation: modern-office')
+
+if(window.location.hostname != "flamebousteur.github.io" && window.location.hostname !="localhost"){
+	console.log(window.location.hostname)
+	let page0 =
+'<head>'+
+'	<title id="title">'+
+'		Flame Bousteur'+
+'	</title>'+
+'	<meta charset="utf-8">'+
+'	<meta name="description" content="Flame Bousteur Web-site">'+
+'	<meta name="viewport" content="width=device-width, initial-scale=1.0">'+
+'	<meta name="author" content="flamebousteur">'+
+'	<meta property="og:title"		content="Flame Bousteur">'+
+'	<meta property="og:type"		content="website">'+
+'	<meta property="og:url"			content="https://flamebousteur.github.io">'+
+'	<meta property="og:image"		content="https://flamebousteur.github.io/img/favicon.ico">'+
+'	<meta property="og:description"	content="Flamebousteur\'s datapacks and creation">'+
+'	<meta name="theme-color" content="#ffffff">'+
+'	<link rel="icon" href="img/favicon.ico">'+
+'	<link rel="stylesheet" href="https://flamebousteur.github.io/style.css">'+
+'</head>'+
+'<body>'+
+'	<div style="background-color:white;">'+
+'		a problem has occurred<br>'+
+'		un problème est survenue'+
+'	</div>'+
+'</body>'
+
+	document.querySelector("html").innerHTML = page0
+}
 
 function murl(url){
 	history.pushState("", "", url)
@@ -27,8 +57,8 @@ const page1 =
 '<div>'+
 '	<div id="msg">msg</div>'+
 '</div>'+
-'<p id="up" align="center" style="background-image:url(\'img/end portal hd.png\');background-size: cover;">'+
-'	<img src="img/flamebousteur.png" width="100%" alt="a">'+
+'<p id="up" align="center" style="background-image:url(\'https://flamebousteur.github.io/img/end portal hd.png\');background-size: cover;">'+
+'	<img src="https://flamebousteur.github.io/img/flamebousteur.png" width="100%" alt="a">'+
 '</p>'+
 '<nav>'+
 '	<ul>'+
@@ -36,9 +66,9 @@ const page1 =
 '			<a>Social Media</a>'+
 '			<ul class="sous">'+
 '				<li><a href="https://www.youtube.com/channel/UCpb9cOY9nklRXTQEC6Jxctg" target="_blank">Youtube</a></li>'+
-'				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
-'				<li><a href="https://twitter.com/flame65407614" target="_blank">twitter</a></li>'+
 '				<li><a href="https://www.facebook.com/flame.bousteur" target="_blank">facebook</a></li>'+
+'				<li><a href="https://twitter.com/flame65407614" target="_blank">twitter</a></li>'+
+'				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
 '				<li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li>'+
 '				<li><a onclick="copi(\'flamebousteur#5111\')">Discord: flamebousteur#5111</a></li>'+
 '				<li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li>'+
@@ -114,10 +144,10 @@ function load(f){
 	const page2 =
 '<div id="msg">msg</div>'+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
-'<div class="tl" id="tele" style=\'background-image:url("img/zip/craftS+.png"); border-bottom: 3px solid '+data[f]["color"]+'\';>'+
+'<div class="tl" id="tele" style=\'background-image:url("https://flamebousteur.github.io/img/zip/craftS+.png"); border-bottom: 3px solid '+data[f]["color"]+'\';>'+
 '	<p style="text-align:right;">'+
-'		<a href="zip/'+f+'/'+f+'.zip"><mark>'+
-'			<img src="../../img/Nether_Star.gif" width="20">download'+
+'		<a href="https://flamebousteur.github.io/zip/'+f+'/'+f+'.zip"><mark>'+
+'			<img src="https://flamebousteur.github.io/img/Nether_Star.gif" width="20">download'+
 '		</mark></a>'+
 '		<br>'+
 '		<a onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')">'+
@@ -139,7 +169,6 @@ function load(f){
 '<div id="galery">problèmes</div>';
 	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
-	murl("?f="+f)
 
 	let n = 0
 	let max = data[f]["photo"]
@@ -147,7 +176,7 @@ function load(f){
 	function a(){
 		if(max != n){
 			n += 1
-			txt = txt + '<a href="zip/'+f+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="zip/'+f+'/img/'+n+'.png" width="300"></a>'
+			txt = txt + '<a href="https://flamebousteur.github.io/zip/'+f+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="https://flamebousteur.github.io/zip/'+f+'/img/'+n+'.png" width="300"></a>'
 			a()
 		}
 		document.getElementById("galery").innerHTML = txt;
@@ -160,7 +189,7 @@ function load(f){
 	document.querySelector('meta[name="theme-color"]').setAttribute("content",data[f]["color"]);
 
 	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+data[f]["type"];
-	document.getElementById("tele").style.backgroundImage = "url(\"img/zip/"+f+".png\")";
+	document.getElementById("tele").style.backgroundImage = "url(\"https://flamebousteur.github.io/img/zip/"+f+".png\")";
 
 	if(data[f]["video"]){
 		document.getElementById("ifr").src = "https://www.youtube.com/embed/"+data[f]["video"];
@@ -168,24 +197,25 @@ function load(f){
 		document.getElementById("ifr").style.visibility = "visible"
 	}
 
-	document.getElementById("img1a").href = "img/zip/"+f+".png";
-	document.getElementById("img1").src = "img/zip/"+f+".png";
+	document.getElementById("img1a").href = "https://flamebousteur.github.io/img/zip/"+f+".png";
+	document.getElementById("img1").src = "https://flamebousteur.github.io/img/zip/"+f+".png";
+	murl("?f="+f)
 }
 function pr(){
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
 	document.getElementById("title").innerHTML = "Flame Bousteur";
-	murl(window.location.origin)
 	let txt = '';
 	type('map').forEach(element =>{
-		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
+		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="https://flamebousteur.github.io/img/zip/'+element+'.png" width="200"></a>'
 		document.getElementById("map").innerHTML = txt;
 	})
 	txt = '';
 	type('data pack').forEach(element =>{
-		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="img/zip/'+element+'.png" width="200"></a>'
+		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="https://flamebousteur.github.io/img/zip/'+element+'.png" width="200"></a>'
 		document.getElementById("dp").innerHTML = txt;
 	})
+	murl(window.location.origin)
 }
 
 if(data[$_GET['f']]){
