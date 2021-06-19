@@ -37,6 +37,8 @@ const page1 =
 '			<ul class="sous">'+
 '				<li><a href="https://www.youtube.com/channel/UCpb9cOY9nklRXTQEC6Jxctg" target="_blank">Youtube</a></li>'+
 '				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
+'				<li><a href="https://twitter.com/flame65407614" target="_blank">twitter</a></li>'+
+'				<li><a href="https://www.facebook.com/flame.bousteur" target="_blank">facebook</a></li>'+
 '				<li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li>'+
 '				<li><a onclick="copi(\'flamebousteur#5111\')">Discord: flamebousteur#5111</a></li>'+
 '				<li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li>'+
