@@ -1,4 +1,4 @@
-console.log('v2.4.2')
+console.log('v2.4')
 console.log('last creation: modern-office')
 
 if(window.location.hostname != "flamebousteur.github.io" && window.location.hostname !="localhost"){
