@@ -164,7 +164,7 @@ nav > ul li:hover .sous{
 	transition-duration: 0.1s;
 	border-bottom: none;
 	background-color: RGBa(200,200,200,0.1);
-	border-left: 10px solid green;
+	border-left: 5px solid green;
 }
 
 .deroulant > a::after{
