@@ -49,6 +49,7 @@
 
 footer{
 	color:white;
+	border-top:1px solid black;
 }
 footer a{
 	color:white;
@@ -56,12 +57,14 @@ footer a{
 
 .up {
 	border:3px solid green;
+	background-color:green;
+	color:white;
 	float:left;
 	width:15px;
 	height:15px;
-	position: sticky;
-	left: 100%;
-	bottom: 10px;
+	position: fixed;
+	right: 0;
+	bottom: 0;
 	text-align:center;
 }
 
@@ -71,6 +74,10 @@ footer a{
 
 .cr{
 	background-color: #f8f8f8;
+}
+
+.cr img{
+	border-right: 1px solid rgba(0,0,0,0);
 }
 
 a{
