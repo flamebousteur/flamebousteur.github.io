@@ -1,6 +1,8 @@
 console.log('v2.4')
 console.log('last creation: modern-office')
 
+//import { data } from "data.js"
+
 if(window.location.hostname != "flamebousteur.github.io" && window.location.hostname !="localhost"){
 	console.log(window.location.hostname)
 	let page0 =
@@ -57,7 +59,7 @@ const page1 =
 '<div>'+
 '	<div id="msg">msg</div>'+
 '</div>'+
-'<p id="up" align="center" style="background-image:url(\'https://flamebousteur.github.io/img/end portal hd.png\');background-size: cover;">'+
+'<p id="up" align="center" style="background-image:url(\'https://flamebousteur.github.io/img/end portal hd.png\');background-size: cover;border-bottom:2px solid #162168;">'+
 '	<img src="https://flamebousteur.github.io/img/flamebousteur.png" width="100%" alt="a">'+
 '</p>'+
 '<nav>'+
