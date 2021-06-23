@@ -143,9 +143,11 @@ nav a:hover{
 	width: 100%;
 	z-index: 1;
 }
+
 nav > ul li:hover .sous{
 	display: block;
 }
+
 .sous li{
 	float: none;
 	width: 100%;
