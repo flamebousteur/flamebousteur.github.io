@@ -3,6 +3,44 @@ console.log('last creation: modern-office')
 
 //import { data } from "data.js"
 
+function findex(list,type) {
+	let result = [];
+	for (let[key,value] of Object.entries(list)) {
+		result.push(key);
+	}
+	return result;
+}
+
+function $_COOKIE(){
+	let result = {}
+	let c = document.cookie
+	c = c.split('; ')
+	c.forEach(element =>{
+		let a = element.split('=')
+		let key = a[0];
+		let obj = {};
+		obj[key] = a[1];
+		result[key] = obj[key]
+	})
+	return result
+}
+
+function $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace( 
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			vars[key] = value !== undefined ? value : '';
+		}
+	);
+
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
+}
+var $_GET = $_GET()
+
 if(window.location.hostname != "flamebousteur.github.io" && window.location.hostname !="localhost"){
 	console.log(window.location.hostname)
 	let page0 =
@@ -38,13 +76,6 @@ function murl(url){
 }
 
 function type(type){
-	function findex(list,type) {
-		let result = [];
-		for (let[key,value] of Object.entries(list)) {
-			result.push(key);
-		}
-		return result;
-	}
 	let index = findex(data)
 	let result = []
 	index.forEach(element => {
@@ -52,7 +83,7 @@ function type(type){
 			result.push(element)
 		}
 	})
-	return (result)
+	return result
 }
 
 const page1 =
@@ -93,7 +124,7 @@ const page1 =
 '<footer>'+
 '	<div align="center">Flamebousteur</div>'+
 '	<a target="_blank" href="https://github.com/flamebousteur/flamebousteur.github.io">github</a>'+
-'</footer>';
+'</footer>'
 
 if(screen.width < 51){
 	if(screen.width < 51){
@@ -126,23 +157,11 @@ function msg(txt,time){
 	delete time
 }
 
-function $_GET(param) {
-	var vars = {};
-	window.location.href.replace( location.hash, '' ).replace( 
-		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-		function( m, key, value ) { // callback
-			vars[key] = value !== undefined ? value : '';
-		}
-	);
-
-	if ( param ) {
-		return vars[param] ? vars[param] : null;	
-	}
-	return vars;
-}
-var $_GET = $_GET()
-
 function load(f){
+	if($_COOKIE()["v"] != f){
+		document.cookie = 'v='+f+'; secure';
+		console.log('page charge '+f)
+	}
 	const page2 =
 '<div id="msg">msg</div>'+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
@@ -234,3 +253,8 @@ if(screen.width < 400){
 window.onoffline = (event) => {
 	msg('connection lost')
 };
+
+msg('by continuing on this site you accept statistics cookies',5);
+window.setTimeout(() => {
+	msg('en continuant sur ce site vous accepter des cookies de statistique',5)
+},5500)
