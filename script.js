@@ -1,15 +1,25 @@
-console.log('v2.5')
+console.log('v2.6')
 console.log('last creation: modern-office')
 
 //import { data } from "data.js"
 
-function findex(list,type) {
+function findex(list) {
 	let result = [];
 	for (let[key,value] of Object.entries(list)) {
 		result.push(key);
 	}
 	return result;
 }
+
+//console.log(stat)
+
+function nostat(){
+	document.cookie = 'stat=no; secure'
+}
+
+const xhr = new XMLHttpRequest();
+xhr.open("get", "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/index.php", true);
+xhr.send();
 
 function $_COOKIE(){
 	let result = {}
@@ -157,17 +167,30 @@ function msg(txt,time){
 	delete time
 }
 
+function dloal(f){
+	if(findex(data).includes(f)){
+		window.location.href = 'https://flamebousteur.github.io/zip/'+f+'/'+f+'.zip'
+		xhr.open("get", "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/index.php?d=a&f="+f, true)
+		xhr.send()
+	}
+}
+
 function load(f){
 	if($_COOKIE()["v"] != f){
-		document.cookie = 'v='+f+'; secure';
-		console.log('page charge '+f)
+		if($_COOKIE()["stat"] != 'no'){
+			console.log('a')
+			document.cookie = 'v='+f+'; secure';
+			console.log('page charge '+f)
+			xhr.open("get", "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/index.php?f="+f, true)
+			xhr.send()
+		}
 	}
 	const page2 =
 '<div id="msg">msg</div>'+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
 '<div class="tl" id="tele" style=\'background-image:url("https://flamebousteur.github.io/img/zip/craftS+.png"); border-bottom: 3px solid '+data[f]["color"]+'\';>'+
 '	<p style="text-align:right;">'+
-'		<a href="https://flamebousteur.github.io/zip/'+f+'/'+f+'.zip"><mark>'+
+'		<a onclick="dloal(\''+f+'\')"><mark>'+
 '			<img src="https://flamebousteur.github.io/img/Nether_Star.gif" width="20">download'+
 '		</mark></a>'+
 '		<br>'+
@@ -187,7 +210,8 @@ function load(f){
 '</div>'+
 '<iframe id="ifr" src=""></iframe>'+
 '<hr>'+
-'<div id="galery">problèmes</div>';
+'<div id="galery">problèmes</div>'+
+'<div id="data"></div>';
 	document.querySelector("body").innerHTML = page2
 	document.querySelector("html").className = ''
 
@@ -220,6 +244,7 @@ function load(f){
 
 	document.getElementById("img1a").href = "https://flamebousteur.github.io/img/zip/"+f+".png";
 	document.getElementById("img1").src = "https://flamebousteur.github.io/img/zip/"+f+".png";
+	document.getElementById("data").innerHTML = "view: "+stat[f]["view"]+" | dowload: "+stat[f]["dowload"];
 	murl("?f="+f)
 }
 function pr(){
