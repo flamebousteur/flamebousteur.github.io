@@ -279,7 +279,12 @@ window.onoffline = (event) => {
 	msg('connection lost')
 };
 
-msg('by continuing on this site you accept statistics cookies',5);
-window.setTimeout(() => {
-	msg('en continuant sur ce site vous accepter des cookies de statistique',5)
-},5500)
+
+if($_COOKIE()["stat"]){
+	console.log('cookies stop')
+}else{
+	msg('by continuing on this site you accept statistics cookies',5);
+	window.setTimeout(() => {
+		msg('en continuant sur ce site vous accepter des cookies de statistique',5)
+	},5500)
+}
