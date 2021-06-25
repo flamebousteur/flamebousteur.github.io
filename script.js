@@ -1,4 +1,4 @@
-console.log('v2.6')
+console.log('v2.6.1')
 console.log('last creation: modern-office')
 
 //import { data } from "data.js"
@@ -10,8 +10,6 @@ function findex(list) {
 	}
 	return result;
 }
-
-//console.log(stat)
 
 function nostat(){
 	document.cookie = 'stat=no; secure'
@@ -177,7 +175,9 @@ function dloal(f){
 
 function load(f){
 	if($_COOKIE()["v"] != f){
-		if($_COOKIE()["stat"] != 'no'){
+		if($_COOKIE()["stat"]){
+			console.log('cookies stop')
+		}else{
 			console.log('a')
 			document.cookie = 'v='+f+'; secure';
 			console.log('page charge '+f)
