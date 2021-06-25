@@ -96,27 +96,6 @@ function type(type){
 	return result
 }
 
-const pageStat =
-'<table>'+
-'	<td>'+
-'		<table id="stat">'+
-'			<thead>'+
-'				<tr>'+
-'					<td></td>'+
-'					<td>view</td>'+
-'					<td>dowload</td>'+
-'				</tr>'+
-'			</thead>'+
-'		</table>'+
-'	</td>'+
-'	<td>'+
-'		<table>'+
-'			<tr><img id="dt"></tr>'+
-'			<tr id="dtd"></tr>'+
-'		</table>'+
-'	</td>'+
-'</table>';
-
 const page1 =
 '<div>'+
 '	<div id="msg">msg</div>'+
@@ -313,6 +292,27 @@ if($_COOKIE()["stat"]){
 
 
 /*for dev*/
+const pageStat =
+'<table>'+
+'	<td>'+
+'		<table id="stat">'+
+'			<thead>'+
+'				<tr>'+
+'					<td></td>'+
+'					<td>view</td>'+
+'					<td>dowload</td>'+
+'				</tr>'+
+'			</thead>'+
+'		</table>'+
+'	</td>'+
+'	<td>'+
+'		<table>'+
+'			<tr><img id="dt"></tr>'+
+'			<tr id="dtd"></tr>'+
+'		</table>'+
+'	</td>'+
+'</table>';
+
 function devstatimg(d){
 	document.getElementById('dt').src = 'https://flamebousteur.github.io/img/zip/'+d+'.png'
 	document.getElementById('dtd').innerHTML = 'view: '+stat[d]["view"]+' | dowload: '+stat[d]["dowload"]
