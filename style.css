@@ -22,6 +22,30 @@
 	background-size: cover;
 }
 
+/*stat*/
+
+#exit-code, #data{
+	visibility: hidden;
+	position:fixed;
+}
+#stat tr{
+	background-color: white;
+	cursor:default;
+}
+#stat tr:hover{
+	transition-property: background-color;
+	transition-duration: 0.1s;
+	background-color: #ccc;
+}
+#stat td{
+	border-bottom: 1px solid black;
+}
+#dt{
+	width:200px;
+}
+
+/* end stat */
+
 #msg{
 	position: fixed;
 	margin: auto;
