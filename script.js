@@ -1,7 +1,9 @@
-console.log('v2.6.1')
+console.log('v2.6')
 console.log('last creation: modern-office')
 
 //import { data } from "data.js"
+
+const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"
 
 function findex(list) {
 	let result = [];
@@ -16,7 +18,7 @@ function nostat(){
 }
 
 const xhr = new XMLHttpRequest();
-xhr.open("get", "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/index.php", true);
+xhr.open("get", statlink+"index.php", true);
 xhr.send();
 
 function $_COOKIE(){
@@ -168,7 +170,7 @@ function msg(txt,time){
 function dloal(f){
 	if(findex(data).includes(f)){
 		window.location.href = 'https://flamebousteur.github.io/zip/'+f+'/'+f+'.zip'
-		xhr.open("get", "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/index.php?d=a&f="+f, true)
+		xhr.open("get", statlink+"index.php?d=a&f="+f, true)
 		xhr.send()
 	}
 }
@@ -181,7 +183,7 @@ function load(f){
 			console.log('a')
 			document.cookie = 'v='+f+'; secure';
 			console.log('page charge '+f)
-			xhr.open("get", "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/index.php?f="+f, true)
+			xhr.open("get", statlink+"index.php?f="+f, true)
 			xhr.send()
 		}
 	}
