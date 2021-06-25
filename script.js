@@ -1,4 +1,4 @@
-console.log('v2.6')
+console.log('v2.6.1')
 console.log('last creation: modern-office')
 
 //import { data } from "data.js"
@@ -95,6 +95,27 @@ function type(type){
 	})
 	return result
 }
+
+const pageStat =
+'<table>'+
+'	<td>'+
+'		<table id="stat">'+
+'			<thead>'+
+'				<tr>'+
+'					<td></td>'+
+'					<td>view</td>'+
+'					<td>dowload</td>'+
+'				</tr>'+
+'			</thead>'+
+'		</table>'+
+'	</td>'+
+'	<td>'+
+'		<table>'+
+'			<tr><img id="dt"></tr>'+
+'			<tr id="dtd"></tr>'+
+'		</table>'+
+'	</td>'+
+'</table>';
 
 const page1 =
 '<div>'+
@@ -281,7 +302,6 @@ window.onoffline = (event) => {
 	msg('connection lost')
 };
 
-
 if($_COOKIE()["stat"]){
 	console.log('cookies stop')
 }else{
@@ -289,4 +309,27 @@ if($_COOKIE()["stat"]){
 	window.setTimeout(() => {
 		msg('en continuant sur ce site vous accepter des cookies de statistique',5)
 	},5500)
+}
+
+
+/*for dev*/
+function devstatimg(d){
+	document.getElementById('dt').src = 'https://flamebousteur.github.io/img/zip/'+d+'.png'
+	document.getElementById('dtd').innerHTML = 'view: '+stat[d]["view"]+' | dowload: '+stat[d]["dowload"]
+}
+function devstat(){
+	document.querySelector("body").innerHTML = pageStat
+	document.querySelector("html").className = ''
+	txt = document.getElementById('stat').innerHTML
+	findex(stat).forEach(element =>{
+		if(typeof(stat[element]["dowload"]) == 'undefined'){
+			stat[element]["dowload"] = '-'
+		}
+		if(element == 'index'){
+			txt = txt + '<tr><td>'+element+'</td><td>'+stat[element]["view"]+'</td><td>'+stat[element]["dowload"]+'</td></tr>'
+		}else{
+			txt = txt + '<tr onmouseover="devstatimg(\''+element+'\')"><td>'+element+'</td><td>'+stat[element]["view"]+'</td><td>'+stat[element]["dowload"]+'</td></tr>'
+		}
+		document.getElementById('stat').innerHTML = txt
+	})
 }
