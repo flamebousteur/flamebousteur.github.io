@@ -3,7 +3,7 @@ console.log('last creation: modern-office')
 
 //import { data } from "data.js"
 
-const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"
+//const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"
 
 function findex(list) {
 	let result = [];
