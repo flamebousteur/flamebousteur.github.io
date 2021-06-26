@@ -1,4 +1,4 @@
-console.log('v2.6.1')
+console.log('v2.6.2')
 console.log('last creation: modern-office')
 
 //import { data } from "data.js"
@@ -14,7 +14,13 @@ function findex(list) {
 }
 
 function nostat(){
-	document.cookie = 'stat=no; secure'
+	if($_COOKIE()["stat"]){
+		document.cookie = 'stat=no; secure;'
+		console.log('cookies on')
+	}else{
+		document.cookie = 'stat=no; secure'
+		console.log('cookies stop')
+	}
 }
 
 const xhr = new XMLHttpRequest();
@@ -180,9 +186,8 @@ function load(f){
 		if($_COOKIE()["stat"]){
 			console.log('cookies stop')
 		}else{
-			console.log('a')
 			document.cookie = 'v='+f+'; secure';
-			console.log('page charge '+f)
+			console.log('page '+f+' charge')
 			xhr.open("get", statlink+"index.php?f="+f, true)
 			xhr.send()
 		}
@@ -250,6 +255,16 @@ function load(f){
 	murl("?f="+f)
 }
 function pr(){
+	if($_COOKIE()["stat"]){
+		console.log('cookies stop')
+	}else if($_COOKIE()["index"]){
+		console.log('page index already charge')
+	}else{
+		document.cookie = 'index=a; secure';
+		console.log('page index charge')
+		xhr.open("get", statlink+"index.php?f=index", true)
+		xhr.send()
+	}
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
 	document.getElementById("title").innerHTML = "Flame Bousteur";
@@ -312,7 +327,6 @@ const pageStat =
 '		</table>'+
 '	</td>'+
 '</table>';
-
 function devstatimg(d){
 	document.getElementById('dt').src = 'https://flamebousteur.github.io/img/zip/'+d+'.png'
 	document.getElementById('dtd').innerHTML = 'view: '+stat[d]["view"]+' | dowload: '+stat[d]["dowload"]
