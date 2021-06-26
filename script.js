@@ -18,7 +18,7 @@ function nostat(){
 		document.cookie = 'stat=no; secure;'
 		console.log('cookies on')
 	}else{
-		document.cookie = 'stat=no; secure'
+		document.cookie = 'stat=no; secure; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
 		console.log('cookies stop')
 	}
 }
@@ -255,16 +255,6 @@ function load(f){
 	murl("?f="+f)
 }
 function pr(){
-	if($_COOKIE()["stat"]){
-		console.log('cookies stop')
-	}else if($_COOKIE()["index"]){
-		console.log('page index already charge')
-	}else{
-		document.cookie = 'index=a; secure';
-		console.log('page index charge')
-		xhr.open("get", statlink+"index.php?f=index", true)
-		xhr.send()
-	}
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
 	document.getElementById("title").innerHTML = "Flame Bousteur";
@@ -305,6 +295,16 @@ if($_COOKIE()["stat"]){
 	},5500)
 }
 
+if($_COOKIE()["stat"]){
+	console.log('cookies stop')
+}else if($_COOKIE()["index"]){
+	console.log('page index already charge')
+}else{
+	document.cookie = 'index=a; secure';
+	console.log('page index charge')
+	xhr.open("get", statlink+"index.php?f=index", true)
+	xhr.send()
+}
 
 /*for dev*/
 const pageStat =
