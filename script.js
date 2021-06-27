@@ -303,13 +303,15 @@ if($_GET['a']){
 
 if($_COOKIE()["stat"]){
 	console.log('cookies stop')
-}else if($_COOKIE()["index"]){
-	console.log('page index already charge')
 }else{
-	document.cookie = 'index=a; secure';
-	console.log('page index charge')
-	xhr.open("get", statlink+"index.php?f=index", true)
-	xhr.send()
+	if($_COOKIE()["index"]){
+		console.log('page index already charge')
+	}else{
+		document.cookie = 'index=a; secure;';
+		console.log('page index charge')
+		xhr.open("get", statlink+"index.php?f=index", true)
+		xhr.send()
+	}
 }
 
 /*for dev*/
