@@ -1,4 +1,4 @@
-console.log('v2.6.2')
+console.log('v2.6.3')
 console.log('last creation: modern-office')
 
 //import { data } from "data.js"
