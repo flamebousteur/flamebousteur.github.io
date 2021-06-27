@@ -3,8 +3,6 @@ console.log('last creation: modern-office')
 
 //import { data } from "data.js"
 
-//const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"
-
 function findex(list) {
 	let result = [];
 	for (let[key,value] of Object.entries(list)) {
@@ -15,11 +13,11 @@ function findex(list) {
 
 function nostat(){
 	if($_COOKIE()["stat"]){
-		document.cookie = 'stat=no; secure;'
-		console.log('cookies on')
-	}else{
 		document.cookie = 'stat=no; secure; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
 		console.log('cookies stop')
+	}else{
+		document.cookie = 'stat=no; secure;'
+		console.log('cookies on')
 	}
 }
 
@@ -293,6 +291,13 @@ if($_COOKIE()["stat"]){
 	window.setTimeout(() => {
 		msg('en continuant sur ce site vous accepter des cookies de statistique',5)
 	},5500)
+}
+
+
+if($_GET['a']){
+	if($_GET['a'] == "nostat"){
+		nostat()
+	}
 }
 
 if($_COOKIE()["stat"]){
