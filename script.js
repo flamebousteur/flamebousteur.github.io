@@ -296,7 +296,8 @@ if($_COOKIE()["stat"]){
 
 if($_GET['a']){
 	if($_GET['a'] == "nostat"){
-		nostat()
+		document.cookie = 'stat=no; secure;'
+		console.log('cookies on')
 	}
 }
 
