@@ -1,0 +1,63 @@
+html{
+	background-color:#000;
+	background-image:url(./img/font.png);
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+#navigator a{
+	display:block;
+	margin:2px;
+	background-color:rgba(183,183,183,1);
+}
+
+#navigator a:hover{
+	transition-property:border-left, background-color;
+	transition-duration: 0.1s;
+	background-color:rgba(183,183,183,1);
+	border-left:3px solid #2478c7;
+}
+
+#navigator{
+	position:fixed;
+	background-color:rgba(25,25,25,0.5);
+	border-right:5px solid rgb(130,130,130,0.8);
+	left:0px;
+	height:100%;
+	width:20%;
+	z-index:2;
+}
+
+#afichage{
+	position:absolute;
+	width:80%;
+	height:100%;
+	z-index:1;
+	left:20%;
+	right:0;
+	margin: auto;
+}
+
+.image{
+	top:30px;
+	width:75%;
+	left:0;
+	right:0;
+	margin: auto;
+}
+
+.image img{
+	width:100%;
+}
+
+#description{
+	width:75%;
+	left:0;
+	right:0;
+	top:30px;
+	margin: auto;
+	background-color:rgb(200,200,200,0.5);
+	border-top:10px solid rgba(0,0,0,0);
+	text-align:justify;
+}

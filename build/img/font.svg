@@ -1,0 +1,25 @@
+<svg width="200" height="200" xmlns="http://www.w3.org/2000/svg">
+	<!-- create by flamebousteur my web-site https://flamebousteur.github.io/ -->
+	<g transform="rotate(90, 75, 75)">
+		<rect fill="url(#line1)" x="-0.27027" y="84" width="77.49985" height="3.49999"/>
+		<rect fill="url(#line2)" x="160" y="84" width="40" height="3.49999"/>
+		<rect fill="url(#line3)" x="70.42982" y="96.63844" width="37.19484" height="3.49999" transform="rotate(45, 89.0272, 98.3884)"/>
+		<rect fill="url(#line1)" x="130.18743" y="71.69233" width="37.19484" height="3.49999" transform="rotate(45, 148.785, 73.4423)"/>
+		<ellipse fill="none" cx="108.51351" cy="118.78378" rx="10" ry="10" stroke="url(#line1)" stroke-width="3" transform="rotate(13, 108.514, 118.784)"/>
+		<ellipse fill="none" cx="129.65807" cy="54.10348" rx="10" ry="10" stroke="url(#line2)" stroke-width="3" transform="rotate(13, 129.658, 54.1035)"/>
+	</g>
+	<defs>
+		<linearGradient id="line3" x1="0" y1="0" x2="1" y2="0">
+			<stop stop-color="#000000" offset="0"/>
+			<stop stop-color="#1223bc" offset="0.4"/>
+		</linearGradient>
+		<linearGradient id="line2" x1="0" y1="0" x2="1" y2="0">
+			<stop stop-color="#000000" offset="0"/>
+			<stop stop-color="#1223bc" offset="1"/>
+		</linearGradient>
+		<linearGradient id="line1" x1="0" y1="0" x2="1" y2="0">
+			<stop stop-color="#1223bc" offset="0.7"/>
+			<stop stop-color="#000000" offset="1"/>
+		</linearGradient>
+	</defs>
+</svg>
