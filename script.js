@@ -1,59 +1,11 @@
-console.log('v2.6.3')
+console.log('v2.7')
 console.log('last creation: modern-office')
 
 //import { data } from "data.js"
 
-function findex(list) {
-	let result = [];
-	for (let[key,value] of Object.entries(list)) {
-		result.push(key);
-	}
-	return result;
-}
-
-function nostat(){
-	if($_COOKIE()["stat"]){
-		document.cookie = 'stat=no; secure; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-		console.log('cookies stop')
-	}else{
-		document.cookie = 'stat=no; secure;'
-		console.log('cookies on')
-	}
-}
-
 const xhr = new XMLHttpRequest();
 xhr.open("get", statlink+"index.php", true);
 xhr.send();
-
-function $_COOKIE(){
-	let result = {}
-	let c = document.cookie
-	c = c.split('; ')
-	c.forEach(element =>{
-		let a = element.split('=')
-		let key = a[0];
-		let obj = {};
-		obj[key] = a[1];
-		result[key] = obj[key]
-	})
-	return result
-}
-
-function $_GET(param) {
-	var vars = {};
-	window.location.href.replace( location.hash, '' ).replace( 
-		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
-		function( m, key, value ) { // callback
-			vars[key] = value !== undefined ? value : '';
-		}
-	);
-
-	if ( param ) {
-		return vars[param] ? vars[param] : null;	
-	}
-	return vars;
-}
-var $_GET = $_GET()
 
 if(window.location.hostname != "flamebousteur.github.io" && window.location.hostname !="localhost"){
 	console.log(window.location.hostname)
@@ -85,10 +37,6 @@ if(window.location.hostname != "flamebousteur.github.io" && window.location.host
 	document.querySelector("html").innerHTML = page0
 }
 
-function murl(url){
-	history.pushState("", "", url)
-}
-
 function type(type){
 	let index = findex(data)
 	let result = []
@@ -101,9 +49,7 @@ function type(type){
 }
 
 const page1 =
-'<div>'+
-'	<div id="msg">msg</div>'+
-'</div>'+
+msgpage+
 '<p id="up" align="center" style="background-image:url(\'https://flamebousteur.github.io/img/end portal hd.png\');background-size: cover;border-bottom:2px solid #162168;">'+
 '	<img src="https://flamebousteur.github.io/img/flamebousteur.png" width="100%" alt="a">'+
 '</p>'+
@@ -146,31 +92,6 @@ if(screen.width < 51){
 	}
 }
 
-function copi(txt){
-	navigator.clipboard.writeText(txt)
-	msg("copy to clipboard")
-}
-
-function msg(txt,time){
-	if(txt == ''){
-		var txt = 'undefined'
-	}
-	if(typeof time != 'undefined'){
-		var time = time * 1000
-	}else{
-		var time = 1000
-	}
-	let msg = document.getElementById("msg")
-	msg.style.opacity = "1";
-	msg.innerHTML = txt
-	window.setTimeout(msgp, time);		
-	function msgp(){
-		document.getElementById("msg").style.opacity = "0";
-	}
-	delete txt
-	delete time
-}
-
 function dloal(f){
 	if(findex(data).includes(f)){
 		window.location.href = 'https://flamebousteur.github.io/zip/'+f+'/'+f+'.zip'
@@ -191,7 +112,7 @@ function load(f){
 		}
 	}
 	const page2 =
-'<div id="msg">msg</div>'+
+msgpage+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
 '<div class="tl" id="tele" style=\'background-image:url("https://flamebousteur.github.io/img/zip/craftS+.png"); border-bottom: 3px solid '+data[f]["color"]+'\';>'+
 '	<p style="text-align:right;">'+
