@@ -1,4 +1,5 @@
 const page =
+msgpage+
 '<div id="navigator">'+
 '</div>'+
 '<div id="afichage">'+
@@ -24,3 +25,4 @@ function load(a){
 		document.getElementById("himg").href = './img/'+data[a]["img"]+'.png';
 	}
 }
+msg('<a href="https://flamebousteur.github.io/">revenir au site principal</a>',5)
