@@ -111,6 +111,7 @@ function load(f){
 			xhr.send()
 		}
 	}
+	murl("?f="+f)
 	const page2 =
 msgpage+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
@@ -132,6 +133,7 @@ msgpage+
 '<p>'+
 '<mark>fr:<br>'+data[f]["descfr"]+'</mark>'+
 '</p>'+
+'<mark id="link"></mark>'+
 '	</pre>'+
 '</div>'+
 '<iframe id="ifr" src=""></iframe>'+
@@ -162,6 +164,10 @@ msgpage+
 	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+data[f]["type"];
 	document.getElementById("tele").style.backgroundImage = "url(\"https://flamebousteur.github.io/img/zip/"+f+".png\")";
 
+	if(data[f]["link"]){
+		document.getElementById("link").innerHTML = '<a style="color:black;" href="'+data[f]["link"]+'">special link</a><br>'
+	}
+
 	if(data[f]["video"]){
 		document.getElementById("ifr").src = "https://www.youtube.com/embed/"+data[f]["video"];
 		document.getElementById("ifr").style.position = "static"
@@ -171,8 +177,8 @@ msgpage+
 	document.getElementById("img1a").href = "https://flamebousteur.github.io/img/zip/"+f+".png";
 	document.getElementById("img1").src = "https://flamebousteur.github.io/img/zip/"+f+".png";
 	document.getElementById("data").innerHTML = "view: "+stat[f]["view"]+" | dowload: "+stat[f]["dowload"];
-	murl("?f="+f)
 }
+
 function pr(){
 	document.querySelector("body").innerHTML = page1
 	document.querySelector("html").className = 'index'
