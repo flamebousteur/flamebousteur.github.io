@@ -13,7 +13,7 @@ const data = {
 		"type":"map",
 		"photo":0,
 		"color":"#999999",
-		"video":"nxw75apm6bs"
+		"embed":"https://www.youtube.com/embed/nxw75apm6bs"
 	},
 	"floating-island":{
 		"desc":"",
@@ -21,7 +21,7 @@ const data = {
 		"type":"map",
 		"photo":2,
 		"color":"#40ffe8",
-		"video":"vRSrmEOO9lI"
+		"embed":"https://www.youtube.com/embed/vRSrmEOO9lI"
 	},
 	"cove-in-minecraft":{
 		"desc":"",
@@ -29,7 +29,7 @@ const data = {
 		"type":"map",
 		"photo":2,
 		"color":"#61b44b",
-		"video":"W2fUQjmN2w4"
+		"embed":"https://www.youtube.com/embed/W2fUQjmN2w4"
 	},
 	"wisard-tower":{
 		"desc":"",
@@ -37,7 +37,7 @@ const data = {
 		"type":"map",
 		"photo":2,
 		"color":"#462100",
-		"video":"ge1WMCKf-yA"
+		"embed":"https://www.youtube.com/embed/ge1WMCKf-yA"
 	},
 	"spawner-generator":{
 		"desc":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\n\nhi if you’ve always dreamed to have a spawner this data pack it's made for you.\n\n1- download this data pack.\n2- build the structure.\n3- a new spawner is here!\n\ngood game. 😁",
