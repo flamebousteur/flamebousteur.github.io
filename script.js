@@ -1,5 +1,5 @@
 console.log('v2.7')
-console.log('last creation: modern-office')
+console.log('last creation:'+findex(data)[0])
 
 //import { data } from "data.js"
 
