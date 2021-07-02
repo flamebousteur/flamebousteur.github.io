@@ -115,7 +115,7 @@ function load(f){
 	const page2 =
 msgpage+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
-'<div class="tl" id="tele" style=\'background-image:url("https://flamebousteur.github.io/img/zip/craftS+.png"); border-bottom: 3px solid '+data[f]["color"]+'\';>'+
+'<div class="tl" id="tele"; border-bottom: 3px solid '+data[f]["color"]+'\';>'+
 '	<p style="text-align:right;">'+
 '		<a onclick="dloal(\''+f+'\')"><mark>'+
 '			<img src="https://flamebousteur.github.io/img/Nether_Star.gif" width="20">download'+
@@ -137,6 +137,7 @@ msgpage+
 '	</pre>'+
 '</div>'+
 '<iframe id="ifr" src=""></iframe>'+
+'<video id="video" src=""></video>'+
 '<hr>'+
 '<div id="galery">problèmes</div>'+
 '<div id="data"></div>';
@@ -164,12 +165,18 @@ msgpage+
 	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+data[f]["type"];
 	document.getElementById("tele").style.backgroundImage = "url(\"https://flamebousteur.github.io/img/zip/"+f+".png\")";
 
+	if(data[f]["video"]){
+		document.getElementById("video").src = data[f]["video"]
+		document.getElementById("video").style.position = "static"
+		document.getElementById("video").style.visibility = "visible"
+	}
+
 	if(data[f]["link"]){
 		document.getElementById("link").innerHTML = '<a style="color:black;" href="'+data[f]["link"]+'">special link</a><br>'
 	}
 
-	if(data[f]["video"]){
-		document.getElementById("ifr").src = "https://www.youtube.com/embed/"+data[f]["video"];
+	if(data[f]["embed"]){
+		document.getElementById("ifr").src = data[f]["embed"];
 		document.getElementById("ifr").style.position = "static"
 		document.getElementById("ifr").style.visibility = "visible"
 	}
