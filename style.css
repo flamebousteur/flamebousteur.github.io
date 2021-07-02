@@ -40,6 +40,23 @@
 
 /* end stat */
 
+#tele{
+	background-image:url("https://flamebousteur.github.io/img/zip/craftS+.png");
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: cover;
+}
+
+#video{
+	visibility:hidden;
+	position:fixed;
+}
+
+#ifr{
+	visibility:hidden;
+	position:fixed;
+}
+
 footer{
 	color:white;
 	border-top:1px solid black;
