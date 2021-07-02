@@ -1,4 +1,12 @@
 const data = {
+	"stars-mine":{
+		"desc":"",
+		"descfr":"",
+		"type":"map",
+		"photo":19,
+		"color":"#2f92ce",
+		"link":"https://flamebousteur.github.io/build/"
+	},
 	"modern-office":{
 		"desc":"",
 		"descfr":"",
