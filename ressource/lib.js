@@ -55,7 +55,7 @@ function copi(txt){
 	msg("copy to clipboard")
 }
 
-var msgpage =
+const msgpage =
 '<div>'+
 '	<div id="msg">msg</div>'+
 '</div>';
@@ -75,5 +75,6 @@ function msg(txt,time){
 	window.setTimeout(msgp, time);		
 	function msgp(){
 		document.getElementById("msg").style.opacity = "0";
+		setTimeout(function(){msg.innerHTML = ''},1000)
 	}
 }
