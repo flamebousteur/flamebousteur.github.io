@@ -9,7 +9,7 @@
 	right:5px;
 }
 
-.msg{
+#msg{
 	display: block;
 	border-bottom:1px solid black;
 	background-color:RGBa(200,200,200,0);
@@ -17,6 +17,6 @@
 	transition-duration: 0.1s;
 }
 
-.msg:hover{
+#msg:hover{
 	background-color:RGBa(200,200,200,0.2);
 }
