@@ -1,0 +1,22 @@
+.mmsg{
+	color:black;
+}
+
+.tmsg{
+	color:silver;
+	font-size:10px;
+	position: absolute;
+	right:5px;
+}
+
+.msg{
+	display: block;
+	border-bottom:1px solid black;
+	background-color:RGBa(200,200,200,0);
+	transition-property:background-color;
+	transition-duration: 0.1s;
+}
+
+.msg:hover{
+	background-color:RGBa(200,200,200,0.2);
+}
