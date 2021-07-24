@@ -34,7 +34,7 @@ function send(msg){
 			}else{
 				msg = document.getElementById("message").value
 			}
-			xhr.open("POST", statlink+"/chat/chat.php/?m=in", true);
+			xhr.open("POST", statlink+"/chat/chat.php?m=in", true);
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			xhr.send("msg="+msg);
 			tchatint = false;
@@ -45,7 +45,7 @@ function send(msg){
 
 function upchannel(){
 	let xhr = new XMLHttpRequest();
-	xhr.open("GET", statlink+"/chat/chat.php/?m=out", true);
+	xhr.open("GET", statlink+"/chat/chat.php?m=out", true);
 	xhr.onreadystatechange = function(){
 		if (xhr.readyState==4 && xhr.status==200){
 			let json = JSON.parse(xhr.responseText)
