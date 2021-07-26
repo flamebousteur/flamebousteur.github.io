@@ -3,7 +3,10 @@ const tchatintt = 5000;
 var tchatint = false;
 var tchat = 0;
 var tchatmaxmessage = 5
+var notiredy = false
+var notiok = false
 
+//const statlink = "http://localhost:8081"
 const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas"
 
 function chec(){
@@ -37,6 +40,8 @@ function send(msg){
 			xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 			xhr.send("msg="+msg);
 			tchatint = false;
+			notiredy = false
+			setTimeout(function(){notiredy = true},1000)
 			setTimeout(function(){tchatint = true},tchatintt);
 		}
 	}
@@ -50,6 +55,9 @@ function upchannel(){
 			let json = JSON.parse(xhr.responseText)
 			if(json.length != tchat){
 				generatedtchat(json)
+				if(notiok && notiredy){
+					let notif = new Notification("new message", {body: json[0]["msg"], icon: "https://flamebousteur.github.io/img/favicon.svg"});
+				}
 			}
 		}
 	}
@@ -72,3 +80,12 @@ function tchatactiv(){
 }
 
 setTimeout(function(){tchatint = true},tchatintt)
+setTimeout(function(){notiredy = true},1000)
+
+Notification.requestPermission( function(status) {
+	if(status == 'granted'){
+		notiok = true
+	}else{
+		notiok = false
+	}
+});
