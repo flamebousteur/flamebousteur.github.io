@@ -90,4 +90,6 @@ Notification.requestPermission( function(status) {
 	}else{
 		notiok = false
 	}
-});
+})
+
+document.body.innerHTML = document.body.innerHTML+'<a target="_blank" href="https://github.com/flamebousteur/flamebousteur.github.io/blob/main/ressource/chat/script.js">view source code on github</a>'
