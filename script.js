@@ -3,9 +3,13 @@ console.log('last creation:'+findex(data)[0])
 
 //import { data } from "data.js"
 
-const xhr = new XMLHttpRequest();
-xhr.open("get", statlink+"index.php", true);
-xhr.send();
+function nostat(){
+	if($_COOKIE()["stat"]){
+		document.cookie = 'stat=no; secure; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+	}else{
+		document.cookie = 'stat=no; secure;'
+	}
+}
 
 if(window.location.hostname != "flamebousteur.github.io" && window.location.hostname !="localhost"){
 	console.log(window.location.hostname)
@@ -49,7 +53,6 @@ function type(type){
 }
 
 const page1 =
-msgpage+
 '<p id="up" align="center" style="background-image:url(\'https://flamebousteur.github.io/img/end portal hd.png\');background-size: cover;border-bottom:2px solid #162168;">'+
 '	<img src="https://flamebousteur.github.io/img/flamebousteur.png" width="100%" alt="a">'+
 '</p>'+
@@ -95,6 +98,7 @@ if(screen.width < 51){
 function dloal(f){
 	if(findex(data).includes(f)){
 		window.location.href = 'https://flamebousteur.github.io/zip/'+f+'/'+f+'.zip'
+		let xhr = new XMLHttpRequest();
 		xhr.open("get", statlink+"index.php?d=a&f="+f, true)
 		xhr.send()
 	}
@@ -107,13 +111,13 @@ function load(f){
 		}else{
 			document.cookie = 'v='+f+'; secure';
 			console.log('page '+f+' charge')
+			let xhr = new XMLHttpRequest();
 			xhr.open("get", statlink+"index.php?f="+f, true)
 			xhr.send()
 		}
 	}
 	murl("?f="+f)
 	const page2 =
-msgpage+
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
 '<div class="tl" id="tele"; border-bottom: 3px solid '+data[f]["color"]+'\';>'+
 '	<p style="text-align:right;">'+
@@ -221,10 +225,8 @@ window.onoffline = (event) => {
 if($_COOKIE()["stat"]){
 	console.log('cookies stop')
 }else{
-	msg('by continuing on this site you accept statistics cookies',5);
-	window.setTimeout(() => {
-		msg('en continuant sur ce site vous accepter des cookies de statistique',5)
-	},5500)
+	msg('by continuing on this site you accept statistics cookies',3);
+	msg('en continuant sur ce site vous accepter des cookies de statistique',3)
 }
 
 
@@ -243,6 +245,7 @@ if($_COOKIE()["stat"]){
 	}else{
 		document.cookie = 'index=a; secure;';
 		console.log('page index charge')
+		let xhr = new XMLHttpRequest();
 		xhr.open("get", statlink+"index.php?f=index", true)
 		xhr.send()
 	}
