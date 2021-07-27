@@ -6,16 +6,6 @@ function findex(list) {
 	return result;
 }
 
-function nostat(){
-	if($_COOKIE()["stat"]){
-		document.cookie = 'stat=no; secure; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-		console.log('cookies stop')
-	}else{
-		document.cookie = 'stat=no; secure;'
-		console.log('cookies on')
-	}
-}
-
 function $_COOKIE(){
 	let result = {}
 	let c = document.cookie
@@ -55,26 +45,38 @@ function copi(txt){
 	msg("copy to clipboard")
 }
 
-const msgpage =
-'<div>'+
-'	<div id="msg">msg</div>'+
-'</div>';
+var flamebousteur_lib_msgs = []
+var flamebousteur_lib_msg_on = true
 
 function msg(txt,time){
-	if(txt == ''){
-		txt = 'undefined'
+	if(!document.getElementById("flamebousteur_lib_msg")){
+		document.body.innerHTML = '<div id="flamebousteur_lib_msg">msg</div>'+document.body.innerHTML
 	}
 	if(typeof time != 'undefined'){
 		time = time * 1000
 	}else{
 		time = 1000
 	}
-	let msg = document.getElementById("msg")
-	msg.style.opacity = "1";
-	msg.innerHTML = txt
-	window.setTimeout(msgp, time);		
-	function msgp(){
-		document.getElementById("msg").style.opacity = "0";
-		setTimeout(function(){msg.innerHTML = ''},1000)
+	flamebousteur_lib_msgs.push([txt,time])
+	function msgb(){
+		flamebousteur_lib_msg_on = false
+		let msg = document.getElementById("flamebousteur_lib_msg")
+		msg.style.opacity = "1";
+		msg.innerHTML = flamebousteur_lib_msgs[0][0]
+		window.setTimeout(msgp, flamebousteur_lib_msgs[0][1]);
+		function msgp(){
+			msg.style.opacity = "0";
+			window.setTimeout(function() {
+				flamebousteur_lib_msg_on = true;
+				if(flamebousteur_lib_msgs[0]){
+					msgb(flamebousteur_lib_msgs)
+				}
+			},1000)
+			msg.innerHTML = ''
+		}
+		flamebousteur_lib_msgs.shift()
+	}
+	if(flamebousteur_lib_msg_on){
+		msgb()
 	}
 }
