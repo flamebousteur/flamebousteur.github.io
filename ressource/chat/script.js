@@ -73,6 +73,8 @@ function tchatactiv(){
 		tchaton = true
 		upchannel()
 		document.getElementById("tchatactiver").value = "desactive tchat"
+		notiredy = false
+		setTimeout(function(){notiredy = true},1000)
 	}else{
 		tchaton = false
 		document.getElementById("tchatactiver").value = "active tchat"
