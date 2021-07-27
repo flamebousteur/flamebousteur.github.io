@@ -20,7 +20,7 @@ function generatedtchat(json){
 	document.getElementById("channel").innerHTML = ''
 	for(let n = 0; n < tchatmaxmessage; n++ ){
 		if(json[n]){
-			let txt = '<div id="msg"><span class="mmsg">'+json[n]["msg"]+'</span><span class="tmsg">'+json[n]["time"]+'</span></div>' + document.getElementById("channel").innerHTML;
+			let txt = document.getElementById("channel").innerHTML+'<div id="msg"><span class="mmsg">'+json[n]["msg"]+'</span><span class="tmsg">'+json[n]["time"]+'</span></div>';
 			document.getElementById("channel").innerHTML = txt
 		}
 	}
