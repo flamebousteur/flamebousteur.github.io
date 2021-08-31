@@ -1,3 +1,6 @@
+/*creat an Array with the 1st object of a json
+{"a":1,"b":2} => ["a","b"]
+*/
 function findex(list) {
 	let result = [];
 	for (let[key,value] of Object.entries(list)) {
@@ -6,6 +9,9 @@ function findex(list) {
 	return result;
 }
 
+/*php $_COOKIE
+change document.cookie in json
+*/
 function $_COOKIE(){
 	let result = {}
 	let c = document.cookie
@@ -20,6 +26,7 @@ function $_COOKIE(){
 	return result
 }
 
+//php $_GET
 function $_GET(param) {
 	var vars = {};
 	window.location.href.replace( location.hash, '' ).replace( 
@@ -36,18 +43,20 @@ function $_GET(param) {
 }
 var $_GET = $_GET()
 
+//change url
 function murl(url){
 	history.pushState("", "", url)
 }
 
+//copy clipboard
 function copi(txt){
 	navigator.clipboard.writeText(txt)
 	msg("copy to clipboard")
 }
 
+//html message
 var flamebousteur_lib_msgs = []
 var flamebousteur_lib_msg_on = true
-
 function msg(txt,time){
 	if(!document.getElementById("flamebousteur_lib_msg")){
 		document.body.innerHTML = '<div id="flamebousteur_lib_msg">msg</div>'+document.body.innerHTML
@@ -79,4 +88,97 @@ function msg(txt,time){
 	if(flamebousteur_lib_msg_on){
 		msgb()
 	}
+}
+
+
+//canvas-graph
+function ggraf(data,canvasid){
+	const xdata = data
+	console.log(xdata[0][1])
+	let graf = data
+
+	let canvas = document.getElementById(canvasid)
+	if(canvas.getContext){
+		canvas.width = 1920;
+		canvas.height = 1080;
+		let ctx = canvas.getContext('2d');
+		ctx.clearRect(0, 0, canvas.width, canvas.height)
+		let ymin = graf[0][1]
+		let xmin = graf[0][0]
+		let ymax = graf[0][1]
+		let xmax = graf[0][0]
+		let n = 0
+		graf.forEach(element =>{
+			if(element[1] < ymin){
+				ymin = element[1]
+			}
+			if(element[0] < xmin){
+				xmin = element[0]
+			}
+			if(element[1] > ymax){
+				ymax = element[1]
+			}
+			if(element[0] > xmax){
+				xmax = element[0]
+			}
+			n++
+		})
+		ymax += 1
+		ymin -= 5
+
+		n = 0
+
+		//
+		graf.forEach(element =>{
+			graf[n][1] = graf[n][1]-ymin
+			graf[n][0] = (graf[n][0]-xmin)*canvas.width/(xmax-xmin)
+			graf[n][1] = (graf[n][1])*canvas.height/ymax
+			graf[n][1] = graf[n][1] - (graf[n][1]*2) + canvas.height
+			n++
+		})
+		console.log('x '+xdata[0][1])
+
+		//graphique génération
+		ctx.beginPath()
+		ctx.lineWidth = 1
+		ctx.moveTo(0,canvas.height-30)
+		ctx.lineTo(canvas.width,canvas.height-30)
+		ctx.strokeStyle = "#7a7a7a"
+		ctx.stroke()
+		for(n = 0;n < graf.length; n++){
+			ctx.beginPath()
+			ctx.arc(graf[n][0],graf[n][1], 10, 0, 2 * Math.PI)
+			ctx.fillStyle = "#5dade2"
+			ctx.fill()
+
+			ctx.beginPath()
+			ctx.lineWidth = 1
+			ctx.moveTo(graf[n][0],0)
+			ctx.lineTo(graf[n][0],canvas.height-30)
+			ctx.strokeStyle = "#7a7a7a"
+			ctx.font = '30px sans-serif';
+			ctx.fillStyle = "#7A7A7A"
+			ctx.fillText(Math.round(xdata[n][0]), graf[n][0]-20, canvas.height-3)
+			ctx.stroke()
+
+			if(graf[n+1]){
+ 
+				ctx.beginPath()
+				ctx.lineWidth = 10
+				ctx.moveTo(graf[n][0],graf[n][1])
+				ctx.lineTo(graf[n+1][0],graf[n+1][1])
+				ctx.strokeStyle = "#5dade2"
+				ctx.stroke()
+			}
+		}
+	}else{
+		console.log('pb')
+	}
+}
+
+//send a XMLHttpRequest
+function send(url,msg){
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", url , true);
+	xhr.send(msg);
 }
