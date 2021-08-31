@@ -41,7 +41,7 @@ const data = {
 	},
 	"spawner-generator":{
 		"desc":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\n\nhi if you’ve always dreamed to have a spawner this data pack it's made for you.\n\n1- download this data pack.\n2- build the structure.\n3- a new spawner is here!\n\ngood game. 😁",
-		"descfr":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\nsi tu as toujours révé d'avoir un spawner ce datapack est fait pour toi!\n\n1- télécharge ce datapack.\n2- costruit la structure.\n3- un nouveau spawner!\n\namusez vous bien. 😁",
+		"descfr":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\nsi tu as toujours révé d'avoir un spawner ce datapack est fait pour toi!\n\n1- télécharge ce datapack.\n2- construit la structure.\n3- un nouveau spawner!\n\namusez vous bien. 😁",
 		"type":"data pack",
 		"photo":3,
 		"color":"#f7ff00"
