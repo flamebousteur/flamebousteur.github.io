@@ -182,3 +182,29 @@ function send(url,msg){
 	xhr.open("GET", url , true);
 	xhr.send(msg);
 }
+
+//add div to show the news
+var flamebousteur_lib_new = []
+function news(txt,exec){
+	if(txt){
+		flamebousteur_lib_new.push([txt,exec])
+	}
+	if(!document.getElementById("flamebousteur_lib_new")){
+		document.body.innerHTML = document.body.innerHTML + '<div id="flamebousteur_lib_new"></div>'
+	}else{
+		document.getElementById("flamebousteur_lib_new").innerHTML = ""
+	}
+	let n = 0
+	flamebousteur_lib_new.forEach(element =>{
+		document.getElementById("flamebousteur_lib_new").innerHTML += '<div id="flamebousteur_lib_new_'+n+'"><span style="font-weight: bold;text-decoration: underline;" onclick="'+flamebousteur_lib_new[n][1]+'">'+flamebousteur_lib_new[n][0]+'</span><span style="font-size: 12px;position: absolute; right:10px;" onclick="delnew(\''+n+'\')"> close</span></div>'
+		n++
+	})
+}
+
+function delnew(id){
+	var top = document.getElementById("flamebousteur_lib_new");
+	var nested = document.getElementById("flamebousteur_lib_new_"+id);
+	var garbage = top.removeChild(nested)
+	flamebousteur_lib_new.splice(id,1)
+	news()
+}
