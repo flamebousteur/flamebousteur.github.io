@@ -1,8 +1,6 @@
 console.log('v2.7')
 console.log('last creation:'+findex(data)[0])
 
-//import { data } from "data.js"
-
 function nostat(){
 	if($_COOKIE()["stat"]){
 		document.cookie = 'stat=no; secure; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
@@ -11,34 +9,26 @@ function nostat(){
 	}
 }
 
-if(window.location.hostname != "flamebousteur.github.io" && window.location.hostname !="localhost"){
-	console.log(window.location.hostname)
-	let page0 =
-'<head>'+
-'	<title id="title">'+
-'		Flame Bousteur'+
-'	</title>'+
-'	<meta charset="utf-8">'+
-'	<meta name="description" content="Flame Bousteur Web-site">'+
-'	<meta name="viewport" content="width=device-width, initial-scale=1.0">'+
-'	<meta name="author" content="flamebousteur">'+
-'	<meta property="og:title"		content="Flame Bousteur">'+
-'	<meta property="og:type"		content="website">'+
-'	<meta property="og:url"			content="https://flamebousteur.github.io">'+
-'	<meta property="og:image"		content="https://flamebousteur.github.io/img/favicon.ico">'+
-'	<meta property="og:description"	content="Flamebousteur\'s datapacks and creation">'+
-'	<meta name="theme-color" content="#ffffff">'+
-'	<link rel="icon" href="img/favicon.ico">'+
-'	<link rel="stylesheet" href="https://flamebousteur.github.io/style.css">'+
-'</head>'+
-'<body>'+
-'	<div style="background-color:white;">'+
-'		a problem has occurred<br>'+
-'		un problème est survenue'+
-'	</div>'+
-'</body>'
-
-	document.querySelector("html").innerHTML = page0
+if($_GET['a']){
+	if($_GET['a'] == "nostat"){
+		document.cookie = 'stat=no; secure;'
+		console.log('cookies on')
+	}
+}
+if($_COOKIE()["stat"]){
+	console.log('cookies stop')
+}else{
+	if($_GET["l"]){
+		send(statlink+"index.php?l="+$_GET["l"])
+		console.log('ok')
+	}
+	if($_COOKIE()["index"]){
+		console.log('page index already charge')
+	}else{
+		document.cookie = 'index=a; secure;';
+		console.log('page index charge')
+		send(statlink+"index.php?f=index")
+	}
 }
 
 function type(type){
@@ -53,8 +43,8 @@ function type(type){
 }
 
 const page1 =
-'<p id="up" align="center" style="background-image:url(\'https://flamebousteur.github.io/img/end portal hd.png\');background-size: cover;border-bottom:2px solid #162168;">'+
-'	<img src="https://flamebousteur.github.io/img/flamebousteur.png" width="100%" alt="a">'+
+'<p id="up" align="center" style="background-image:url(\'/img/end portal hd.png\');background-size: cover;border-bottom:2px solid #162168;">'+
+'	<img src="/img/flamebousteur.png" width="100%" alt="a">'+
 '</p>'+
 '<nav>'+
 '	<ul>'+
@@ -83,11 +73,11 @@ const page1 =
 '	<div id="map">'+
 '	</div><br><hr><br><div id="dp">'+
 '	</div>'+
-'</div>'+
-'<footer>'+
-'	<div align="center">Flamebousteur</div>'+
-'	<a target="_blank" href="https://github.com/flamebousteur/flamebousteur.github.io">github</a>'+
-'</footer>'
+'</div>';
+
+/* programe secondaire ============================================================*/
+
+news('sea my last creation : '+findex(data)[0],'load("'+findex(data)[0]+'")')
 
 if(screen.width < 51){
 	if(screen.width < 51){
@@ -97,10 +87,8 @@ if(screen.width < 51){
 
 function dloal(f){
 	if(findex(data).includes(f)){
-		window.location.href = 'https://flamebousteur.github.io/zip/'+f+'/'+f+'.zip'
-		let xhr = new XMLHttpRequest();
-		xhr.open("get", statlink+"index.php?d=a&f="+f, true)
-		xhr.send()
+		window.location.href = '/zip/'+f+'/'+f+'.zip'
+		send(statlink+"index.php?d=a&f="+f)
 	}
 }
 
@@ -111,9 +99,7 @@ function load(f){
 		}else{
 			document.cookie = 'v='+f+'; secure';
 			console.log('page '+f+' charge')
-			let xhr = new XMLHttpRequest();
-			xhr.open("get", statlink+"index.php?f="+f, true)
-			xhr.send()
+			send(statlink+"index.php?f="+f)
 		}
 	}
 	murl("?f="+f)
@@ -122,7 +108,7 @@ function load(f){
 '<div class="tl" id="tele"; border-bottom: 3px solid '+data[f]["color"]+'\';>'+
 '	<p style="text-align:right;">'+
 '		<a onclick="dloal(\''+f+'\')"><mark>'+
-'			<img src="https://flamebousteur.github.io/img/Nether_Star.gif" width="20">download'+
+'			<img src="/img/Nether_Star.gif" width="20">download'+
 '		</mark></a>'+
 '		<br>'+
 '		<a onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')">'+
@@ -143,9 +129,9 @@ function load(f){
 '<iframe id="ifr" src=""></iframe>'+
 '<video id="video" src=""></video>'+
 '<hr>'+
-'<div id="galery">problèmes</div>'+
-'<div id="data"></div>';
-	document.querySelector("body").innerHTML = page2
+'<div id="data"></div>'+
+'<div id="galery">problèmes</div>';
+	document.getElementById("divpage").innerHTML = page2
 	document.querySelector("html").className = ''
 
 	let n = 0
@@ -154,20 +140,20 @@ function load(f){
 	function a(){
 		if(max != n){
 			n += 1
-			txt = txt + '<a href="https://flamebousteur.github.io/zip/'+f+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="https://flamebousteur.github.io/zip/'+f+'/img/'+n+'.png" width="300"></a>'
+			txt = txt + '<a href="/zip/'+f+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="/zip/'+f+'/img/'+n+'.png" width="300"></a>'
 			a()
 		}
 		document.getElementById("galery").innerHTML = txt;
 	}
 	a()
 
-	document.querySelector('meta[property="og:url"]').setAttribute("content","https://flamebousteur.github.io/file.html?f="+f);
-	document.querySelector('meta[property="og:image"]').setAttribute("content","https://flamebousteur.github.io/img/zip/"+f+".png");
+	document.querySelector('meta[property="og:url"]').setAttribute("content","/file.html?f="+f);
+	document.querySelector('meta[property="og:image"]').setAttribute("content","/img/zip/"+f+".png");
 	document.querySelector('meta[property="og:description"]').setAttribute("content",data[f]["type"]+"\n "+data[f]["desc"]);
 	document.querySelector('meta[name="theme-color"]').setAttribute("content",data[f]["color"]);
 
 	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+data[f]["type"];
-	document.getElementById("tele").style.backgroundImage = "url(\"https://flamebousteur.github.io/img/zip/"+f+".png\")";
+	document.getElementById("tele").style.backgroundImage = "url(\"/img/zip/"+f+".png\")";
 
 	if(data[f]["video"]){
 		document.getElementById("video").src = data[f]["video"]
@@ -185,23 +171,23 @@ function load(f){
 		document.getElementById("ifr").style.visibility = "visible"
 	}
 
-	document.getElementById("img1a").href = "https://flamebousteur.github.io/img/zip/"+f+".png";
-	document.getElementById("img1").src = "https://flamebousteur.github.io/img/zip/"+f+".png";
-	document.getElementById("data").innerHTML = "view: "+stat[f]["view"]+" | dowload: "+stat[f]["dowload"];
+	document.getElementById("img1a").href = "/img/zip/"+f+".png";
+	document.getElementById("img1").src = "/img/zip/"+f+".png";
+	document.getElementById("data").innerHTML = "view: "+stat["files"][f]["view"]+" | dowload: "+stat["files"][f]["dowload"];
 }
 
 function pr(){
-	document.querySelector("body").innerHTML = page1
+	document.getElementById("divpage").innerHTML = page1
 	document.querySelector("html").className = 'index'
 	document.getElementById("title").innerHTML = "Flame Bousteur";
 	let txt = '';
 	type('map').forEach(element =>{
-		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="https://flamebousteur.github.io/img/zip/'+element+'.png" width="200"></a>'
+		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="/img/zip/'+element+'.png" width="200"></a>'
 		document.getElementById("map").innerHTML = txt;
 	})
 	txt = '';
 	type('data pack').forEach(element =>{
-		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="https://flamebousteur.github.io/img/zip/'+element+'.png" width="200"></a>'
+		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="/img/zip/'+element+'.png" width="200"></a>'
 		document.getElementById("dp").innerHTML = txt;
 	})
 	murl(window.location.origin)
@@ -214,8 +200,7 @@ if(data[$_GET['f']]){
 }
 
 if(screen.width < 400){
-	let dpmap = document.getElementById("dp-map");
-	dpmap.style.textAlign = "center";
+	document.getElementById("dp-map").style.textAlign = "center";
 }
 
 window.onoffline = (event) => {
@@ -229,27 +214,6 @@ if($_COOKIE()["stat"]){
 	msg('en continuant sur ce site vous accepter des cookies de statistique',3)
 }
 
-
-if($_GET['a']){
-	if($_GET['a'] == "nostat"){
-		document.cookie = 'stat=no; secure;'
-		console.log('cookies on')
-	}
-}
-
-if($_COOKIE()["stat"]){
-	console.log('cookies stop')
-}else{
-	if($_COOKIE()["index"]){
-		console.log('page index already charge')
-	}else{
-		document.cookie = 'index=a; secure;';
-		console.log('page index charge')
-		let xhr = new XMLHttpRequest();
-		xhr.open("get", statlink+"index.php?f=index", true)
-		xhr.send()
-	}
-}
 
 /*for dev*/
 const pageStat =
@@ -273,11 +237,11 @@ const pageStat =
 '	</td>'+
 '</table>';
 function devstatimg(d){
-	document.getElementById('dt').src = 'https://flamebousteur.github.io/img/zip/'+d+'.png'
+	document.getElementById('dt').src = '/img/zip/'+d+'.png'
 	document.getElementById('dtd').innerHTML = 'view: '+stat[d]["view"]+' | dowload: '+stat[d]["dowload"]
 }
 function devstat(){
-	document.querySelector("body").innerHTML = pageStat
+	document.getElementById("divpage").innerHTML = pageStat
 	document.querySelector("html").className = ''
 	txt = document.getElementById('stat').innerHTML
 	findex(stat).forEach(element =>{
