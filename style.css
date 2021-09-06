@@ -1,8 +1,8 @@
-/*v 2.8*/
+/*v 2.8.2*/
 
 .nojs{
 	background-color:#b6f31e;
-	background-image: url('https://flamebousteur.github.io/img/vrac/font.png');
+	background-image: url('/img/vrac/font.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -10,7 +10,7 @@
 
 .index{
 	background-color:#202020;
-	background-image: url('https://flamebousteur.github.io/img/vrac/font-bw.png');
+	background-image: url('/img/vrac/font-bw.png');
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -18,10 +18,11 @@
 
 /*stat*/
 
-#exit-code, #data{
+#exit-code{
 	visibility: hidden;
 	position:fixed;
 }
+
 #stat tr{
 	background-color: white;
 	cursor:default;
@@ -40,8 +41,12 @@
 
 /* end stat */
 
+#data{
+	color:black;
+}
+
 #tele{
-	background-image:url("https://flamebousteur.github.io/img/zip/craftS+.png");
+	background-image:url("/img/zip/craftS+.png");
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
@@ -115,6 +120,25 @@ footer a{
 	width: 200px;
 	margin-right: -300px;
 	overflow-y: hidden;
+}
+
+#flamebousteur_lib_new{
+	border-radius: 10px 10px 0 0;
+	position: sticky;
+	bottom: 0;
+	left: 0;
+	width:99%;
+	padding-top:5px;
+	padding-bottom:5px;
+	margin: auto;
+	border-top: 3px solid #0006;
+	background-color:#1f1f1f;
+	background-image: url("chrome://global/skin/media/imagedoc-darknoise.png");
+	font-size:15px;
+	text-align:center;
+	color: white;
+	visibility: visible;
+	z-index:10;
 }
 
 #flamebousteur_lib_msg{
