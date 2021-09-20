@@ -1,6 +1,6 @@
 console.log('v2.7')
 console.log('last modification: patch')
-console.log('last creation:'+findex(data)[0])
+//console.log('last creation:'+findex(data)[0])
 
 function nostat(){
 	if($_COOKIE()["stat"]){
