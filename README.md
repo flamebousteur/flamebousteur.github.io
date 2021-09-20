@@ -8,6 +8,7 @@ you can use my project data at [https://flamebousteur.github.io/data.json](https
 you can also use my javascript library at [https://flamebousteur.github.io/ressource/lib.js](https://flamebousteur.github.io/ressource/lib.js)
 
 
+<pre>
 creation images:
 https://flamebousteur.github.io/zip/<creation>/img/<the image number>.png
 
@@ -41,3 +42,4 @@ stat.json
     }
   }
 }
+</pre>
