@@ -13,10 +13,10 @@
 		<meta property="og:type"		content="website">
 		<meta property="og:url"			content="https://flamebousteur.github.io">
 		<meta property="og:image"		content="https://flamebousteur.github.io/img/favicon.ico">
-		<meta property="og:description"	content="Flamebousteur's datapacks and creation">
+		<meta property="og:description"		content="Flamebousteur's datapacks and creation">
 		<meta name="theme-color" content="#ffffff">
 
-		<link rel="icon" href="https://flamebousteur.github.io/img/favicon.svg">
+		<link rel="icon" href="./img/favicon.svg">
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="./ressource/reset.css">
 		<script>const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"</script>
@@ -40,7 +40,18 @@
 			</a>
 		</footer>
 	</body>
-	<script src="data.js"></script>
+	<script>
+var data;
+let xhr = new XMLHttpRequest();
+xhr.open("GET","/data.json", true);
+xhr.onreadystatechange = function(){
+	if (xhr.readyState==4 && xhr.status==200){
+		data = JSON.parse(xhr.responseText)
+	}
+}
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.send();
+	</script>
 	<script src="https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/flstat.php"></script>
 	<script src="script.js"></script>
 </html>
