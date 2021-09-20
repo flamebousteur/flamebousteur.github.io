@@ -196,7 +196,7 @@ function news(txt,exec){
 	}
 	let n = 0
 	flamebousteur_lib_new.forEach(element =>{
-		document.getElementById("flamebousteur_lib_new").innerHTML += '<div id="flamebousteur_lib_new_'+n+'"><span style="font-weight: bold;text-decoration: underline;" onclick="'+flamebousteur_lib_new[n][1]+'">'+flamebousteur_lib_new[n][0]+'</span><span style="font-size: 12px;position: absolute; right:10px;" onclick="delnew(\''+n+'\')"> close</span></div>'
+		document.getElementById("flamebousteur_lib_new").innerHTML += '<div id="flamebousteur_lib_new_'+n+'"><span style="cursor: pointer;font-weight: bold;text-decoration: underline;" onclick="'+flamebousteur_lib_new[n][1]+'">'+flamebousteur_lib_new[n][0]+'</span><span style="font-size: 12px;position: absolute; right:10px;cursor: pointer;" onclick="delnew(\''+n+'\')"> close</span></div>'
 		n++
 	})
 }
