@@ -1,5 +1,4 @@
 const page =
-msgpage+
 '<div id="navigator">'+
 '</div>'+
 '<div id="afichage">'+
