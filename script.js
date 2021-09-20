@@ -1,4 +1,5 @@
 console.log('v2.7')
+console.log('last modification: patch')
 console.log('last creation:'+findex(data)[0])
 
 function nostat(){
@@ -77,7 +78,7 @@ const page1 =
 
 /* programe secondaire ============================================================*/
 
-news('sea my last creation : '+findex(data)[0],'load("'+findex(data)[0]+'")')
+news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
 
 if(screen.width < 51){
 	if(screen.width < 51){
