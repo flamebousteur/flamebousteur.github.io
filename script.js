@@ -57,7 +57,7 @@ const page1 =
 '				<li><a href="https://twitter.com/flame65407614" target="_blank">twitter</a></li>'+
 '				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
 '				<li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li>'+
-'				<li><a href="https://dicord.com/" target="_blank">Discord server</a></li>'+
+'				<li><a href="https://discord.com/" target="_blank">Discord server</a></li>'+
 '				<li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li>'+
 '			</ul>'+
 '		</li>'+
