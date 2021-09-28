@@ -1,6 +1,6 @@
-console.log('v2.7')
-console.log('last modification: patch')
-//console.log('last creation:'+findex(data)[0])
+console.log('v2.8')
+console.log('last modification type: patch')
+console.log('last modification description: patch in case of faster connection and modifacation of the statisic système')
 
 function nostat(){
 	if($_COOKIE()["stat"]){
@@ -20,7 +20,7 @@ if($_COOKIE()["stat"]){
 	console.log('cookies stop')
 }else{
 	if($_GET["l"]){
-		send(statlink+"index.php?l="+$_GET["l"])
+		send(statlink+"index.php?f=index&l="+$_GET["l"])
 		console.log('ok')
 	}
 	if($_COOKIE()["index"]){
@@ -57,7 +57,7 @@ const page1 =
 '				<li><a href="https://twitter.com/flame65407614" target="_blank">twitter</a></li>'+
 '				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
 '				<li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li>'+
-'				<li><a onclick="copi(\'flamebousteur#5111\')">Discord: flamebousteur#5111</a></li>'+
+'				<li><a href="https://dicord.com/" target="_blank">Discord server</a></li>'+
 '				<li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li>'+
 '			</ul>'+
 '		</li>'+
@@ -77,8 +77,6 @@ const page1 =
 '</div>';
 
 /* programe secondaire ============================================================*/
-
-news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
 
 if(screen.width < 51){
 	if(screen.width < 51){
@@ -100,7 +98,11 @@ function load(f){
 		}else{
 			document.cookie = 'v='+f+'; secure';
 			console.log('page '+f+' charge')
-			send(statlink+"index.php?f="+f)
+			if($_GET['l']){
+				send(statlink+"index.php?f="+f+"&l="+$_GET['l'])
+			}else{
+				send(statlink+"index.php?f="+f)
+			}
 		}
 	}
 	murl("?f="+f)
@@ -194,66 +196,34 @@ function pr(){
 	murl(window.location.origin)
 }
 
-if(data[$_GET['f']]){
-	load($_GET['f']);
-}else{
-	pr()
+function loadjs(){
+	console.log('last creation:'+findex(data)[0])
+
+	if($_COOKIE()["stat"]){
+		console.log('cookies stop')
+	}else{
+		if($_COOKIE()["index"]){
+			console.log('cookies stop')
+		}else{
+			msg('by continuing on this site you accept statistics cookies',3);
+			msg('en continuant sur ce site vous accepter des cookies de statistique',3)
+		}
+	}
+
+	if(data[$_GET['f']]){
+		load($_GET['f']);
+	}else{
+		pr()
+	}
+
+	news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
+
+	if(screen.width < 402){
+		document.getElementById("dp-map").style.textAlign = "center";
+	}
 }
 
-if(screen.width < 400){
-	document.getElementById("dp-map").style.textAlign = "center";
-}
 
 window.onoffline = (event) => {
 	msg('connection lost')
 };
-
-if($_COOKIE()["stat"]){
-	console.log('cookies stop')
-}else{
-	msg('by continuing on this site you accept statistics cookies',3);
-	msg('en continuant sur ce site vous accepter des cookies de statistique',3)
-}
-
-
-/*for dev*/
-const pageStat =
-'<table>'+
-'	<td>'+
-'		<table id="stat">'+
-'			<thead>'+
-'				<tr>'+
-'					<td></td>'+
-'					<td>view</td>'+
-'					<td>dowload</td>'+
-'				</tr>'+
-'			</thead>'+
-'		</table>'+
-'	</td>'+
-'	<td>'+
-'		<table>'+
-'			<tr><img id="dt"></tr>'+
-'			<tr id="dtd"></tr>'+
-'		</table>'+
-'	</td>'+
-'</table>';
-function devstatimg(d){
-	document.getElementById('dt').src = '/img/zip/'+d+'.png'
-	document.getElementById('dtd').innerHTML = 'view: '+stat[d]["view"]+' | dowload: '+stat[d]["dowload"]
-}
-function devstat(){
-	document.getElementById("divpage").innerHTML = pageStat
-	document.querySelector("html").className = ''
-	txt = document.getElementById('stat').innerHTML
-	findex(stat).forEach(element =>{
-		if(typeof(stat[element]["dowload"]) == 'undefined'){
-			stat[element]["dowload"] = '-'
-		}
-		if(element == 'index'){
-			txt = txt + '<tr><td>'+element+'</td><td>'+stat[element]["view"]+'</td><td>'+stat[element]["dowload"]+'</td></tr>'
-		}else{
-			txt = txt + '<tr onmouseover="devstatimg(\''+element+'\')"><td>'+element+'</td><td>'+stat[element]["view"]+'</td><td>'+stat[element]["dowload"]+'</td></tr>'
-		}
-		document.getElementById('stat').innerHTML = txt
-	})
-}
