@@ -9,18 +9,20 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="flamebousteur">
 
-		<meta property="og:title"		content="Flame Bousteur">
-		<meta property="og:type"		content="website">
-		<meta property="og:url"			content="https://flamebousteur.github.io">
-		<meta property="og:image"		content="https://flamebousteur.github.io/img/favicon.ico">
-		<meta property="og:description"		content="Flamebousteur's datapacks and creation">
+		<meta property="og:title"	content="Flame Bousteur">
+		<meta property="og:type"	content="website">
+		<meta property="og:url"		content="https://flamebousteur.github.io/">
+		<meta property="og:image"	content="https://flamebousteur.github.io/favicon.ico">
+		<meta property="og:description"	content="Flamebousteur's datapacks and creation for minecraft">
 		<meta name="theme-color" content="#ffffff">
 
-		<link rel="icon" href="./img/favicon.svg">
+		<link rel="icon" href="./favicon.ico">
 		<link rel="stylesheet" href="style.css">
 		<link rel="stylesheet" href="./ressource/reset.css">
-		<script>const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"</script>
 		<script src="./ressource/lib.js"></script>
+		<script>const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"</script>
+		<script src="script.js"></script>
+		<script src="https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/flstat.php"></script>
 	</head>
 	<body>
 		<div id="divpage" style="background-color:white;">
@@ -39,19 +41,18 @@
 				github
 			</a>
 		</footer>
-	</body>
-	<script>
+		<script>
 var data;
 let xhr = new XMLHttpRequest();
 xhr.open("GET","/data.json", true);
 xhr.onreadystatechange = function(){
 	if (xhr.readyState==4 && xhr.status==200){
 		data = JSON.parse(xhr.responseText)
+		loadjs()
 	}
 }
 xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 xhr.send();
-	</script>
-	<script src="https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/flstat.php"></script>
-	<script src="script.js"></script>
+		</script>
+	</body>
 </html>
