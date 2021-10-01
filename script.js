@@ -1,4 +1,4 @@
-console.log('v2.8')
+console.log('v2.8.1')
 console.log('last modification type: patch')
 console.log('last modification description: patch in case of faster connection and modifacation of the statisic système')
 
@@ -16,6 +16,7 @@ if($_GET['a']){
 		console.log('cookies on')
 	}
 }
+
 if($_COOKIE()["stat"]){
 	console.log('cookies stop')
 }else{
@@ -63,17 +64,12 @@ const page1 =
 '		</li>'+
 '		<li class="deroulant">'+
 '			<a>minecraft</a>'+
-'			<ul class="sous">'+
-'				<li><a href="#map">map</a></li>'+
-'				<li><a href="#dp">DataPack</a></li>'+
+'			<ul class="sous" id="type">'+
 '			</ul>'+
 '		</li>'+
 '	</ul>'+
 '</nav>'+
 '<div id="dp-map" class="cr">'+
-'	<div id="map">'+
-'	</div><br><hr><br><div id="dp">'+
-'	</div>'+
 '</div>';
 
 /* programe secondaire ============================================================*/
@@ -183,15 +179,27 @@ function pr(){
 	document.getElementById("divpage").innerHTML = page1
 	document.querySelector("html").className = 'index'
 	document.getElementById("title").innerHTML = "Flame Bousteur";
-	let txt = '';
-	type('map').forEach(element =>{
-		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="/img/zip/'+element+'.png" width="200"></a>'
-		document.getElementById("map").innerHTML = txt;
+	let types = [];
+	findex(data).forEach(element=>{
+		if(types.includes(data[element]['type'])){
+		}else{
+			types.push(data[element]['type'])
+		}
 	})
-	txt = '';
-	type('data pack').forEach(element =>{
-		txt = txt + '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="/img/zip/'+element+'.png" width="200"></a>'
-		document.getElementById("dp").innerHTML = txt;
+
+	types.forEach(element =>{
+		let txt = '';
+		let typ = element;
+		type(typ).forEach(element =>{
+			txt = '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="/img/zip/'+element+'.png" width="200"></a>'
+			if(document.getElementById(typ)){
+				document.getElementById(typ).innerHTML += txt;
+			}else{
+				document.getElementById("dp-map").innerHTML += '<div id="'+typ+'"><div class="in">'+typ+'</div>'+txt+'</div><br><hr>';
+				document.getElementById("type").innerHTML += '<li><a href="#'+typ+'">'+typ+'</a></li>'
+			}
+		})
+		txt = '';
 	})
 	murl(window.location.origin)
 }
@@ -227,3 +235,39 @@ function loadjs(){
 window.onoffline = (event) => {
 	msg('connection lost')
 };
+
+function devstatimg(d){
+	document.getElementById('dt').innerHTML = '';
+	findex(stat["files"][d]["web-site"]).forEach(element =>{
+		document.getElementById('dt').innerHTML += element+' : '+stat["files"][d]["web-site"][element]+'<br>';
+	})
+	document.getElementById('dtd').innerHTML = 'view: '+stat["files"][d]["view"]+' | dowload: '+stat["files"][d]["dowload"]
+}
+
+function devstat(){
+	statpage = '<table>'+
+'	<td>'+
+'		<table id="stat">'+
+'			<thead>'+
+'				<tr>'+
+'					<td></td>'+
+'					<td>view</td>'+
+'					<td>dowload</td>'+
+'				</tr>'+
+'			</thead>'+
+'		</table>'+
+'	</td>'+
+'	<td>'+
+'		<table>'+
+'			<tr id="dt"></tr>'+
+'			<tr id="dtd"></tr>'+
+'		</table>'+
+'</table>';
+	document.body.innerHTML = statpage;
+
+	findex(stat["files"]).forEach(element =>{
+		txt = document.getElementById('stat').innerHTML
+		txt = txt + '<tr onmouseover="devstatimg(\''+element+'\')"><td>'+element+'</td><td>'+stat["files"][element]["view"]+'</td><td>'+stat["files"][element]["dowload"]+'</td></tr>'
+		document.getElementById('stat').innerHTML = txt
+	})
+}
