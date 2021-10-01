@@ -33,12 +33,12 @@ stat.json:
     "files":{
         "index":{
             "view":"total site view",
-            "web-site":["links most use"]
+            "web-site":{"links most use"}
         },
         "creation":{
             "view":"creation view",
             "dowload":"creation view",
-            "web-site":["links most use"]
+            "web-site":{"links most use"}
         }
     }
 }
