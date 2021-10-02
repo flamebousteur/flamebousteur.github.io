@@ -1,4 +1,4 @@
-console.log('v2.8.1')
+console.log('v2.8.2')
 console.log('last modification type: patch')
 console.log('last modification description: patch in case of faster connection and modifacation of the statisic système')
 
@@ -82,8 +82,12 @@ if(screen.width < 51){
 
 function dloal(f){
 	if(findex(data).includes(f)){
-		window.location.href = '/zip/'+f+'/'+f+'.zip'
-		send(statlink+"index.php?d=a&f="+f)
+		if($_COOKIE()["stat"]){
+			console.log('cookies stop')
+		}else{
+			window.location.href = '/zip/'+f+'/'+f+'.zip'
+			send(statlink+"index.php?d=a&f="+f)
+		}
 	}
 }
 
