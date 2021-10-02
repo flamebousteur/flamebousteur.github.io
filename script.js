@@ -82,10 +82,10 @@ if(screen.width < 51){
 
 function dloal(f){
 	if(findex(data).includes(f)){
+		window.location.href = '/zip/'+f+'/'+f+'.zip'
 		if($_COOKIE()["stat"]){
 			console.log('cookies stop')
 		}else{
-			window.location.href = '/zip/'+f+'/'+f+'.zip'
 			send(statlink+"index.php?d=a&f="+f)
 		}
 	}
