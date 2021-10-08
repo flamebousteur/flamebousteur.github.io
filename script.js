@@ -131,7 +131,7 @@ function load(f){
 		if(max != n){
 			n += 1
 			txt = txt + '<a href="/zip/'+f+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="/zip/'+f+'/img/'+n+'.png" width="300"></a>'
-			// txt = txt + '<a onclick="showimage('+n+')"><img alt="oups Image '+n+' can\'t be loaded" src="/zip/'+f+'/img/'+n+'.png" width="300"></a>'
+			// txt = txt + '<a href="/zip/'+f+'/img/'+n+'.webp"><img alt="oups Image '+n+' can\'t be loaded" src="/zip/'+f+'/img/'+n+'.webp" width="300"></a>'
 			a()
 		}
 		document.getElementById("galery").innerHTML = txt;
@@ -144,7 +144,7 @@ function load(f){
 	document.querySelector('meta[name="theme-color"]').setAttribute("content",data[f]["color"]);
 
 	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+data[f]["type"];
-	document.getElementById("tele").style.backgroundImage = "url(\"/img/zip/"+f+".png\")";
+	document.getElementById("tele").style.backgroundImage = "url(\"/img/zip/"+f+".webp\")";
 
 	if(data[f]["video"]){
 		document.getElementById("video").src = data[f]["video"]
@@ -183,7 +183,7 @@ function pr(){
 		let txt = '';
 		let typ = element;
 		type(typ).forEach(element =>{
-			txt = '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="/img/zip/'+element+'.png" width="200"></a>'
+			txt = '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="/img/zip/'+element+'.webp" width="200"></a>'
 			if(document.getElementById(typ)){
 				document.getElementById(typ).innerHTML += txt;
 			}else{
@@ -200,13 +200,13 @@ function showimage(img){
 	console.log(img)
 	if(document.getElementById("showimage")){
 		document.getElementById("showimageimg").alt = 'oups Image '+img+' can\'t be loaded'
-		document.getElementById("showimageimg").src = '/zip/'+$_GET['f']+'/img/'+img+'.png'
+		document.getElementById("showimageimg").src = '/zip/'+$_GET['f']+'/img/'+img+'.webp'
 		document.getElementById("showimagedesc").innerHTML = 'image : '+img
 	}else{
 		document.getElementById("divpage").innerHTML += '<div id="showimage" style="position: fixed;top: 0;background-color: white;z-index: 9;">'+
 '	<div>'+
 '	<div style="left: 0;position: absolute;top: 50%;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z"/></svg></div>'+
-'	<div style="text-align: center;"><img id="showimageimg" alt="oups Image '+img+' can\'t be loaded" src="/zip/'+$_GET['f']+'/img/'+img+'.png" style="width: 90%;"></div>'+
+'	<div style="text-align: center;"><img id="showimageimg" alt="oups Image '+img+' can\'t be loaded" src="/zip/'+$_GET['f']+'/img/'+img+'.webp" style="width: 90%;"></div>'+
 '	<div style="right: 0;position: absolute;top: 50%;"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12"/></g></svg></div>'+
 '	</div>'+
 '	<div id="showimagedesc">image : '+img+
@@ -246,6 +246,7 @@ function loadjs(){
 			if($_COOKIE()["index"]){
 				console.log('page index already charge')
 			}else{
+				console.log("ok")
 				if($_GET["l"]){
 					send(statlink+"index.php?f=index&l="+$_GET["l"])
 					console.log('ok')
@@ -275,7 +276,7 @@ function loadjs(){
 /*secondary programe=======================================================*/
 
 window.onoffline = (event) => {
-	msg('connection lost')
+	msg("connection lost")
 };
 
 /*dev stat function =======================================================*/
