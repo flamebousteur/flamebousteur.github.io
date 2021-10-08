@@ -1,35 +1,22 @@
-console.log('v2.8.2')
-console.log('last modification type: patch')
-console.log('last modification description: patch in case of faster connection and modifacation of the statisic système')
+console.log('v2.8.3')
+console.log('last modification type: add privacy')
+console.log('last modification description: add privacy')
+
+if($_COOKIE()["lang"]){
+	var deflang = $_COOKIE()["lang"]
+}else{
+	var deflang = navigator.language
+	document.cookie = 'lang='+deflang+'; secure;'
+}
 
 function nostat(){
-	if($_COOKIE()["stat"]){
-		document.cookie = 'stat=no; secure; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-	}else{
-		document.cookie = 'stat=no; secure;'
-	}
+	document.cookie = 'stat=no; secure;'
+	console.log('cookies stop')
 }
 
 if($_GET['a']){
 	if($_GET['a'] == "nostat"){
-		document.cookie = 'stat=no; secure;'
-		console.log('cookies on')
-	}
-}
-
-if($_COOKIE()["stat"]){
-	console.log('cookies stop')
-}else{
-	if($_GET["l"]){
-		send(statlink+"index.php?f=index&l="+$_GET["l"])
-		console.log('ok')
-	}
-	if($_COOKIE()["index"]){
-		console.log('page index already charge')
-	}else{
-		document.cookie = 'index=a; secure;';
-		console.log('page index charge')
-		send(statlink+"index.php?f=index")
+		nostat()
 	}
 }
 
@@ -58,7 +45,7 @@ const page1 =
 '				<li><a href="https://twitter.com/flame65407614" target="_blank">twitter</a></li>'+
 '				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
 '				<li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li>'+
-'				<li><a href="https://discord.gg/nRyWMgzwzY" target="_blank">Discord server</a></li>'+
+'				<li><a href="https://discord.com/" target="_blank">Discord server</a></li>'+
 '				<li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li>'+
 '			</ul>'+
 '		</li>'+
@@ -72,7 +59,7 @@ const page1 =
 '<div id="dp-map" class="cr">'+
 '</div>';
 
-/* programe secondaire ============================================================*/
+/* programe ============================================================*/
 
 if(screen.width < 51){
 	if(screen.width < 51){
@@ -144,6 +131,7 @@ function load(f){
 		if(max != n){
 			n += 1
 			txt = txt + '<a href="/zip/'+f+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="/zip/'+f+'/img/'+n+'.png" width="300"></a>'
+			// txt = txt + '<a onclick="showimage('+n+')"><img alt="oups Image '+n+' can\'t be loaded" src="/zip/'+f+'/img/'+n+'.png" width="300"></a>'
 			a()
 		}
 		document.getElementById("galery").innerHTML = txt;
@@ -208,37 +196,89 @@ function pr(){
 	murl(window.location.origin)
 }
 
-function loadjs(){
-	console.log('last creation:'+findex(data)[0])
-
-	if($_COOKIE()["stat"]){
-		console.log('cookies stop')
+function showimage(img){
+	console.log(img)
+	if(document.getElementById("showimage")){
+		document.getElementById("showimageimg").alt = 'oups Image '+img+' can\'t be loaded'
+		document.getElementById("showimageimg").src = '/zip/'+$_GET['f']+'/img/'+img+'.png'
+		document.getElementById("showimagedesc").innerHTML = 'image : '+img
 	}else{
-		if($_COOKIE()["index"]){
-			console.log('cookies stop')
-		}else{
-			msg('by continuing on this site you accept statistics cookies',3);
-			msg('en continuant sur ce site vous accepter des cookies de statistique',3)
-		}
-	}
-
-	if(data[$_GET['f']]){
-		load($_GET['f']);
-	}else{
-		pr()
-	}
-
-	news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
-
-	if(screen.width < 402){
-		document.getElementById("dp-map").style.textAlign = "center";
+		document.getElementById("divpage").innerHTML += '<div id="showimage" style="position: fixed;top: 0;background-color: white;z-index: 9;">'+
+'	<div>'+
+'	<div style="left: 0;position: absolute;top: 50%;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z"/></svg></div>'+
+'	<div style="text-align: center;"><img id="showimageimg" alt="oups Image '+img+' can\'t be loaded" src="/zip/'+$_GET['f']+'/img/'+img+'.png" style="width: 90%;"></div>'+
+'	<div style="right: 0;position: absolute;top: 50%;"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12"/></g></svg></div>'+
+'	</div>'+
+'	<div id="showimagedesc">image : '+img+
+'	</div>'+
+'</div>';
 	}
 }
 
+function patpage(loc){
+	let pat = {
+		"hellow-world":"hellow world",
+		"privacy":"None of your personal information is and will be used.<br>Cookies are only used to get information on the source of traffic of the site.<br>Thank you for your understanding",
+		"confidentialite":"Aucune de vos informations personnelles n'est et ne sera utilisée.<br>Les cookies ne sont utilisés qu'à fin d'avoir des informations sur la source de trafic du site.<br>Merci de votre compréhension",
+		"about":"hello this is FlameBousteur.<br>I'm a minecraft builder and coder"
+	}
+
+	if(findex(pat).includes(loc)){
+		document.getElementById("divpage").innerHTML = '<a onclick="pr()">back</a><div style="text-align:center;">'+pat[loc]+"<div><br>"
+		document.querySelector("html").className = 'index'
+		document.getElementById("title").innerHTML = loc;
+	}
+
+	murl("/"+loc)
+}
+
+function loadjs(){
+	console.log('last creation:'+findex(data)[0])
+
+	let loc = window.location.pathname.substring(1)
+
+	if(loc != ""){
+		patpage(loc)
+	}else{
+		if($_COOKIE()["stat"]){
+			console.log('cookies stop')
+		}else{
+			if($_COOKIE()["index"]){
+				console.log('page index already charge')
+			}else{
+				if($_GET["l"]){
+					send(statlink+"index.php?f=index&l="+$_GET["l"])
+					console.log('ok')
+				}
+				msg("by continuing on this site you accept statistics cookies <a style='color:blue;text-decoration: underline;' onclick='patpage(\"privacy\")'>privacy</a>",3)
+				msg("en continuant sur ce site vous accepter des cookies de statistique <a style='color:blue;text-decoration: underline;' onclick='patpage(\"confidentialite\")'>confidentialité</a>",3)
+				document.cookie = 'index=a; secure;';
+				send(statlink+"index.php?f=index")
+			}
+		}
+	
+		if(data[$_GET['f']]){
+			load($_GET['f']);
+		}else{
+			console.log('page index charge')
+			pr()
+		}
+	
+	
+		if(screen.width < 402){
+			document.getElementById("dp-map").style.textAlign = "center";
+		}
+	}
+	news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
+}
+
+/*secondary programe=======================================================*/
 
 window.onoffline = (event) => {
 	msg('connection lost')
 };
+
+/*dev stat function =======================================================*/
 
 function devstatimg(d){
 	document.getElementById('dt').innerHTML = '';
