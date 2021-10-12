@@ -59,6 +59,45 @@ const page1 =
 '<div id="dp-map" class="cr">'+
 '</div>';
 
+/*dev stat function =======================================================*/
+
+function devstatimg(d){
+	document.getElementById('dt').innerHTML = '';
+	findex(stat["files"][d]["web-site"]).forEach(element =>{
+		document.getElementById('dt').innerHTML += element+' : '+stat["files"][d]["web-site"][element]+'<br>';
+	})
+	document.getElementById('dtd').innerHTML = 'view: '+stat["files"][d]["view"]+' | dowload: '+stat["files"][d]["dowload"]
+}
+
+function devstat(){
+	statpage = '<table>'+
+'	<td>'+
+'		<table id="stat">'+
+'			<thead>'+
+'				<tr>'+
+'					<td></td>'+
+'					<td>view</td>'+
+'					<td>dowload</td>'+
+'				</tr>'+
+'			</thead>'+
+'		</table>'+
+'	</td>'+
+'	<td>'+
+'		<table>'+
+'			<tr id="dt"></tr>'+
+'			<tr id="dtd"></tr>'+
+'		</table>'+
+'</table>';
+	document.body.innerHTML = statpage;
+
+	findex(stat["files"]).forEach(element =>{
+		txt = document.getElementById('stat').innerHTML
+		txt = txt + '<tr onmouseover="devstatimg(\''+element+'\')"><td>'+element+'</td><td>'+stat["files"][element]["view"]+'</td><td>'+stat["files"][element]["dowload"]+'</td></tr>'
+		document.getElementById('stat').innerHTML = txt
+	})
+}
+
+
 /* programe ============================================================*/
 
 if(screen.width < 51){
@@ -233,44 +272,49 @@ function patpage(loc){
 }
 
 function loadjs(){
-	console.log('last creation:'+findex(data)[0])
-
-	let loc = window.location.pathname.substring(1)
-
-	if(loc != ""){
-		patpage(loc)
+	if($_GET['d']){
+		if($_GET['d'] == "devstat"){
+			devstat()
+		}
 	}else{
-		if($_COOKIE()["stat"]){
-			console.log('cookies stop')
+		console.log('last creation:'+findex(data)[0])
+
+		let loc = window.location.pathname.substring(1)
+
+		if(loc != ""){
+			patpage(loc)
 		}else{
-			if($_COOKIE()["index"]){
-				console.log('page index already charge')
+			if($_COOKIE()["stat"]){
+				console.log('cookies stop')
 			}else{
-				console.log("ok")
-				if($_GET["l"]){
-					send(statlink+"index.php?f=index&l="+$_GET["l"])
-					console.log('ok')
+				if($_COOKIE()["index"]){
+					console.log('page index already charge')
+				}else{
+					console.log("ok")
+					if($_GET["l"]){
+						send(statlink+"index.php?f=index&l="+$_GET["l"])
+						console.log('ok')
+					}
+					msg("by continuing on this site you accept statistics cookies <a style='color:blue;text-decoration: underline;' onclick='patpage(\"privacy\")'>privacy</a>",3)
+					msg("en continuant sur ce site vous accepter des cookies de statistique <a style='color:blue;text-decoration: underline;' onclick='patpage(\"confidentialite\")'>confidentialité</a>",3)
+					document.cookie = 'index=a; secure;';
+					send(statlink+"index.php?f=index")
 				}
-				msg("by continuing on this site you accept statistics cookies <a style='color:blue;text-decoration: underline;' onclick='patpage(\"privacy\")'>privacy</a>",3)
-				msg("en continuant sur ce site vous accepter des cookies de statistique <a style='color:blue;text-decoration: underline;' onclick='patpage(\"confidentialite\")'>confidentialité</a>",3)
-				document.cookie = 'index=a; secure;';
-				send(statlink+"index.php?f=index")
+			}
+
+			if(data[$_GET['f']]){
+				load($_GET['f']);
+			}else{
+				console.log('page index charge')
+				pr()
+			}
+
+			if(screen.width < 402){
+				document.getElementById("dp-map").style.textAlign = "center";
 			}
 		}
-	
-		if(data[$_GET['f']]){
-			load($_GET['f']);
-		}else{
-			console.log('page index charge')
-			pr()
-		}
-	
-	
-		if(screen.width < 402){
-			document.getElementById("dp-map").style.textAlign = "center";
-		}
+		news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
 	}
-	news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
 }
 
 /*secondary programe=======================================================*/
@@ -278,41 +322,3 @@ function loadjs(){
 window.onoffline = (event) => {
 	msg("connection lost")
 };
-
-/*dev stat function =======================================================*/
-
-function devstatimg(d){
-	document.getElementById('dt').innerHTML = '';
-	findex(stat["files"][d]["web-site"]).forEach(element =>{
-		document.getElementById('dt').innerHTML += element+' : '+stat["files"][d]["web-site"][element]+'<br>';
-	})
-	document.getElementById('dtd').innerHTML = 'view: '+stat["files"][d]["view"]+' | dowload: '+stat["files"][d]["dowload"]
-}
-
-function devstat(){
-	statpage = '<table>'+
-'	<td>'+
-'		<table id="stat">'+
-'			<thead>'+
-'				<tr>'+
-'					<td></td>'+
-'					<td>view</td>'+
-'					<td>dowload</td>'+
-'				</tr>'+
-'			</thead>'+
-'		</table>'+
-'	</td>'+
-'	<td>'+
-'		<table>'+
-'			<tr id="dt"></tr>'+
-'			<tr id="dtd"></tr>'+
-'		</table>'+
-'</table>';
-	document.body.innerHTML = statpage;
-
-	findex(stat["files"]).forEach(element =>{
-		txt = document.getElementById('stat').innerHTML
-		txt = txt + '<tr onmouseover="devstatimg(\''+element+'\')"><td>'+element+'</td><td>'+stat["files"][element]["view"]+'</td><td>'+stat["files"][element]["dowload"]+'</td></tr>'
-		document.getElementById('stat').innerHTML = txt
-	})
-}
