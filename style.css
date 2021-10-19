@@ -1,4 +1,4 @@
-/*v 2.8.2*/
+/*v 2.9*/
 
 *{
 	margin: 0px;
@@ -45,19 +45,60 @@ a{
 	background-color: white;
 	cursor:default;
 }
+
 #stat tr:hover{
 	transition-property: background-color;
 	transition-duration: 0.1s;
 	background-color: #ccc;
 }
+
 #stat td{
 	border-bottom: 1px solid black;
 }
+
 #dt{
 	width:200px;
 }
 
 /* end stat */
+
+#prlegentin{
+	position:absolute;
+	background-color:#0009;
+	color:white;
+	width: 200px;
+	height: 21px;
+	overflow: hidden;
+	display: block;
+	transition-property:opacity;
+	transition-duration:0.25s;
+	opacity:0;
+	border-bottom: 2px solid black;
+	border-top: 1px solid black;
+}
+
+#prlegent{
+	display: inline-block;
+	margin-right:1px;
+}
+
+.mask{
+	transition:width 0.1s ease, opacity 1s; 
+	width:0px;
+	opacity:1;
+	position: absolute;
+	background-color:white;
+	height:115px;
+}
+
+#prlegent:hover #prlegentin{
+	opacity:1;
+}
+
+#prlegent:active .mask{
+	width:200px;
+	opacity:0;
+}
 
 #data{
 	color:black;
@@ -88,56 +129,12 @@ footer a{
 	color:white;
 }
 
-.up {
-	border:3px solid green;
-	background-color:green;
-	color:white;
-	float:left;
-	width:15px;
-	height:15px;
-	position: fixed;
-	right: 0;
-	bottom: 0;
-	text-align:center;
-}
-
 .tl mark{
 	background-color:white;
 }
 
-.cr{
+#dp-map{
 	background-color: #f8f8f8;
-}
-
-.cr img{
-	border-right: 1px solid rgba(0,0,0,0);
-}
-
-.tchatactiveron{
-	transition-property:margin-right,background-color;
-	transition-duration:1s;
-	position:fixed;
-	background-color:white;
-	border:none;
-	right:-5px;
-	bottom:10px;
-	z-index:10;
-	transform: rotate(90deg);
-}
-
-#chat{
-	transition-property:margin-right;
-	transition-duration:1s;
-	position:fixed;
-	background-color:white;
-	right:0px;
-	height:116px;
-	bottom:0px;
-	width:120px;
-	z-index:5;
-	width: 200px;
-	margin-right: -300px;
-	overflow-y: hidden;
 }
 
 #flamebousteur_lib_new{
