@@ -1,6 +1,5 @@
 console.log('v2.8.3')
-console.log('last modification type: add privacy')
-console.log('last modification description: add privacy')
+console.log('last modification: modificasion for css')
 
 if($_COOKIE()["lang"]){
 	var deflang = $_COOKIE()["lang"]
@@ -56,7 +55,7 @@ const page1 =
 '		</li>'+
 '	</ul>'+
 '</nav>'+
-'<div id="dp-map" class="cr">'+
+'<div id="dp-map">'+
 '</div>';
 
 /*dev stat function =======================================================*/
@@ -222,7 +221,7 @@ function pr(){
 		let txt = '';
 		let typ = element;
 		type(typ).forEach(element =>{
-			txt = '<a onclick="load(\''+element+'\')"><img alt="'+element+'" src="/img/zip/'+element+'.webp" width="200"></a>'
+			txt = '<div id="prlegent"><a onclick="load(\''+element+'\')"><span class="mask"></span><span id="prlegentin">'+element+'</span><img alt="'+element+'" src="/img/zip/'+element+'.webp" width="200"></a></div>'
 			if(document.getElementById(typ)){
 				document.getElementById(typ).innerHTML += txt;
 			}else{
