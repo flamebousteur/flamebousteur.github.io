@@ -137,6 +137,34 @@ footer a{
 	background-color: #f8f8f8;
 }
 
+#flamebousteur_lib_htmlalert{
+	position: absolute;
+	margin: auto;
+	top: 15%;
+	left: 0;
+	right: 0;
+	width: 50%;
+	font-size:15px;
+	z-index:10;
+	text-align: center;
+  background-color: white;
+}
+
+#flamebousteur_lib_htmlalert img{
+	width: 200px;
+}
+
+#flamebousteur_lib_htmlalert_x{
+	text-align: right;
+	margin-right:4px;
+	cursor: pointer;
+}
+
+.flamebousteur_lib_htmlalert{
+	border-bottom: 5px solid red;
+	cursor: pointer;
+}
+
 #flamebousteur_lib_new{
 	border-radius: 10px 10px 10px 10px;
 	position: sticky;
@@ -172,7 +200,7 @@ footer a{
 	width:50%;
 	font-size:15px;
 	text-align:center;
-	z-index:10;
+	z-index:11;
 }
 
 body::-webkit-scrollbar {
