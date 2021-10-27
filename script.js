@@ -13,6 +13,11 @@ function nostat(){
 	console.log('cookies stop')
 }
 
+function stat(){
+	document.cookie = 'stat=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+	console.log('cookies stop')
+}
+
 if($_GET['a']){
 	if($_GET['a'] == "nostat"){
 		nostat()
@@ -295,7 +300,9 @@ function loadjs(){
 						console.log('ok')
 					}
 					msg("by continuing on this site you accept statistics cookies <a style='color:blue;text-decoration: underline;' onclick='patpage(\"privacy\")'>privacy</a>",3)
-					msg("en continuant sur ce site vous accepter des cookies de statistique <a style='color:blue;text-decoration: underline;' onclick='patpage(\"confidentialite\")'>confidentialité</a>",3)
+					if(deflang == "fr"){
+						msg("en continuant sur ce site vous accepter des cookies de statistique <a style='color:blue;text-decoration: underline;' onclick='patpage(\"confidentialite\")'>confidentialité</a>",3)
+					}
 					document.cookie = 'index=a; secure;';
 					send(statlink+"index.php?f=index")
 				}
