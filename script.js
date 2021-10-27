@@ -13,7 +13,7 @@ function nostat(){
 	console.log('cookies stop')
 }
 
-function stat(){
+function onstat(){
 	document.cookie = 'stat=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
 	console.log('cookies stop')
 }
