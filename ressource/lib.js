@@ -55,7 +55,7 @@ function copi(txt){
 }
 
 //html message
-var flamebousteur_lib_msgs = []
+var flamebousteur_lib_msgs = [["",0.001]]
 var flamebousteur_lib_msg_on = true
 function msg(txt,time){
 	if(!document.getElementById("flamebousteur_lib_msg")){
@@ -94,7 +94,6 @@ function msg(txt,time){
 //canvas-graph
 function ggraf(data,canvasid){
 	const xdata = data
-	console.log(xdata[0][1])
 	let graf = data
 
 	let canvas = document.getElementById(canvasid)
@@ -136,7 +135,6 @@ function ggraf(data,canvasid){
 			graf[n][1] = graf[n][1] - (graf[n][1]*2) + canvas.height
 			n++
 		})
-		console.log('x '+xdata[0][1])
 
 		//graphique génération
 		ctx.beginPath()
@@ -151,18 +149,7 @@ function ggraf(data,canvasid){
 			ctx.fillStyle = "#5dade2"
 			ctx.fill()
 
-			ctx.beginPath()
-			ctx.lineWidth = 1
-			ctx.moveTo(graf[n][0],0)
-			ctx.lineTo(graf[n][0],canvas.height-30)
-			ctx.strokeStyle = "#7a7a7a"
-			ctx.font = '30px sans-serif';
-			ctx.fillStyle = "#7A7A7A"
-			ctx.fillText(Math.round(xdata[n][0]), graf[n][0]-20, canvas.height-3)
-			ctx.stroke()
-
 			if(graf[n+1]){
- 
 				ctx.beginPath()
 				ctx.lineWidth = 10
 				ctx.moveTo(graf[n][0],graf[n][1])
@@ -207,4 +194,19 @@ function delnew(id){
 	var garbage = top.removeChild(nested)
 	flamebousteur_lib_new.splice(id,1)
 	news()
+}
+
+function htmlalert(htext,onc,himg){
+	function htmlalertdel(){
+		document.getElementById("flamebousteur_lib_htmlalert").innerHTML = ""
+	}
+	if(!document.getElementById("flamebousteur_lib_htmlalert")){
+		document.body.innerHTML = document.body.innerHTML + '<div id="flamebousteur_lib_htmlalert"></div>'
+	}
+	if(himg){
+		document.getElementById("flamebousteur_lib_htmlalert").innerHTML = "<div id='flamebousteur_lib_htmlalert_x'>X</div><div class='flamebousteur_lib_htmlalert' onclick="+onc+"><img src="+himg+"></img><div>"+htext+"</div></div>"
+	}else{
+		document.getElementById("flamebousteur_lib_htmlalert").innerHTML = "<div id='flamebousteur_lib_htmlalert_x'>X</div><div class='flamebousteur_lib_htmlalert' onclick="+onc+">"+htext+"</div>"
+	}
+	document.getElementById("flamebousteur_lib_htmlalert_x").onclick = htmlalertdel
 }
