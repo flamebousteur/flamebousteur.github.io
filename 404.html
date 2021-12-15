@@ -1,0 +1,64 @@
+<html class="nojs"><head>
+		<title id="title">
+			Flame Bousteur
+		</title>
+		<meta charset="utf-8">
+		<meta name="description" content="Flame Bousteur Web-site">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="author" content="flamebousteur">
+
+		<link rel="preload" href="./img/flamebousteur.png" as="image">
+		<link rel="preload" href="./img/end portal hd.png" as="image">
+		<link rel="preload" href="./style.css" as="style">
+		<link rel="preload" href="./script.js" as="script">
+		<link rel="preload" href="./ressource/lib.js" as="script">
+	
+    <meta statue="404">
+		<meta property="og:title" content="Flame Bousteur">
+		<meta property="og:type" content="website">
+		<meta property="og:url" content="https://flamebousteur.github.io/">
+		<meta property="og:image" content="https://flamebousteur.github.io/favicon.ico">
+		<meta property="og:description" content="Flamebousteur's datapacks and creation">
+		<meta name="theme-color" content="#ffffff">
+
+		<link rel="icon" href="./favicon.ico">
+		<link rel="stylesheet" href="style.css">
+		<script src="./ressource/lib.js"></script>
+		<script>const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"</script>
+		<script src="script.js"></script>
+	</head>
+	<body>
+		<div id="divpage" style="background-color:white;">
+			a problem has occurred<br>
+			un problème est survenue<br>
+			<noscript>
+				<br>
+				<div>
+					plz active javascript<br>
+					svp activez le javascript
+				</div>
+			</noscript>
+		</div>
+		<footer>
+			<div align="center"><a onclick="patpage('about')">Flamebousteur</a></div>
+			<a target="_blank" href="https://github.com/flamebousteur/flamebousteur.github.io">github</a><br><br>
+			<a onclick="patpage('privacy')">privacy policy</a><br>
+			<a onclick="patpage('confidentialite')">politique de confidentialité</a><br>
+		</footer>
+		<script src="https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/flstat.php"></script>
+		<script>
+//import data from "https://flamebousteur.github.io/data.json"
+var data;
+let xhr = new XMLHttpRequest();
+xhr.open("GET","/data.json", true);
+xhr.onreadystatechange = function(){
+	if (xhr.readyState==4 && xhr.status==200){
+		data = JSON.parse(xhr.responseText)
+		loadjs()
+	}
+}
+xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+xhr.send();
+		</script>
+	</body>
+</html>
