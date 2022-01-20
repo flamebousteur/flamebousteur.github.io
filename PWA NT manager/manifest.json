@@ -1,7 +1,7 @@
 {
 	"name":"New Tab manager",
 	"short_name":"NT Manager",
-	"start_url":"/index.html",
+	"start_url":"/PWA NT manager/index.html",
 	"background_color":"#444",
 	"theme_color":"black",
 	"orientation": "portrait-primary",
