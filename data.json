@@ -1,11 +1,21 @@
 {
+	"rid'aire":{
+		"desc":"",
+		"descfr":"",
+		"type":"blender",
+		"photo":1,
+		"color":"#00f0ff",
+		"embed":"",
+		"download":false
+	},
 	"mushmush":{
 		"desc":"",
 		"descfr":"",
 		"type":"map",
 		"photo":4,
 		"color":"#ce2f2f",
-		"embed":"https://www.youtube.com/embed/tL4l2Qiesfc"
+		"embed":"https://www.youtube.com/embed/tL4l2Qiesfc",
+		"download":true
 	},
 	"stars-mine":{
 		"desc":"",
@@ -13,7 +23,8 @@
 		"type":"map",
 		"photo":19,
 		"color":"#2f92ce",
-		"embed":"https://www.youtube.com/embed/b8-t5a6CLX8"
+		"embed":"https://www.youtube.com/embed/b8-t5a6CLX8",
+		"download":true
 	},
 	"modern-office":{
 		"desc":"",
@@ -21,7 +32,8 @@
 		"type":"map",
 		"photo":0,
 		"color":"#999999",
-		"embed":"https://www.youtube.com/embed/nxw75apm6bs"
+		"embed":"https://www.youtube.com/embed/nxw75apm6bs",
+		"download":true
 	},
 	"floating-island":{
 		"desc":"",
@@ -29,7 +41,8 @@
 		"type":"map",
 		"photo":2,
 		"color":"#40ffe8",
-		"embed":"https://www.youtube.com/embed/vRSrmEOO9lI"
+		"embed":"https://www.youtube.com/embed/vRSrmEOO9lI",
+		"download":true
 	},
 	"cove-in-minecraft":{
 		"desc":"",
@@ -37,7 +50,8 @@
 		"type":"map",
 		"photo":2,
 		"color":"#61b44b",
-		"embed":"https://www.youtube.com/embed/W2fUQjmN2w4"
+		"embed":"https://www.youtube.com/embed/W2fUQjmN2w4",
+		"download":true
 	},
 	"wisard-tower":{
 		"desc":"",
@@ -45,41 +59,47 @@
 		"type":"map",
 		"photo":2,
 		"color":"#462100",
-		"embed":"https://www.youtube.com/embed/ge1WMCKf-yA"
+		"embed":"https://www.youtube.com/embed/ge1WMCKf-yA",
+		"download":true
 	},
 	"spawner-generator":{
 		"desc":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\n\nhi if you’ve always dreamed to have a spawner this data pack it's made for you.\n\n1- download this data pack.\n2- build the structure.\n3- a new spawner is here!\n\ngood game. 😁",
 		"descfr":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\nsi tu as toujours rêvé d'avoir un spawner ce datapack est fait pour toi!\n\n1- télécharge ce datapack.\n2- construits la structure.\n3- un nouveau spawner!\n\namusez vous bien. 😁",
 		"type":"data pack",
 		"photo":3,
-		"color":"#f7ff00"
+		"color":"#f7ff00",
+		"download":true
 	},
 	"shield":{
 		"desc":"green glass + concrete powder = the best sheld 👍<br><br><br>1- set the concrete powder 2 blocks around the green glass.<br>2- go on the green glass.3- 25 armor stand were summon.<br>4- and 3 light blue glass were set over the concrete powder.<br>5- you can break the shields with snowballs.<br><br>good game",
 		"descfr":"green glass + concrete powder = the best sheld 👍<br><br>1- mets le béton bleu 2 blocks autour du verre vert.<br>2- va sur le verre vert.<br>4- 3 verres bleu-clair sont générés sur les bétons bleus.<br>5- tu peux casser le bouclier avec des boules de neige.<br><br>bonne partie",
 		"type":"data pack",
 		"photo":5,
-		"color":"#3893ee"
+		"color":"#3893ee",
+		"download":true
 	},
 	"utility-item":{
 		"desc":"",
 		"descfr":"",
 		"type":"data pack",
 		"photo":0,
-		"color":"#0e9408"
+		"color":"#0e9408",
+		"download":true
 	},
 	"craftS+":{
 		"desc":"New crafts for minecraft survival.",
 		"descfr":"De nouveau craft pour votre survie.",
 		"type":"data pack",
 		"photo":2,
-		"color":"#38e8ee"
+		"color":"#38e8ee",
+		"download":true
 	},
 	"the-floor-is-lava":{
 		"desc":"just the floor is lava no more good luck 😉.",
 		"descfr":"le sol est de la lave donc BONNE CHANCE!.",
 		"type":"data pack",
 		"photo":0,
-		"color":"#ec1d1d"
+		"color":"#ec1d1d",
+		"download":true
 	}
 }

@@ -136,13 +136,18 @@ function load(f){
 		}
 	}
 	murl("?f="+f)
+	let color,
+		d;
+	if(!data[f]["color"]){
+		color = "#000"
+	}
+	if(data[f]["download"]){
+		d = '<a onclick="dloal(\''+f+'\')"><mark><img src="/img/Nether_Star.gif" width="20">download</mark></a>';
+	}
 	const page2 =
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
-'<div class="tl" id="tele"; border-bottom: 3px solid '+data[f]["color"]+'\';>'+
-'	<p style="text-align:right;">'+
-'		<a onclick="dloal(\''+f+'\')"><mark>'+
-'			<img src="/img/Nether_Star.gif" width="20">download'+
-'		</mark></a>'+
+'<div class="tl" id="tele"; border-bottom: 3px solid '+color+'\';>'+
+'	<p style="text-align:right;">'+d+
 '		<br>'+
 '		<a onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')">'+
 '			<mark>copy link</mark>'+
