@@ -1,11 +1,7 @@
 {
-	"rid aire":{
-		"desc":"",
-		"descfr":"",
+	"rid_aire":{
 		"type":"blender",
-		"photo":1,
 		"color":"#00f0ff",
-		"embed":"",
 		"download":false
 	},
 	"mushmush":{

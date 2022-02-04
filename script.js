@@ -137,12 +137,20 @@ function load(f){
 	}
 	murl("?f="+f)
 	let color,
-		d = "";
+		d = "",
+		de = "",
+		def = "";
 	if(!data[f]["color"]){
 		color = "#000"
 	}
 	if(data[f]["download"]){
 		d = '<a onclick="dloal(\''+f+'\')"><mark><img src="/img/Nether_Star.gif" width="20">download</mark></a>';
+	}
+	if(data[f]["desc"]){
+		de = '<mark>description:<br>'+data[f]["desc"]+'</mark>'
+	}
+	if(data[f]["descfr"]){
+		def = '<mark>fr:<br>'+data[f]["descfr"]+'</mark>'
 	}
 	const page2 =
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
@@ -155,11 +163,9 @@ function load(f){
 '	</p>'+
 '	<pre>'+
 '<mark>'+data[f]["type"]+'\n</mark>'+
-'<p>'+
-'<mark>description:<br>'+data[f]["desc"]+'</mark>'+
+'<p>'+de+
 '</p>'+
-'<p>'+
-'<mark>fr:<br>'+data[f]["descfr"]+'</mark>'+
+'<p>'+def+
 '</p>'+
 '<mark id="link"></mark>'+
 '	</pre>'+
@@ -173,7 +179,10 @@ function load(f){
 	document.querySelector("html").className = ''
 
 	let n = 0
-	let max = data[f]["photo"]
+	let max = 0;
+	if(data[f]["photo"]){
+		max = data[f]["photo"]
+	}
 	let txt = '<a id="img1a"><img id="img1" width="300"></a>';
 	function a(){
 		if(max != n){
