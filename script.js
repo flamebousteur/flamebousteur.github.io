@@ -137,7 +137,7 @@ function load(f){
 	}
 	murl("?f="+f)
 	let color,
-		d;
+		d = "";
 	if(!data[f]["color"]){
 		color = "#000"
 	}
