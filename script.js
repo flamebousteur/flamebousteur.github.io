@@ -1,5 +1,4 @@
-console.log('v2.8.3')
-console.log('last modification: modificasion for css')
+console.log('v2.9')
 
 if($_COOKIE()["lang"]){
 	var deflang = $_COOKIE()["lang"]
@@ -139,7 +138,8 @@ function load(f){
 	let color,
 		d = "",
 		de = "",
-		def = "";
+		def = "",
+		tp = "";
 	if(!data[f]["color"]){
 		color = "#000"
 	}
@@ -151,6 +151,11 @@ function load(f){
 	}
 	if(data[f]["descfr"]){
 		def = '<mark>fr:<br>'+data[f]["descfr"]+'</mark>'
+	}
+	if(data[f]['primg']){
+		tp = data[f]['primg']
+	}else{
+		tp = '/img/zip/'+f+'.webp'
 	}
 	const page2 =
 '<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
@@ -171,7 +176,6 @@ function load(f){
 '	</pre>'+
 '</div>'+
 '<iframe id="ifr" src=""></iframe>'+
-'<video id="video" src=""></video>'+
 '<hr>'+
 '<div id="data"></div>'+
 '<div id="galery">problèmes</div>';
@@ -183,30 +187,65 @@ function load(f){
 	if(data[f]["photo"]){
 		max = data[f]["photo"]
 	}
-	let txt = '<a id="img1a"><img id="img1" width="300"></a>';
-	function a(){
-		if(max != n){
-			n += 1
-			txt = txt + '<a href="/zip/'+f+'/img/'+n+'.png"><img alt="oups Image '+n+' can\'t be loaded" src="/zip/'+f+'/img/'+n+'.png" width="300"></a>'
-			// txt = txt + '<a href="/zip/'+f+'/img/'+n+'.webp"><img alt="oups Image '+n+' can\'t be loaded" src="/zip/'+f+'/img/'+n+'.webp" width="300"></a>'
-			a()
-		}
-		document.getElementById("galery").innerHTML = txt;
-	}
-	a()
-
+	
 	document.querySelector('meta[property="og:url"]').setAttribute("content","/file.html?f="+f);
 	document.querySelector('meta[property="og:image"]').setAttribute("content","/img/zip/"+f+".png");
 	document.querySelector('meta[property="og:description"]').setAttribute("content",data[f]["type"]+"\n "+data[f]["desc"]);
 	document.querySelector('meta[name="theme-color"]').setAttribute("content",data[f]["color"]);
-
+	
 	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+data[f]["type"];
-	document.getElementById("tele").style.backgroundImage = "url(\"/img/zip/"+f+".webp\")";
+	document.getElementById("tele").style.backgroundImage = 'url("'+tp+'")';
+	document.getElementById("galery").innerHTML = ""
 
 	if(data[f]["video"]){
-		document.getElementById("video").src = data[f]["video"]
-		document.getElementById("video").style.position = "static"
-		document.getElementById("video").style.visibility = "visible"
+		data[f]["video"].forEach(element => {
+			let ele = document.createElement('video')
+			ele.src = "/video/"+element
+			ele.muted = true
+			ele.controls = 'true'
+			document.getElementById("galery").appendChild(ele)
+		});
+	}
+
+	let ele = document.createElement('div')
+	ele.className = "fakehr"
+	document.getElementById("galery").appendChild(ele)
+
+	function addimg(a) {
+		function reduce(numerator,denominator){
+			var gcd = function gcd(a,b){
+				return b ? gcd(b, a%b) : a;
+			};
+			gcd = gcd(numerator,denominator);
+			return [numerator/gcd, denominator/gcd];
+		}
+		let ele = document.createElement('a')
+		ele.style.backgroundImage = 'url("'+a+'")'
+		ele.href = a;
+		document.getElementById("galery").appendChild(ele)
+		let img = new Image();
+		img.onload = function() {
+			let ele2 = document.createElement('span')
+			let mode;
+			if (img.width < img.height) {
+				mode = "cinema"
+			} else if (img.width == img.height) {
+				mode = "instagram"
+			} else if (img.width > img.height) {
+				mode = "phone"
+			} else {
+				mode = "what???"
+			}
+			ele2.innerHTML = img.width+ ' x ' +img.height+' | '+reduce(img.width,img.height).join(":")+" "+mode
+			document.querySelector('a[href="'+a+'"]').appendChild(ele2)
+		}
+		img.src = a;
+	}
+
+	addimg('/img/zip/'+f+'.png')
+
+	for (let i = 1; i <= max; i++) {
+		addimg('/zip/'+f+'/img/'+i+'.png')
 	}
 
 	if(data[f]["link"]){
@@ -219,9 +258,11 @@ function load(f){
 		document.getElementById("ifr").style.visibility = "visible"
 	}
 
-	document.getElementById("img1a").href = "/img/zip/"+f+".png";
-	document.getElementById("img1").src = "/img/zip/"+f+".png";
-	document.getElementById("data").innerHTML = "view: "+stat["files"][f]["view"]+" | dowload: "+stat["files"][f]["dowload"];
+	if (typeof stat != "undefined") {
+		if (stat["files"][f]) {
+			document.getElementById("data").innerHTML = "view: "+stat["files"][f]["view"]+" | dowload: "+stat["files"][f]["dowload"];
+		}
+	}
 }
 
 function pr(){
@@ -240,7 +281,13 @@ function pr(){
 		let txt = '';
 		let typ = element;
 		type(typ).forEach(element =>{
-			txt = '<div id="prlegent"><a onclick="load(\''+element+'\')"><span class="mask"></span><span id="prlegentin">'+element+'</span><img alt="'+element+'" src="/img/zip/'+element+'.webp" width="200"></a></div>'
+			let tp;
+			if(data[element]['primg']){
+				tp = data[element]['primg']
+			}else{
+				tp = '/img/zip/'+element+'.webp'
+			}
+			txt = '<div id="prlegent"><a onclick="load(\''+element+'\')"><span class="mask"></span><span id="prlegentin">'+element+'</span><img alt="'+element+'" src="'+tp+'" width="200"></a></div>'
 			if(document.getElementById(typ)){
 				document.getElementById(typ).innerHTML += txt;
 			}else{
