@@ -227,11 +227,11 @@ function load(f){
 		img.onload = function() {
 			let ele2 = document.createElement('span')
 			let mode;
-			if (img.width < img.height) {
+			if (img.width > img.height) {
 				mode = "cinema"
 			} else if (img.width == img.height) {
 				mode = "instagram"
-			} else if (img.width > img.height) {
+			} else if (img.width < img.height) {
 				mode = "phone"
 			} else {
 				mode = "what???"
