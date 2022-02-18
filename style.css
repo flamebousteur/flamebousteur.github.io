@@ -1,4 +1,4 @@
-/*v 2.9*/
+/*v 2.10*/
 
 *{
 	margin: 0px;
@@ -36,6 +36,16 @@ a{
 
 /*stat*/
 
+.fakehr{
+	margin: auto;
+	width: 95%;
+	height: 2px;
+	background-color: #0005;
+	margin-top: 2px;
+	margin-bottom: 5px;
+	border-radius: 1px;
+}
+
 #exit-code{
 	visibility: hidden;
 	position:fixed;
@@ -61,6 +71,17 @@ a{
 }
 
 /* end stat */
+
+#galery a span{
+	color: #fff0;
+	background-color: #fff0;
+	transition: all 0.25s;
+}
+
+#galery a:hover span{
+	color: #000;
+	background-color: #fff5;
+}
 
 #prlegentin{
 	position:absolute;
@@ -109,6 +130,7 @@ a{
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-size: cover;
+	background-position: center;
 }
 
 #video{
@@ -137,6 +159,15 @@ footer a{
 	background-color: #f8f8f8;
 }
 
+#galery a{
+	width: 300px;
+	height: 200px;
+	display: inline-block;
+	background-size: cover;
+	background-repeat: no-repeat;
+	background-position: center;
+}
+
 #flamebousteur_lib_htmlalert{
 	position: absolute;
 	margin: auto;
@@ -147,7 +178,7 @@ footer a{
 	font-size:15px;
 	z-index:10;
 	text-align: center;
-  background-color: white;
+	background-color: white;
 }
 
 #flamebousteur_lib_htmlalert img{
