@@ -2,11 +2,29 @@
 	"rid_air":{
 		"type":"blender",
 		"color":"#00f0ff",
-		"download":false
+		"download":false,
+		"video":[
+			"rid'aire.mp4",
+			"2021-12-31-13-32-07.mp4"
+		]
+	},
+	"enchanting table":{
+		"type":"blender",
+		"color":"#00f0ff",
+		"download":false,
+		"photo":2,
+		"video":[
+			"tl enchanting table 2.mp4"
+		]
+	},
+	"1st-mc":{
+		"type":"blender",
+		"photo":7,
+		"color":"#00f0ff",
+		"download":false,
+		"primg":"/img/zip/1st-mc.png"
 	},
 	"mushmush":{
-		"desc":"",
-		"descfr":"",
 		"type":"map",
 		"photo":4,
 		"color":"#ce2f2f",
@@ -14,8 +32,6 @@
 		"download":true
 	},
 	"stars-mine":{
-		"desc":"",
-		"descfr":"",
 		"type":"map",
 		"photo":19,
 		"color":"#2f92ce",
@@ -23,8 +39,6 @@
 		"download":true
 	},
 	"modern-office":{
-		"desc":"",
-		"descfr":"",
 		"type":"map",
 		"photo":0,
 		"color":"#999999",
@@ -32,8 +46,6 @@
 		"download":true
 	},
 	"floating-island":{
-		"desc":"",
-		"descfr":"",
 		"type":"map",
 		"photo":2,
 		"color":"#40ffe8",
@@ -41,8 +53,6 @@
 		"download":true
 	},
 	"cove-in-minecraft":{
-		"desc":"",
-		"descfr":"",
 		"type":"map",
 		"photo":2,
 		"color":"#61b44b",
@@ -50,8 +60,6 @@
 		"download":true
 	},
 	"wisard-tower":{
-		"desc":"",
-		"descfr":"",
 		"type":"map",
 		"photo":2,
 		"color":"#462100",
@@ -75,8 +83,6 @@
 		"download":true
 	},
 	"utility-item":{
-		"desc":"",
-		"descfr":"",
 		"type":"data pack",
 		"photo":0,
 		"color":"#0e9408",
