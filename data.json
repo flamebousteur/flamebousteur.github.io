@@ -13,9 +13,7 @@
 		"color":"#00f0ff",
 		"download":false,
 		"photo":2,
-		"video":[
-			"tl enchanting table 2.mp4"
-		]
+		"embed":"https://www.youtube.com/embed/D3EmKx_uhpg"
 	},
 	"1st-mc":{
 		"type":"blender",
