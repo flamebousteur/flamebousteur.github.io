@@ -53,7 +53,7 @@ const page1 =
 '			</ul>'+
 '		</li>'+
 '		<li class="deroulant">'+
-'			<a>minecraft</a>'+
+'			<a>creation</a>'+
 '			<ul class="sous" id="type">'+
 '			</ul>'+
 '		</li>'+
@@ -236,14 +236,23 @@ function load(f){
 			} else {
 				mode = "what???"
 			}
+
+			if(img.height >= 8640){
+				mode += " indecently high"
+			} else if (img.height >= 4320) {
+				mode += " 8k"
+			} else if (img.height >= 2160) {
+				mode += " 4k"
+			} else if (img.height >= 1080) {
+				mode += " hd"
+			}
+
 			ele2.innerHTML = img.width+ ' x ' +img.height+' | '+reduce(img.width,img.height).join(":")+" "+mode
 			document.querySelector('a[href="'+a+'"]').appendChild(ele2)
 		}
 		img.src = a;
 	}
-
 	addimg('/img/zip/'+f+'.png')
-
 	for (let i = 1; i <= max; i++) {
 		addimg('/zip/'+f+'/img/'+i+'.png')
 	}
