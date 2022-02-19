@@ -1,4 +1,4 @@
-console.log('v2.9')
+console.log('v2.9.1')
 
 if($_COOKIE()["lang"]){
 	var deflang = $_COOKIE()["lang"]
@@ -158,8 +158,8 @@ function load(f){
 		tp = '/img/zip/'+f+'.webp'
 	}
 	const page2 =
-'<h4><a style="cursor:pointer;" onclick="pr()">back</a></h4>'+
-'<div class="tl" id="tele"; border-bottom: 3px solid '+color+'\';>'+
+'	<div class="tl" id="tele"; border-bottom: 3px solid '+color+'\';>'+
+'	<h4><a style="color:white;" onclick="pr()">back</a></h4>'+
 '	<p style="text-align:right;">'+d+
 '		<br>'+
 '		<a onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')">'+
@@ -202,6 +202,8 @@ function load(f){
 			let ele = document.createElement('video')
 			ele.src = "/video/"+element
 			ele.muted = true
+			ele.autoplay = 'true'
+			ele.loop = 'true'
 			ele.controls = 'true'
 			document.getElementById("galery").appendChild(ele)
 		});
