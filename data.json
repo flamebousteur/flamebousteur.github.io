@@ -1,4 +1,14 @@
 {
+	"city_test":{
+		"type":"blender",
+		"color":"#00f0ff",
+		"download":false,
+		"primg":"/img/zip/city_test.png",
+		"video":[
+			"city_test.mp4",
+			"city_test_2.mp4"
+		]
+	},
 	"rid_air":{
 		"type":"blender",
 		"color":"#00f0ff",
