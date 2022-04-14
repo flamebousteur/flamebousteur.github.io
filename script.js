@@ -103,6 +103,14 @@ function devstat(){
 
 /* programe ============================================================*/
 
+function logoload(start = false){
+	if (start) {
+		document.getElementById("loader").style.visibility = "visible";
+	} else {
+		document.getElementById("loader").style.visibility = "hidden";
+	}
+}
+
 if(screen.width < 51){
 	if(screen.width < 51){
 		console.log("nano 🔍")
@@ -337,13 +345,13 @@ function patpage(loc){
 		"confidentialite":"Aucune de vos informations personnelles n'est et ne sera utilisée.<br>Les cookies ne sont utilisés qu'à fin d'avoir des informations sur la source de trafic du site.<br>Merci de votre compréhension",
 		"about":"hello this is FlameBousteur.<br>I'm a minecraft builder and coder"
 	}
-
+	
 	if(findex(pat).includes(loc)){
 		document.getElementById("divpage").innerHTML = '<a onclick="pr()">back</a><div style="text-align:center;">'+pat[loc]+"<div><br>"
 		document.querySelector("html").className = 'index'
 		document.getElementById("title").innerHTML = loc;
 	}
-
+	
 	murl("/"+loc)
 }
 
@@ -392,6 +400,7 @@ function loadjs(){
 			}
 		}
 		news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
+		logoload(false)
 	}
 }
 

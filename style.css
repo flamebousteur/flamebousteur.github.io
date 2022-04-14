@@ -5,7 +5,77 @@
 	padding: 0px;
 	scrollbar-color: #2e4053 #85929e;
 	scrollbar-width: thin;
+	--logo-colors-base: linear-gradient(to right, #ed9200, #126dff, #9acd32);
 }
+
+#loader{
+	position: absolute;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	left:0;
+	right:0;
+	width: 50px;
+	height: 50px;
+	z-index: 5;
+}
+
+#loader::before{
+	content: "";
+	position: absolute;
+	width: 60px;
+	height:10px;
+	border-radius: 10px;
+	background: var(--logo-colors-base);
+	left: -35px;
+	z-index: -1;
+	animation: 1s cubic-bezier(.86,0,.07,1) 0.5s infinite alternate load2;
+}
+
+#loader::after{
+	content: "";
+	position: absolute;
+	width: 60px;
+	height:10px;
+	border-radius: 10px;
+	background: var(--logo-colors-base);
+	top: 40px;
+	left: 25px;
+	z-index: -1;
+	animation: 1s cubic-bezier(.86,0,.07,1) 0s infinite alternate load;
+}
+
+#loader svg{
+	width: 50px;
+	height: 50px;
+}
+
+svg{
+	animation: spin 1.5s infinite linear;
+}
+
+@keyframes spin{
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(360deg); }
+}
+
+@keyframes load{
+	from { width: 60px; }
+	to   { width: 0; }
+}
+
+@keyframes load2{
+	from{
+		width: 60px;
+		left: -35px;
+	}
+	to{
+		width: 0;
+		left: 25px;
+	}
+}
+
+/* reset */
 
 video, iframe{
 	border:none;

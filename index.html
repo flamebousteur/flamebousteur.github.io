@@ -23,20 +23,36 @@
 		<link rel="icon" href="./favicon.ico">
 		<link rel="stylesheet" href="style.css">
 		<script src="./ressource/lib.js"></script>
-		<script>const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/"</script>
+<!--		<script>const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/";</script> -->
+		<script>const statlink = "http://localhost:8081";</script>
 		<script src="script.js"></script>
 	</head>
 	<body>
+		<noscript>
+			<br>
+			<div>
+				plz active javascript<br>
+				svp activez le javascript
+			</div>
+		</noscript>
+		<div id="loader">
+			<svg xmlns="http://www.w3.org/2000/svg">
+			<!-- create by flamebousteur web-site: https://flamebousteur.github.io -->
+				<defs>
+					<linearGradient y2="0" x2="1" y1="0" x1="0" id="d">
+						<stop offset="0" stop-color="#ed9200"></stop>
+						<stop offset="0.5" stop-color="#126dff"></stop>
+						<stop offset="1" stop-color="#9acd32"></stop>
+					</linearGradient>
+				</defs>
+				<g>
+					<ellipse stroke="url(#d)" fill="none" cy="25" cx="25" ry="20" stroke-width="10" rx="20" transform="rotate(45, 25, 25)"></ellipse>
+				</g>
+			</svg>
+		</div>
 		<div id="divpage" style="background-color:white;">
 			a problem has occurred<br>
 			un problème est survenue<br>
-			<noscript>
-				<br>
-				<div>
-					plz active javascript<br>
-					svp activez le javascript
-				</div>
-			</noscript>
 		</div>
 		<footer>
 			<div align="center"><a onclick="patpage('about')">Flamebousteur</a></div>
@@ -55,7 +71,6 @@ xhr.onreadystatechange = function(){
 		loadjs()
 	}
 }
-xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 xhr.send();
 		</script>
 	</body>
