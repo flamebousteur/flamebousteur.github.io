@@ -1,4 +1,12 @@
 {
+	"obj-lecter":{
+		"type":"code",
+		"color":"#e7ff00",
+		"download":false,
+		"primg":"/img/zip/obj-lecter.png",
+		"embed":"./demo/objlecter/index.html",
+		"desc":"<a style='color:blue;' href='./demo/objlecter/index.html'>test demo</a>"
+	},
 	"city_test":{
 		"type":"blender",
 		"color":"#00f0ff",
