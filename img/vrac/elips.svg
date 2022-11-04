@@ -1,0 +1,11 @@
+<svg width="40" height="40" xmlns="http://www.w3.org/2000/svg">
+	<g>
+		<ellipse stroke-width="5" ry="17.5" rx="17.5" id="svg_1" cy="20" cx="20" stroke="url(#font)" fill="none"/>
+	</g>
+	<defs>
+		<linearGradient id="font" x1="0" y1="0" x2="1" y2="1">
+			<stop stop-color="#db0404" stop-opacity="0.99609" offset="0"/>
+			<stop stop-color="#ffffff" offset="1"/>
+		</linearGradient>
+	</defs>
+</svg>

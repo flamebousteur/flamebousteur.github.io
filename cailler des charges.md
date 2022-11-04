@@ -1,0 +1,4 @@
+- galeries:
+  - images
+  - projets
+  - demos

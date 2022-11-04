@@ -1,17 +1,14 @@
 <!DOCTYPE html>
 <html class="nojs">
 	<head>
-		<title id="title">
-			Flame Bousteur
-		</title>
+		<title>Flame Bousteur</title>
 		<meta charset="utf-8">
 		<meta name="description" content="Flame Bousteur Web-site">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="author" content="flamebousteur">
 
-		<link rel="preload" href="./style.css" as="style">
-		<link rel="preload" href="./script.js" as="script">
-		<link rel="preload" href="./ressource/lib.js" as="script">
+		<link rel="preload" href="/style.css" as="style">
+		<link rel="preload" href="/script.js" as="script">
 	
 		<meta property="og:title"	content="Flame Bousteur">
 		<meta property="og:type"	content="website">
@@ -20,24 +17,25 @@
 		<meta property="og:description"	content="Flamebousteur's datapacks and creation">
 		<meta name="theme-color" 	content="#ffffff">
 
-		<link rel="icon" href="./favicon.ico">
-		<link rel="stylesheet" href="style.css">
-		<script src="./ressource/lib.js"></script>
-		<script>const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/";</script>
-<!--		<script>const statlink = "http://localhost:8081";</script> -->
-		<script src="script.js"></script>
+		<link rel="icon" href="/favicon.ico">
+		<link rel="stylesheet" href="/style.css">
+
+		<!--
+			<script>const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/";</script>
+		-->
+		<script src="http://localhost:8080/script.js"></script>
 	</head>
 	<body>
 		<noscript>
-			<br>
 			<div>
 				plz active javascript<br>
 				svp activez le javascript
 			</div>
 		</noscript>
+		<div class="chargementbar"></div>
 		<div id="loader">
 			<svg xmlns="http://www.w3.org/2000/svg">
-			<!-- create by flamebousteur web-site: https://flamebousteur.github.io -->
+				<!-- create by flamebousteur web-site: https://flamebousteur.github.io -->
 				<defs>
 					<linearGradient y2="0" x2="1" y1="0" x1="0" id="d">
 						<stop offset="0" stop-color="#ed9200"></stop>
@@ -50,28 +48,18 @@
 				</g>
 			</svg>
 		</div>
-		<div id="divpage" style="background-color:white;">
-			a problem has occurred<br>
-			un problème est survenue<br>
-		</div>
-		<footer>
-			<div align="center"><a onclick="patpage('about')">Flamebousteur</a></div>
+		<div id="divpage" style="background-color:white;">loading ...</div>
+		<footer style="margin-top: 10px; visibility: hidden;">
+			<!-- /aboutme -->
+			<div align="center"><a>Flamebousteur</a></div>
 			<a target="_blank" href="https://github.com/flamebousteur/flamebousteur.github.io">github</a><br><br>
-			<a onclick="patpage('privacy')">privacy policy</a><br>
-			<a onclick="patpage('confidentialite')">politique de confidentialité</a><br>
+			<!-- /privacy -->
+			<a>privacy policy</a><br>
+			<!-- /confidentialite -->
+			<a>politique de confidentialité</a><br>
 		</footer>
 		<script src="https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/flstat.php"></script>
-		<script>
-var data;
-let xhr = new XMLHttpRequest();
-xhr.open("GET","/data.json", true);
-xhr.onreadystatechange = function(){
-	if (xhr.readyState==4 && xhr.status==200){
-		data = JSON.parse(xhr.responseText)
-		loadjs()
-	}
-}
-xhr.send();
-		</script>
+		<!--
+		-->
 	</body>
 </html>

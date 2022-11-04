@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<script type="module">
+import { githubTree } from './githubTree.js';
+
+var files = []
+function simplify(obj, startf = "/") {
+	var newObj = {};
+	for (var key in obj) {
+		if(typeof obj[key] === "object") {
+			newObj[startf+key] = simplify(obj[key],startf+key+"/");
+		}else{
+			newObj[startf+key] = obj[key];
+			files.push(startf+key)
+		}
+	}
+	return newObj
+}
+
+var mygithub;
+async function get(u, r, b = "main") {
+	mygithub = new githubTree(u, r, b)
+	await mygithub.init();
+	console.log(JSON.stringify(mygithub.files))
+	document.getElementById('result').innerHTML = JSON.stringify(mygithub.files)
+	simplify(mygithub.files)
+	document.getElementById('simplify').innerHTML = JSON.stringify(files)
+}
+
+
+window.addEventListener("load", async function() {
+	document.getElementById('search').onclick = function(){
+		get(document.getElementById('user').value, document.getElementById('repostorie').value, document.getElementById('branchs').value)
+	}
+	await get("flamebousteur", "flamebousteur.github.io");
+})
+</script>
+<input id="user" placeholder="user">
+<input id="repostorie" placeholder="repostorie">
+<input id="branchs" placeholder="branchs">
+<input id="search" type="button" value="start search"><br>
+<strong>result: </strong><div id="result"></div>
+<strong>simplify: </strong><div id="simplify"></div>

@@ -1,123 +1,227 @@
 {
-	"obj-lecter":{
-		"type":"code",
-		"color":"#e7ff00",
-		"download":false,
-		"primg":"/img/zip/obj-lecter.png",
-		"embed":"./demo/objlecter/index.html",
-		"desc":"<a style='color:blue;' href='./demo/objlecter/index.html'>test demo</a>"
+	"files":{
+		"game-of-life":{
+			"hidden":true,
+			"type":"code",
+			"color":"#e7ff00",
+			"download":false,
+			"embed":"",
+			"desc":"<a href='https://github.com/flamebousteur/game-of-life' target='_blank'> project on github</a>",
+			"modules":[
+				{
+					"name":"terminal",
+					"parms":[
+						"wasm",
+						"./demo/game-of-life/gameOfLife.c"
+					]
+				}
+			]
+		},
+		"terminal":{
+			"type":"code",
+			"color":"#e7ff00",
+			"download":false,
+			"embed":"./demo/terminal/index.html",
+			"desc":"<a href='./demo/terminal/index.html'> try demo</a><br><a href='https://github.com/flamebousteur/terminal' target='_blank'> project on github</a>"
+		},
+		"obj-lecter":{
+			"type":"code",
+			"color":"#e7ff00",
+			"download":false,
+			"embed":"./demo/objlecter/index.html",
+			"desc":"<a href='./demo/objlecter/index.html'> try demo</a><br><a href='https://github.com/flamebousteur/obj-lecter' target='_blank'> project on github</a>"
+		},
+		"scene":{
+			"color":["#286659","#6A8544","#779FAD"],
+			"type":"blender",
+			"download":false,
+			"images":[
+				"/img/galerie/test paysage 1 jour.png",
+				"/img/galerie/test paysage 1 nuit.png"
+			]
+		},
+		"drone":{
+			"type":"blender",
+			"download":false,
+			"color":["#3C4141","#2CB27A","#2A8EB5"],
+			"images":[
+				"/img/galerie/drone 1.png"
+			]
+		},
+		"city_test":{
+			"type":"blender",
+			"color":"#00f0ff",
+			"download":false,
+			"primg":"/img/zip/city_test.png",
+			"video":[
+				"/video/city_test.mp4",
+				"/video/city_test_2.mp4"
+			]
+		},
+		"rid_air":{
+			"type":"blender",
+			"color":"#00f0ff",
+			"download":false,
+			"video":[
+				"/video/rid'aire.mp4",
+				"/video/2021-12-31-13-32-07.mp4"
+			]
+		},
+		"herobrine":{
+			"type":"blender",
+			"color":["#262623","#9A928C","#7B9198"],
+			"download":false,
+			"images":[
+				"/img/galerie/herobrin 4k.png"
+			]
+		},
+		"better enchanting table":{
+			"type":"blender",
+			"color":["#3E3E44","#B8C2BD","#4166A6"],
+			"download":false,
+			"embed":"https://www.youtube.com/embed/D3EmKx_uhpg",
+			"images":[
+				"/img/galerie/enchanting table 2 1-1 4k.png",
+				"/img/galerie/enchanting table 2 1-1.png",
+				"/img/galerie/enchanting table 2b 1-1 4k.png",
+				"/img/galerie/enchanting table 2b 1-1.png"
+			]
+		},
+		"chrismas":{
+			"type":"blender",
+			"color":["#A9AEB0","#384355","#69473A","#896A48"],
+			"download":false,
+			"images":[
+				"/img/galerie/noël 16-9 4k.png"
+			]
+		},
+		"allowen":{
+			"type":"blender",
+			"download":false,
+			"color":["#3F2F23","#C48E2A","#9A918C"],
+			"images":[
+				"/img/galerie/allowen 1-1.png",
+				"/img/galerie/allowen b 1-1.png",
+				"/img/galerie/jack_o_lantern.png",
+				"/img/galerie/jack_o_lantern1.png",
+				"/img/galerie/jack_o_lantern2.png"
+			]
+		},
+		"end island":{
+			"type":"blender",
+			"download":false,
+			"color":["#1B1B1A","#a968a9","#bfb33c"],
+			"images":[
+				"/img/galerie/end islands.png",
+				"/img/galerie/end island 1-1.png"
+			]
+		},
+		"enchanting table":{
+			"type":"blender",
+			"download":false,
+			"color":["#0C0F0B","#46C5B8"],
+			"images":[
+				"/img/galerie/enchantig table.png",
+				"/img/galerie/enchanting table 1-1.png"
+			]
+		},
+		"strongold":{
+			"type":"blender",
+			"download":false,
+			"color":["#836E2F","#2F2711","#DECD7D"],
+			"images":[
+				"/img/galerie/strongold 1-1.png",
+				"/img/galerie/strongold.png"
+			]
+		},
+		"1st test":{
+			"type":"blender",
+			"download":false,
+			"color":["#A5C290","#898A8C"],
+			"images":[
+				"/img/galerie/0001.png"
+			]
+		},
+		"mushmush":{
+			"type":"map",
+			"photo":4,
+			"color":"#ce2f2f",
+			"embed":"https://www.youtube.com/embed/tL4l2Qiesfc",
+			"download":true
+		},
+		"stars-mine":{
+			"type":"map",
+			"photo":19,
+			"color":"#2f92ce",
+			"embed":"https://www.youtube.com/embed/b8-t5a6CLX8",
+			"download":true
+		},
+		"modern-office":{
+			"type":"map",
+			"photo":0,
+			"color":"#999999",
+			"embed":"https://www.youtube.com/embed/nxw75apm6bs",
+			"download":true
+		},
+		"floating-island":{
+			"type":"map",
+			"photo":2,
+			"color":"#40ffe8",
+			"embed":"https://www.youtube.com/embed/vRSrmEOO9lI",
+			"download":true
+		},
+		"cove-in-minecraft":{
+			"type":"map",
+			"photo":2,
+			"color":"#61b44b",
+			"embed":"https://www.youtube.com/embed/W2fUQjmN2w4",
+			"download":true
+		},
+		"wisard-tower":{
+			"type":"map",
+			"photo":2,
+			"color":"#462100",
+			"embed":"https://www.youtube.com/embed/ge1WMCKf-yA",
+			"download":true
+		},
+		"spawner-generator":{
+			"desc":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\n\nhi if you’ve always dreamed to have a spawner this data pack it's made for you.\n\n1- download this data pack.\n2- build the structure.\n3- a new spawner is here!\n\ngood game. 😁",
+			"descfr":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\nsi tu as toujours rêvé d'avoir un spawner ce datapack est fait pour toi!\n\n1- télécharge ce datapack.\n2- construits la structure.\n3- un nouveau spawner!\n\namusez vous bien. 😁",
+			"type":"data pack",
+			"photo":3,
+			"color":"#f7ff00",
+			"download":true
+		},
+		"shield":{
+			"desc":"green glass + concrete powder = the best sheld 👍<br><br><br>1- set the concrete powder 2 blocks around the green glass.<br>2- go on the green glass.3- 25 armor stand were summon.<br>4- and 3 light blue glass were set over the concrete powder.<br>5- you can break the shields with snowballs.<br><br>good game",
+			"descfr":"green glass + concrete powder = the best sheld 👍<br><br>1- mets le béton bleu 2 blocks autour du verre vert.<br>2- va sur le verre vert.<br>4- 3 verres bleu-clair sont générés sur les bétons bleus.<br>5- tu peux casser le bouclier avec des boules de neige.<br><br>bonne partie",
+			"type":"data pack",
+			"photo":5,
+			"color":"#3893ee",
+			"download":true
+		},
+		"utility-item":{
+			"type":"data pack",
+			"photo":0,
+			"color":"#0e9408",
+			"download":true
+		},
+		"craftS+":{
+			"desc":"New crafts for minecraft survival.",
+			"descfr":"De nouveau craft pour votre survie.",
+			"type":"data pack",
+			"photo":2,
+			"color":"#38e8ee",
+			"download":true
+		},
+		"the-floor-is-lava":{
+			"desc":"just the floor is lava no more good luck 😉.",
+			"descfr":"le sol est de la lave donc BONNE CHANCE!.",
+			"type":"data pack",
+			"photo":0,
+			"color":"#ec1d1d",
+			"download":true
+		}
 	},
-	"city_test":{
-		"type":"blender",
-		"color":"#00f0ff",
-		"download":false,
-		"primg":"/img/zip/city_test.png",
-		"video":[
-			"city_test.mp4",
-			"city_test_2.mp4"
-		]
-	},
-	"rid_air":{
-		"type":"blender",
-		"color":"#00f0ff",
-		"download":false,
-		"video":[
-			"rid'aire.mp4",
-			"2021-12-31-13-32-07.mp4"
-		]
-	},
-	"enchanting table":{
-		"type":"blender",
-		"color":"#00f0ff",
-		"download":false,
-		"photo":2,
-		"embed":"https://www.youtube.com/embed/D3EmKx_uhpg"
-	},
-	"1st-mc":{
-		"type":"blender",
-		"photo":7,
-		"color":"#00f0ff",
-		"download":false,
-		"primg":"/img/zip/1st-mc.png"
-	},
-	"mushmush":{
-		"type":"map",
-		"photo":4,
-		"color":"#ce2f2f",
-		"embed":"https://www.youtube.com/embed/tL4l2Qiesfc",
-		"download":true
-	},
-	"stars-mine":{
-		"type":"map",
-		"photo":19,
-		"color":"#2f92ce",
-		"embed":"https://www.youtube.com/embed/b8-t5a6CLX8",
-		"download":true
-	},
-	"modern-office":{
-		"type":"map",
-		"photo":0,
-		"color":"#999999",
-		"embed":"https://www.youtube.com/embed/nxw75apm6bs",
-		"download":true
-	},
-	"floating-island":{
-		"type":"map",
-		"photo":2,
-		"color":"#40ffe8",
-		"embed":"https://www.youtube.com/embed/vRSrmEOO9lI",
-		"download":true
-	},
-	"cove-in-minecraft":{
-		"type":"map",
-		"photo":2,
-		"color":"#61b44b",
-		"embed":"https://www.youtube.com/embed/W2fUQjmN2w4",
-		"download":true
-	},
-	"wisard-tower":{
-		"type":"map",
-		"photo":2,
-		"color":"#462100",
-		"embed":"https://www.youtube.com/embed/ge1WMCKf-yA",
-		"download":true
-	},
-	"spawner-generator":{
-		"desc":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\n\nhi if you’ve always dreamed to have a spawner this data pack it's made for you.\n\n1- download this data pack.\n2- build the structure.\n3- a new spawner is here!\n\ngood game. 😁",
-		"descfr":"5 gold block + 1 netherite block + 1 end crystal = spawner👍\n\n\nsi tu as toujours rêvé d'avoir un spawner ce datapack est fait pour toi!\n\n1- télécharge ce datapack.\n2- construits la structure.\n3- un nouveau spawner!\n\namusez vous bien. 😁",
-		"type":"data pack",
-		"photo":3,
-		"color":"#f7ff00",
-		"download":true
-	},
-	"shield":{
-		"desc":"green glass + concrete powder = the best sheld 👍<br><br><br>1- set the concrete powder 2 blocks around the green glass.<br>2- go on the green glass.3- 25 armor stand were summon.<br>4- and 3 light blue glass were set over the concrete powder.<br>5- you can break the shields with snowballs.<br><br>good game",
-		"descfr":"green glass + concrete powder = the best sheld 👍<br><br>1- mets le béton bleu 2 blocks autour du verre vert.<br>2- va sur le verre vert.<br>4- 3 verres bleu-clair sont générés sur les bétons bleus.<br>5- tu peux casser le bouclier avec des boules de neige.<br><br>bonne partie",
-		"type":"data pack",
-		"photo":5,
-		"color":"#3893ee",
-		"download":true
-	},
-	"utility-item":{
-		"type":"data pack",
-		"photo":0,
-		"color":"#0e9408",
-		"download":true
-	},
-	"craftS+":{
-		"desc":"New crafts for minecraft survival.",
-		"descfr":"De nouveau craft pour votre survie.",
-		"type":"data pack",
-		"photo":2,
-		"color":"#38e8ee",
-		"download":true
-	},
-	"the-floor-is-lava":{
-		"desc":"just the floor is lava no more good luck 😉.",
-		"descfr":"le sol est de la lave donc BONNE CHANCE!.",
-		"type":"data pack",
-		"photo":0,
-		"color":"#ec1d1d",
-		"download":true
-	}
+	"galries":[]
 }
