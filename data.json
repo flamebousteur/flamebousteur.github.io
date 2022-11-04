@@ -1,5 +1,24 @@
 {
 	"files":{
+		"fractalJS":{
+			"type":"code",
+			"color":["#d21212", "#e8bb13"],
+			"download":false,
+			"embed":"./demo/fractalJS/index.html",
+			"desc":"<a href='./demo/fractalJS/index.html'> try demo</a><a href='https://github.com/flamebousteur/fractalJS' target='_blank'> project on github</a>",
+			"images":[
+				"/img/galerie/Julia.png",
+				"/img/galerie/Julia2.png",
+				"/img/galerie/BurningShip.png"
+			],
+			"video":[
+				"/video/fractals/render.mp4",
+				"/video/fractals/render 2.mp4",
+				"/video/fractals/render 3.mp4",
+				"/video/fractals/render 4.mp4",
+				"/video/fractals/render 5.mp4"
+			]
+		},
 		"game-of-life":{
 			"hidden":true,
 			"type":"code",
@@ -222,6 +241,5 @@
 			"color":"#ec1d1d",
 			"download":true
 		}
-	},
-	"galries":[]
+	}
 }

@@ -241,7 +241,7 @@ function loadfile(f){
 	}
 	if (data.files[f].video) {
 		for (let i = 0; i < data.files[f].video.length; i++) {
-			setcard(data.files[f].video[i], content, false, null, {controls:true})
+			setcard(data.files[f].video[i], content, false, null, {controls:true, autoplay:true})
 		}
 	}
 	let tp = "";
@@ -268,8 +268,25 @@ function loadfile(f){
 	return true
 }
 
-function loadgalries(g){
-	console.log(g)
+function loadgalries(){
+	document.title = "Flame Bousteur - galeries";
+	document.getElementById("divpage").innerHTML = ""
+	let header = document.createElement("div")
+	header.className = "fileheader"
+	let back = document.createElement("a")
+	back.innerHTML = "back"
+	back.setAttribute("onclick","loadindex()")
+	header.appendChild(back)
+	let download = document.createElement("span")
+	download.innerHTML += "galeries"
+	header.appendChild(download)
+	document.getElementById("divpage").appendChild(header)
+	let content = document.createElement("div")
+	content.className = "content"
+	for (let i = 0; i < data.galries.length; i++) {
+		setcard(data.galries[i].primg, content, false, function(){window.location="?g="+i})
+	}
+	document.getElementById("divpage").appendChild(content)
 }
 
 var types = {}
@@ -360,7 +377,7 @@ window.addEventListener("load", async function () {
 			loadfile(pathname[1])
 			break;
 		case "galries":
-			loadgalries(pathname[1])
+			loadgalries()
 			break;
 		default:
 			if(parm['f'] && data.files[parm['f']]){

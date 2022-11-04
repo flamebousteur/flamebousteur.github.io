@@ -169,6 +169,8 @@ svg{
 	display: grid;
 	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
 	grid-gap: 5px;
+	padding-block: 10px;
+	padding-inline: 5px;
 }
 
 /* card */
@@ -214,23 +216,19 @@ card span {
   }
 }
 
-card.scard:hover img, card.scard:hover video{
-	transform: scale(1.1);
-	filter: brightness(0.4) blur(1px);
-}
+card:hover img, card:hover video{ transform: scale(1.1); }
+card:active img, card.scard:active video { transform: scale(1.3); }
+card:hover img, card.scard:hover video{ filter: brightness(0.4) blur(1px); }
 
 card.scard:hover span {
 	transform: scale(1.1);
 	opacity: 1;
 }
 
-card.scard:active img, card.scard:active video {
-	transform: scale(1.3);
-	filter: brightness(0.4) blur(5px);
-}
+card.scard:active img, card.scard:active video { filter: brightness(0.4) blur(5px); }
 
 card.scard:active span {
-  transform: scale(1.3);
+	transform: scale(1.3);
 	opacity: 0.75;
 }
 
