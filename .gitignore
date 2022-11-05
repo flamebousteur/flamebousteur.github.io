@@ -1,2 +1,4 @@
 *.cmd
 *.bat
+local*
+test

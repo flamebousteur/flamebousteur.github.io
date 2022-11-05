@@ -1,411 +1,681 @@
-console.log('v2.9.1')
+const vertion = "3.0.0"
+console.log('v'+vertion)
 
-if($_COOKIE()["lang"]){
-	var deflang = $_COOKIE()["lang"]
-}else{
-	var deflang = navigator.language
-	document.cookie = 'lang='+deflang+'; secure;'
+/* for the test */
+// check nodeJS
+var isNodeJS = (typeof module !== 'undefined' && module.exports);
+if (isNodeJS) {
+	const treeCore = require("./treeCore.js");
 }
 
-function nostat(){
-	document.cookie = 'stat=no; secure;'
-	console.log('cookies stop')
+function $_GET(param) {
+	var vars = {};
+	window.location.href.replace( location.hash, '' ).replace(
+		/[?&]+([^=&]+)=?([^&]*)?/gi, // regexp
+		function( m, key, value ) { // callback
+			// decode the uri
+			vars[decodeURIComponent(key)] = value !== undefined ? decodeURIComponent(value) : '';
+		}
+	);
+	if ( param ) {
+		return vars[param] ? vars[param] : null;	
+	}
+	return vars;
 }
 
-function onstat(){
-	document.cookie = 'stat=; expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-	console.log('cookies stop')
+function geturl(url) {
+	return new Promise(function(resolve, reject) {
+		let xhr = new XMLHttpRequest();
+		xhr.open("GET", url);
+		xhr.onload = function() {
+			if (this.status >= 200 && this.status < 300) {
+				resolve(xhr.response);
+			} else {
+				reject({
+					status: this.status,
+					statusText: xhr.statusText
+				});
+			}
+		};
+		xhr.onerror = function() {
+			reject({
+				status: this.status,
+			})
+		}
+		xhr.send();
+	});
 }
 
-if($_GET['a']){
-	if($_GET['a'] == "nostat"){
-		nostat()
+// cookie gestion
+function setCookie(cname, cvalue, exdays = null) {
+	var d = new Date();
+	var expires = "";
+	if (exdays != null) {
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		expires = "expires="+ d.toUTCString() + ";";
+	}
+	document.cookie = cname + "=" + cvalue + ";" + expires + "path=/; secure; samesite=strict";
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return false;
+}
+
+function delCookie(cname = null) {
+	if (cname == null) {
+		// delete all cookie
+		var cookies = document.cookie.split(";");
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = cookies[i];
+			var eqPos = cookie.indexOf("=");
+			var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+			document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+		}
+	} else {
+		// delete one cookie
+		document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 	}
 }
 
-function type(type){
-	let index = findex(data)
-	let result = []
-	index.forEach(element => {
-		if(data[element]['type'] == type){
-			result.push(element)
-		}
-	})
-	return result
+var ntree = new treeCore()
+
+//send a XMLHttpRequest
+function send(url,msg){
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", url , true);
+	xhr.send(msg);
 }
 
-const page1 =
-'<p id="up" align="center" style="background-image:url(\'/img/end portal hd.png\');background-size: cover;border-bottom:2px solid #162168;">'+
-'	<img src="/img/flamebousteur.png" width="100%" alt="a">'+
-'</p>'+
-'<nav>'+
-'	<ul>'+
-'		<li class="deroulant">'+
-'			<a>Social Media</a>'+
-'			<ul class="sous">'+
-'				<li><a href="https://www.youtube.com/channel/UCpb9cOY9nklRXTQEC6Jxctg" target="_blank">Youtube</a></li>'+
-'				<li><a href="https://www.facebook.com/flame.bousteur" target="_blank">facebook</a></li>'+
-'				<li><a href="https://twitter.com/flame65407614" target="_blank">twitter</a></li>'+
-'				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
-'				<li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li>'+
-'				<li><a href="https://discord.com/" target="_blank">Discord server</a></li>'+
-'				<li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li>'+
-'			</ul>'+
-'		</li>'+
-'		<li class="deroulant">'+
-'			<a>creation</a>'+
-'			<ul class="sous" id="type">'+
-'			</ul>'+
-'		</li>'+
-'	</ul>'+
-'</nav>'+
-'<div id="dp-map">'+
-'</div>';
+/* end lib */
+// statistics gestion
+var stats = {
+	indexLoaded: false,
+	files: [],
+	stat: true,
+	statlink: statlink ? statlink : false,
+	save: function(){
+		setCookie("stats", JSON.stringify({file: this.files, indexLoaded: this.indexLoaded, stat: this.stat}))
+	},
+	load: function(){
+		var stats = getCookie("stats")
+		if (stats == false) return // no stats cookie
+		stats = JSON.parse(stats)
+		this.files = stats.file
+		this.indexLoaded = stats.indexLoaded
+		this.stat = stats.stat
+	},
+	download: function (f) {
+		if (!this.stat) return
+		send(this.statlink+"index.php?d=a&f="+f)
+	},
+	newFiles: function (f) {
+		if (this.files.includes(f)) return
+		this.files.push(f)
+		if (!this.stat) return
+		var _GET = $_GET()
+		if(_GET['l']) send(this.statlink+"index.php?f="+f+"&l="+_GET['l'])
+		else send(this.statlink+"index.php?f="+f)
+		this.save()
+	},
+	loadIndex: function () {
+		if (this.indexLoaded) return
+		this.indexLoaded = true	
+		this.save()
+		if (!this.stat) return
+		var _GET = $_GET()
+		if(_GET['l']) send(this.statlink+"index.php?f=index&l="+_GET["l"])
+		else send(this.statlink+"index.php?f=index")
+	},
+	noStats: function () {
+		this.stat = false
+		this.save()
+	}
+}
+stats.load()
+
+var load = {
+	toload:0,
+	toloadlogo:0,
+	loaded:0,
+	percent:0,
+	onloadchange:function(){
+		if (!document.querySelector(".chargementbar")) return
+		// logo
+		if (this.toloadlogo > this.loaded) this.logoload(true)
+		else this.logoload(false)
+		// percent
+		if (this.toload > this.loaded){
+			document.querySelector(".chargementbar").style.opacity = "1"
+			this.percent = Math.round(this.loaded/this.toload*100)
+			document.querySelector(".chargementbar").style.width = this.percent+"%"
+		} else document.querySelector(".chargementbar").style.opacity = "0"
+	},
+	addl:function(n){
+		this.toload += n
+		this.onloadchange()
+	},
+	addld:function(n){
+		this.loaded += n
+		this.onloadchange()
+	},
+	logoload:function(start = false){
+		if (!document.getElementById("loader")) return
+		if (start) document.getElementById("loader").style.visibility = "visible";
+		else document.getElementById("loader").style.visibility = "hidden";
+	}
+}
+
+function setcard(url, contentElement = null, iframe = false, onclick = null, atr = {}){
+	let type = url.split(".")[1]
+	let card = document.createElement("card")
+	let element;
+	if (iframe == true) {
+		element = document.createElement("iframe")
+	} else if(type == "jpg" || type == "png" || type == "gif" || type == "jpeg" || type == "webp"){
+		type = "img"
+		element = document.createElement("img")
+	} else if (type == "mp4" || type == "webm") {
+		type = "video"
+		element = document.createElement("video")
+		if (Object.keys(atr).length > 0) {
+			for (let i in atr) {
+				element.setAttribute(i, atr[i])
+			}
+		}
+	} else {
+		return false
+	}
+	element.src = url
+	if (onclick != null) {
+		element.onclick = onclick
+	}
+	if (iframe == false && type == "img") {
+		element.onloadstart = function(){
+			load.addl(1)
+		}
+		element.onload = function(){
+			load.addld(1)
+		}
+		element.onerror = function(){
+			load.addld(1)
+		}
+	}
+	card.appendChild(element)
+	contentElement.appendChild(card)
+	return card
+}
+
+var data = []
+var pathname = location.pathname.split('/')
+pathname = pathname.slice(1,pathname.length)
+var stat = {}
+
+const pages = {
+	index:{
+		txt:'<p id="up" align="center" style="background-image:url(\'/img/end portal hd.png\');background-size: cover;border-bottom:2px solid #162168;">'+
+		'	<img src="/img/flamebousteur.png" width="50%" alt="FlameBousteur">'+
+		'</p>'+
+		'<nav>'+
+		'	<ul>'+
+		'		<li class="deroulant">'+
+		'			<a>Social Media</a>'+
+		'			<ul class="sous">'+
+		'				<li><a href="https://www.youtube.com/channel/UCpb9cOY9nklRXTQEC6Jxctg" target="_blank">Youtube</a></li>'+
+//		'				<li><a href="https://www.facebook.com/flame.bousteur" target="_blank">facebook</a></li>'+
+//		'				<li><a href="https://twitter.com/flame65407614" target="_blank">twitter</a></li>'+
+//		'				<li><a href="https://www.instagram.com/flameboff/" target="_blank">Instagrame</a></li>'+
+		'				<li><a href="https://github.com/flamebousteur" target="_blank">GitHub</a></li>'+
+//		'				<li><a href="https://discord.com/" target="_blank">Discord server</a></li>'+
+		'				<li><a href="https://www.planetminecraft.com/member/flamebousteur/" target="_blank">planet minecraft</a></li>'+
+		'			</ul>'+
+		'		</li>'+
+		'		<li class="deroulant">'+
+		'			<a>creation</a>'+
+		'			<ul class="sous" id="type">'+
+		'			</ul>'+
+		'		</li>'+
+		'	</ul>'+
+		'</nav>'+
+		'<div id="dp-map"></div>'+
+		'<br>',
+	}
+}
+
+function downloadfile (f) {
+	stats.download(f)
+	if(data.files[f]) window.open('/zip/'+f+'/'+f+'.zip', '_blank')
+}
+
+function loadfile(f){
+	stats.newFiles(f)
+	document.title = "Flame Bousteur - "+f;
+	if (data.files[f] == undefined) return false
+	// reset the page
+	document.getElementById("divpage").innerHTML = ""
+	// generate the html
+	let header = document.createElement("div")
+	header.className = "fileheader"
+	let back = document.createElement("a")
+	back.innerHTML = "back"
+	back.setAttribute("onclick","loadindex()")
+	header.appendChild(back)
+	let download = document.createElement("span")
+	if (data.files[f].download) {
+		download.innerHTML += "download: "
+		download.className = "dl"
+		download.onclick = () => downloadfile(f)
+	}
+	download.innerHTML += f
+	header.appendChild(download)
+	document.getElementById("divpage").appendChild(header)
+	let datae = document.createElement("div")
+	let dataie = document.createElement("div")
+	datae.className = "filedata"
+	dataie.innerHTML += data.files[f].type
+	if (data.files[f].primg != undefined) imgurl = data.files[f].primg
+	else if (data.files[f].images && data.files[f].images[0]) imgurl = data.files[f].images[0]
+	else imgurl = "/img/zip/"+f+".png"
+	datae.style.backgroundImage = "url('"+imgurl+"')"
+	dataie.innerHTML += '<a onclick="navigator.clipboard.writeText(\'https://flamebousteur.github.io/?f='+f+'\')">copy link</a>'
+	if (data.files[f].desc != undefined) dataie.innerHTML += '<span class="desc">'+data.files[f].desc+"</span>"
+	datae.appendChild(dataie)
+	document.getElementById("divpage").appendChild(datae)
+	let color = document.createElement("div")
+	color.className = "filecolor"
+	if (typeof data.files[f].color == "string") {
+		color.style.backgroundColor = data.files[f].color
+	} else if (Array.isArray(data.files[f].color)) {
+		color.style.background = "linear-gradient(to right, "+data.files[f].color.join(", ")+")"
+	}
+	document.getElementById("divpage").appendChild(color)
+	if (stat.files && stat.files[f]) {
+		let stats = document.createElement("div")
+		stats.className = "stats"
+		stats.innerHTML += stat.files[f].view+' views / '+stat.files[f].dowload+' downloads'
+		dataie.appendChild(stats)
+	}
+	let content = document.createElement("div")
+	content.className = "content"
+	if (data.files[f].embed) {
+		setcard(data.files[f].embed, content, true)
+	}
+	if (data.files[f].video) {
+		for (let i = 0; i < data.files[f].video.length; i++) {
+			setcard(data.files[f].video[i], content, false, null, {controls:true, autoplay:true})
+		}
+	}
+	let tp = "";
+	if (data.files[f]['primg']){
+		tp = data.files[f]['primg']
+	} else if (data.files[f].images && data.files[f].images[0]) {
+		tp = false
+	} else {
+		tp = '/img/zip/'+f+'.webp'
+	}
+	if (tp != false) setcard(tp, content, false, function(){window.location=tp})
+	if (data.files[f].photo) {
+		for (let i = 1; i <= data.files[f].photo; i++) {
+			setcard('/zip/'+f+'/img/'+i+'.png', content, false, function(){window.location="/zip/"+f+"/img/"+i+".png"})
+		}
+	}
+	if (data.files[f].images) {
+		for (let i = 0; i < data.files[f].images.length; i++) {
+			setcard(data.files[f].images[i], content, false, function(){window.location=data.files[f].images[i]})
+		}
+	}
+	document.getElementById("divpage").appendChild(content)
+	history.pushState(null, null, "?f="+f)
+	return true
+}
+
+function loadgalries(low, str, off){
+	let limit = true
+	if (off == undefined) {
+		off = 10
+		limit = false
+	}
+	document.title = "Flame Bousteur - galeries";
+	let divp = document.getElementById("divpage")
+	divp.innerHTML = ""
+	let header = document.createElement("div")
+	header.className = "fileheader"
+	let back = document.createElement("a")
+	back.innerHTML = "back"
+	back.setAttribute("onclick","loadindex()")
+	header.appendChild(back)
+	let download = document.createElement("span")
+	download.innerHTML += "galeries"
+	header.appendChild(download)
+	divp.appendChild(header)
+	let content = document.createElement("div")
+	content.style.display = "flex"
+	divp.appendChild(content)
+	let button = document.createElement("button")
+
+	if (low) {
+		content.style.display = "block"
+	}
+
+	let loaded = 0
+	let load = function(start = str, offset = off) {
+		let images = ntree.getFiles(["*.png", "*.jpg", "*.jpeg", "*.webp"], start, offset)
+		for (let i = 0; i < images.length; i++) {
+			if (!low) {
+				content.className = "content"
+				let card = setcard(images[i], content, false, function(){window.location=images[i]})
+				if (!card) continue
+				let span = document.createElement("span")
+				span.innerHTML = images[i]
+				card.className = "scard"
+				card.appendChild(span)
+				content.appendChild(card)
+			} else {
+				let c = document.createElement("a")
+				c.setAttribute("href", images[i])
+				c.style.display = "block"
+				let img = document.createElement("img")
+				img.src = images[i]
+				img.width = 300
+				let span = document.createElement("span")
+				span.innerHTML = images[i]
+				c.appendChild(img)
+				c.appendChild(span)
+				content.appendChild(c)
+			}
+			loaded++
+		}
+		if (images.length < offset) {
+			button.style.display = "none"
+		}
+	}
+	if (ntree.tree.length != 0) {
+		let o = (off <= 10) ? off : 10
+		if (off == "all") off = o = ntree.tree.length
+		load(str, o)
+	}
+	
+	ntree.onNewTree = () => {
+		let o = (off <= 10) ? off : 10
+		if (off == "all") off = o = ntree.tree.length
+		load(str, o)
+	}
+
+	// if the user click on button, load 10 more images
+	button.innerHTML = "load more"
+	button.onclick = function() {
+		load(loaded, 20)
+	}
+	divp.appendChild(button)
+}
+
+var types = {}
+function loadindex(){
+	document.title = "Flame Bousteur";
+	history.pushState(null, null, "/")
+//	types = {}
+	/*
+	<card>
+		<!-- IMG -->
+		<img src="https://flamebousteur.github.io/img/zip/enchanting%20table.png">
+
+		<!-- OR VIDEO -->
+		<video src="https://flamebousteur.github.io/video/rid'aire.mp4" autoplay loop></video>
+
+		<!-- THE TEXT -->
+		<span>test</span>
+	</card>
+	*/
+	document.getElementById("divpage").innerHTML = pages.index.txt
+	if (Object.keys(types).length === 0) {
+		for (const key in data.files) {
+			if (data.files[key].hidden && data.files[key].hidden == true) continue
+			let typ = data.files[key]['type']
+			if(types[typ] == undefined){
+				types[typ] = document.createElement("div")
+			}
+			let card = document.createElement("card")
+			card.className = "scard"
+			let img = document.createElement("img")
+			img.alt = key
+			if (data.files[key]['primg']){
+				img.src = data.files[key]['primg']
+			} else if (data.files[key].images && data.files[key].images[0]) {
+				img.src = data.files[key].images[0]
+			} else {
+				img.src = '/img/zip/'+key+'.webp'
+			}
+			img.onloadstart = function(){
+				load.addl(1)
+			}
+			img.onload = function(){
+				load.addld(1)
+			}
+			img.onerror = function(){
+				load.addld(1)
+			}
+			card.appendChild(img)
+			card.innerHTML += '<span>'+key+'</span>'
+			card.setAttribute("onclick","loadfile('"+key+"')")
+			types[typ].appendChild(card)
+		}
+	}
+	n = 1
+	for (const key in types) {
+		// generate creation types list in navbar
+		document.getElementById("dp-map").innerHTML += '<span id="type'+key+'" class="typename">'+key+'</span>'
+		document.getElementById("dp-map").appendChild(types[key])
+		let li = document.createElement("li")
+		let a = document.createElement("a")
+		a.innerHTML = key
+		li.appendChild(a)
+		document.getElementById("type").appendChild(li)
+		a.onclick = function(){
+			// scrol to the dp-map
+			document.getElementById("type"+key).scrollIntoView({behavior: 'smooth'})
+			// change url
+			history.pushState(null, null, "#type"+key)
+		}
+		n++
+	}
+}
+
+function Particl(canvasEle, {color: colors = [], maxParticles = 50, MaxSpeed = 5, globalSpeed = 0} = {}) {
+	let ctx = canvasEle.getContext("2d")
+	// partciles start from the center right of the canvas and go to the left and random height
+	let particles = []
+	let generatedParticles = 0
+	let width = canvasEle.width
+	let height = canvasEle.height
+	let end = 0
+
+	let add = function() {
+		let x = width
+		let y = height / 2
+		let size = Math.random() * 5 + 1
+		let speed = Math.random() * MaxSpeed + 1
+		let ydirection = Math.random() * 2 - 1
+		let color
+		if (colors.length > 0) color = colors[Math.floor(Math.random() * colors.length)]
+		// random color
+		else color = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+		particles.push({x, y, size, speed, color, ydirection})
+		generatedParticles++
+	}
+
+	let draw = function() {
+		ctx.clearRect(0, 0, width, height)
+		for (let i = 0; i < particles.length; i++) {
+			ctx.beginPath()
+			ctx.arc(particles[i].x, particles[i].y, particles[i].size, 0, Math.PI * 2)
+			ctx.fillStyle = particles[i].color
+			ctx.fill()
+		}
+	}
+
+	let update = function() {
+		for (let i = 0; i < particles.length; i++) {
+			particles[i].x -= particles[i].speed + globalSpeed
+			particles[i].y += particles[i].ydirection
+			particles[i].ydirection += Math.random() * 0.2 - 0.1
+			if (particles[i].x < 0) {
+				particles.splice(i, 1)
+			}
+		}
+		// end of the animation
+		if (end == 1) if (particles.length == 0) end = 2
+	}
+
+	let loop = function() {
+		draw()
+		update()
+		if (end != 2) requestAnimationFrame(loop)
+	}
+
+	let reset = () => {
+		particles = []
+		end = 0
+		generatedParticles = 0
+		loop()
+	}
+
+	let init = function(mx = maxParticles) {
+		loop()
+		// add new particles every 10ms and stop when if there is 100 particles
+		let interval = setInterval(function() {
+			if (generatedParticles < mx) {
+				add()
+			} else {
+				end = 1
+				clearInterval(interval)
+			}
+		}, 10)
+	}
+
+	let setGlobalSpeed = speed => globalSpeed = speed
+
+	return { init, stop, reset, add, draw, update, loop, setGlobalSpeed}
+}
 
 /*dev stat function =======================================================*/
 
 function devstatimg(d){
 	document.getElementById('dt').innerHTML = '';
-	findex(stat["files"][d]["web-site"]).forEach(element =>{
+	for (const element in stat["files"][d]["web-site"]) 
 		document.getElementById('dt').innerHTML += element+' : '+stat["files"][d]["web-site"][element]+'<br>';
-	})
 	document.getElementById('dtd').innerHTML = 'view: '+stat["files"][d]["view"]+' | dowload: '+stat["files"][d]["dowload"]
 }
 
 function devstat(){
-	statpage = '<table>'+
-'	<td>'+
-'		<table id="stat">'+
-'			<thead>'+
-'				<tr>'+
-'					<td></td>'+
-'					<td>view</td>'+
-'					<td>dowload</td>'+
-'				</tr>'+
-'			</thead>'+
-'		</table>'+
-'	</td>'+
-'	<td>'+
-'		<table>'+
-'			<tr id="dt"></tr>'+
-'			<tr id="dtd"></tr>'+
-'		</table>'+
-'</table>';
+	statpage = `<table style="background-color: #fff">
+	<td>
+		<table id="stat">
+			<thead>
+				<tr>
+					<td></td>
+					<td>view</td>
+					<td>dowload</td>
+				</tr>
+			</thead>
+		</table>
+	</td>
+	<td>
+		<table>
+			<tr id="dt"></tr>
+			<tr id="dtd"></tr>
+		</table>
+</table>`;
 	document.body.innerHTML = statpage;
 
-	findex(stat["files"]).forEach(element =>{
+	for (const element in stat["files"]) {
 		txt = document.getElementById('stat').innerHTML
 		txt = txt + '<tr onmouseover="devstatimg(\''+element+'\')"><td>'+element+'</td><td>'+stat["files"][element]["view"]+'</td><td>'+stat["files"][element]["dowload"]+'</td></tr>'
 		document.getElementById('stat').innerHTML = txt
-	})
-}
-
-
-/* programe ============================================================*/
-
-function logoload(start = false){
-	if (start) {
-		document.getElementById("loader").style.visibility = "visible";
-	} else {
-		document.getElementById("loader").style.visibility = "hidden";
 	}
 }
 
-if(screen.width < 51){
-	if(screen.width < 51){
-		console.log("nano 🔍")
-	}
-}
-
-function dloal(f){
-	if(findex(data).includes(f)){
-		window.location.href = '/zip/'+f+'/'+f+'.zip'
-		if($_COOKIE()["stat"]){
-			console.log('cookies stop')
-		}else{
-			send(statlink+"index.php?d=a&f="+f)
+window.addEventListener("load", async function () {
+	load.addl(2,1)
+	data = JSON.parse(await geturl("/data.json"))
+	load.addld(1)
+	let parm = $_GET()
+	if (parm["a"]) {
+		switch (parm["a"]) {
+			case 'nostat':
+				stats.noStats()
+				console.log("stats stop")
+				break;
 		}
 	}
-}
-
-function load(f){
-	if($_COOKIE()["v"] != f){
-		if($_COOKIE()["stat"]){
-			console.log('cookies stop')
-		}else{
-			document.cookie = 'v='+f+'; secure';
-			console.log('page '+f+' charge')
-			if($_GET['l']){
-				send(statlink+"index.php?f="+f+"&l="+$_GET['l'])
-			}else{
-				send(statlink+"index.php?f="+f)
-			}
-		}
-	}
-	murl("?f="+f)
-	let color,
-		d = "",
-		de = "",
-		def = "",
-		tp = "";
-	if(!data[f]["color"]){
-		color = "#000"
-	}
-	if(data[f]["download"]){
-		d = '<a onclick="dloal(\''+f+'\')"><mark><img src="/img/Nether_Star.gif" width="20">download</mark></a>';
-	}
-	if(data[f]["desc"]){
-		de = '<mark>description:<br>'+data[f]["desc"]+'</mark>'
-	}
-	if(data[f]["descfr"]){
-		def = '<mark>fr:<br>'+data[f]["descfr"]+'</mark>'
-	}
-	if(data[f]['primg']){
-		tp = data[f]['primg']
-	}else{
-		tp = '/img/zip/'+f+'.webp'
-	}
-	const page2 =
-'	<div class="tl" id="tele"; border-bottom: 3px solid '+color+'\';>'+
-'	<h4><a style="color:white;" onclick="pr()">back</a></h4>'+
-'	<p style="text-align:right;">'+d+
-'		<br>'+
-'		<a onclick="copi(\'https://flamebousteur.github.io/?f='+f+'\')">'+
-'			<mark>copy link</mark>'+
-'		</a>'+
-'	</p>'+
-'	<pre>'+
-'<mark>'+data[f]["type"]+'\n</mark>'+
-'<p>'+de+
-'</p>'+
-'<p>'+def+
-'</p>'+
-'<mark id="link"></mark>'+
-'	</pre>'+
-'</div>'+
-'<iframe id="ifr" src=""></iframe>'+
-'<hr>'+
-'<div id="data"></div>'+
-'<div id="galery">problèmes</div>';
-	document.getElementById("divpage").innerHTML = page2
-	document.querySelector("html").className = ''
-
-	let n = 0
-	let max = 0;
-	if(data[f]["photo"]){
-		max = data[f]["photo"]
-	}
-	
-	document.querySelector('meta[property="og:url"]').setAttribute("content","/file.html?f="+f);
-	document.querySelector('meta[property="og:image"]').setAttribute("content","/img/zip/"+f+".png");
-	document.querySelector('meta[property="og:description"]').setAttribute("content",data[f]["type"]+"\n "+data[f]["desc"]);
-	document.querySelector('meta[name="theme-color"]').setAttribute("content",data[f]["color"]);
-	
-	document.getElementById("title").innerHTML = "Flame Bousteur "+f+" : "+data[f]["type"];
-	document.getElementById("tele").style.backgroundImage = 'url("'+tp+'")';
-	document.getElementById("galery").innerHTML = ""
-
-	if(data[f]["video"]){
-		data[f]["video"].forEach(element => {
-			let ele = document.createElement('video')
-			ele.src = "/video/"+element
-			ele.muted = true
-			ele.autoplay = 'true'
-			ele.loop = 'true'
-			ele.controls = 'true'
-			document.getElementById("galery").appendChild(ele)
-		});
-	}
-
-	let ele = document.createElement('div')
-	ele.className = "fakehr"
-	document.getElementById("galery").appendChild(ele)
-
-	function addimg(a) {
-		function reduce(numerator,denominator){
-			var gcd = function gcd(a,b){
-				return b ? gcd(b, a%b) : a;
-			};
-			gcd = gcd(numerator,denominator);
-			return [numerator/gcd, denominator/gcd];
-		}
-		let ele = document.createElement('a')
-		ele.style.backgroundImage = 'url("'+a+'")'
-		ele.href = a;
-		document.getElementById("galery").appendChild(ele)
-		let img = new Image();
-		img.onload = function() {
-			let ele2 = document.createElement('span')
-			let mode;
-			if (img.width > img.height) {
-				mode = "cinema"
-			} else if (img.width == img.height) {
-				mode = "instagram"
-			} else if (img.width < img.height) {
-				mode = "phone"
-			} else {
-				mode = "what???"
-			}
-
-			if(img.height >= 8640){
-				mode += " indecently high"
-			} else if (img.height >= 4320) {
-				mode += " 8k"
-			} else if (img.height >= 2160) {
-				mode += " 4k"
-			} else if (img.height >= 1080) {
-				mode += " hd"
-			}
-
-			ele2.innerHTML = img.width+ ' x ' +img.height+' | '+reduce(img.width,img.height).join(":")+" "+mode
-			document.querySelector('a[href="'+a+'"]').appendChild(ele2)
-		}
-		img.src = a;
-	}
-	addimg('/img/zip/'+f+'.png')
-	for (let i = 1; i <= max; i++) {
-		addimg('/zip/'+f+'/img/'+i+'.png')
-	}
-
-	if(data[f]["link"]){
-		document.getElementById("link").innerHTML = '<a style="color:black;" href="'+data[f]["link"]+'">special link</a><br>'
-	}
-
-	if(data[f]["embed"]){
-		document.getElementById("ifr").src = data[f]["embed"];
-		document.getElementById("ifr").style.position = "static"
-		document.getElementById("ifr").style.visibility = "visible"
-	}
-
-	if (typeof stat != "undefined") {
-		if (stat["files"][f]) {
-			document.getElementById("data").innerHTML = "view: "+stat["files"][f]["view"]+" | dowload: "+stat["files"][f]["dowload"];
-		}
-	}
-}
-
-function pr(){
-	document.getElementById("divpage").innerHTML = page1
-	document.querySelector("html").className = 'index'
-	document.getElementById("title").innerHTML = "Flame Bousteur";
-	let types = [];
-	findex(data).forEach(element=>{
-		if(types.includes(data[element]['type'])){
-		}else{
-			types.push(data[element]['type'])
-		}
-	})
-
-	types.forEach(element =>{
-		let txt = '';
-		let typ = element;
-		type(typ).forEach(element =>{
-			let tp;
-			if(data[element]['primg']){
-				tp = data[element]['primg']
-			}else{
-				tp = '/img/zip/'+element+'.webp'
-			}
-			txt = '<div id="prlegent"><a onclick="load(\''+element+'\')"><span class="mask"></span><span id="prlegentin">'+element+'</span><img alt="'+element+'" src="'+tp+'" width="200"></a></div>'
-			if(document.getElementById(typ)){
-				document.getElementById(typ).innerHTML += txt;
-			}else{
-				document.getElementById("dp-map").innerHTML += '<div id="'+typ+'"><div class="in">'+typ+'</div>'+txt+'</div><br><hr>';
-				document.getElementById("type").innerHTML += '<li><a href="#'+typ+'">'+typ+'</a></li>'
-			}
-		})
-		txt = '';
-	})
-	murl(window.location.origin)
-}
-
-function showimage(img){
-	console.log(img)
-	if(document.getElementById("showimage")){
-		document.getElementById("showimageimg").alt = 'oups Image '+img+' can\'t be loaded'
-		document.getElementById("showimageimg").src = '/zip/'+$_GET['f']+'/img/'+img+'.webp'
-		document.getElementById("showimagedesc").innerHTML = 'image : '+img
-	}else{
-		document.getElementById("divpage").innerHTML += '<div id="showimage" style="position: fixed;top: 0;background-color: white;z-index: 9;">'+
-'	<div>'+
-'	<div style="left: 0;position: absolute;top: 50%;"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" opacity=".87"/><path d="M17.51 3.87L15.73 2.1 5.84 12l9.9 9.9 1.77-1.77L9.38 12l8.13-8.13z"/></svg></div>'+
-'	<div style="text-align: center;"><img id="showimageimg" alt="oups Image '+img+' can\'t be loaded" src="/zip/'+$_GET['f']+'/img/'+img+'.webp" style="width: 90%;"></div>'+
-'	<div style="right: 0;position: absolute;top: 50%;"><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000"><g><path d="M0,0h24v24H0V0z" fill="none"/></g><g><polygon points="6.23,20.23 8,22 18,12 8,2 6.23,3.77 14.46,12"/></g></svg></div>'+
-'	</div>'+
-'	<div id="showimagedesc">image : '+img+
-'	</div>'+
-'</div>';
-	}
-}
-
-function patpage(loc){
-	let pat = {
-		"hellow-world":"hellow world",
-		"privacy":"None of your personal information is and will be used.<br>Cookies are only used to get information on the source of traffic of the site.<br>Thank you for your understanding",
-		"confidentialite":"Aucune de vos informations personnelles n'est et ne sera utilisée.<br>Les cookies ne sont utilisés qu'à fin d'avoir des informations sur la source de trafic du site.<br>Merci de votre compréhension",
-		"about":"hello this is FlameBousteur.<br>I'm a minecraft builder and coder"
-	}
-	
-	if(findex(pat).includes(loc)){
-		document.getElementById("divpage").innerHTML = '<a onclick="pr()">back</a><div style="text-align:center;">'+pat[loc]+"<div><br>"
-		document.querySelector("html").className = 'index'
-		document.getElementById("title").innerHTML = loc;
-	}
-	
-	murl("/"+loc)
-}
-
-function loadjs(){
-	if($_GET['d']){
-		if($_GET['d'] == "devstat"){
+	switch (pathname[0]) {
+		case "files":
+			loadfile(pathname[1])
+			break;
+		case "galrie":
+			loadgalries((parm["low"] ? true : false), (parm["str"] ? parm["str"] : 0), (parm["off"] ? parm["off"] : undefined))
+			break;
+		case "stat":
 			devstat()
-		}
-	}else{
-		console.log('last creation:'+findex(data)[0])
-
-		let loc = window.location.pathname.substring(1)
-
-		if(loc != ""){
-			patpage(loc)
-		}else{
-			if($_COOKIE()["stat"]){
-				console.log('cookies stop')
+			break;
+		default:
+			if(parm['f'] && data.files[parm['f']]){
+				loadfile(parm['f']);
 			}else{
-				if($_COOKIE()["index"]){
-					console.log('page index already charge')
-				}else{
-					console.log("ok")
-					if($_GET["l"]){
-						send(statlink+"index.php?f=index&l="+$_GET["l"])
-						console.log('ok')
-					}
-					msg("by continuing on this site you accept statistics cookies <a style='color:blue;text-decoration: underline;' onclick='patpage(\"privacy\")'>privacy</a>",3)
-					if(deflang == "fr"){
-						msg("en continuant sur ce site vous accepter des cookies de statistique <a style='color:blue;text-decoration: underline;' onclick='patpage(\"confidentialite\")'>confidentialité</a>",3)
-					}
-					document.cookie = 'index=a; secure;';
-					send(statlink+"index.php?f=index")
-				}
+				loadindex()
 			}
-
-			if(data[$_GET['f']]){
-				load($_GET['f']);
-			}else{
-				console.log('page index charge')
-				pr()
-			}
-
-			if(screen.width < 402){
-				document.getElementById("dp-map").style.textAlign = "center";
-			}
-		}
-		news('sea my last creation : '+findex(data)[0],"load('"+findex(data)[0]+"')")
-		logoload(false)
+			break;
 	}
-}
+	stats.loadIndex()
+	document.querySelector("html").className = 'ready'
+	ntree.setTree(JSON.parse(await geturl("/tree.json")))
+	load.addld(1)
+	// get last creation in data
+	let last = Object.keys(data.files)[0]
+	let lastc = document.createElement("span")
+	lastc.innerHTML = 'sea my last creation : '+last
+	lastc.className = "lastc"
+	lastc.onclick = () => {
+		loadfile(last)
+		lastc.remove()
+	}
+	// confettis
+	let confettis = document.createElement("canvas")
+	confettis.id = "confettis"
+	confettis.width = window.innerWidth / 2
+	confettis.height = 100
+	confettis.style.pointerEvents = "none"
+	let part = Particl(confettis) 
+	let isMouseHover = false
+	lastc.onmouseover = () => {
+		isMouseHover = true
+		part.setGlobalSpeed(0.5)
+		part.reset()
+		let interval = setInterval(function() {
+			// add new particles every 10ms and stop when the user stop the mouse over
+			if (isMouseHover) part.add()
+			else clearInterval(interval)
+		}, 10)
+	}
+	lastc.onmouseout = () => {
+		isMouseHover = false
+		part.setGlobalSpeed(0)
+	}
+	lastc.appendChild(confettis)
+	document.body.appendChild(lastc)
+	part.init()
+//	stat = JSON.parse(await geturl("https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/stat.json"))
+})
 
-/*secondary programe=======================================================*/
-
-window.onoffline = (event) => {
-	msg("connection lost")
-};
+// if the user go back in history load the index page
+window.addEventListener("popstate", loadindex)

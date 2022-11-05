@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg">
+	<!-- create by flamebousteur web-site: https://flamebousteur.github.io -->
+	<defs>
+		<linearGradient y2="0" x2="1" y1="0" x1="0" id="d">
+			<stop offset="0" stop-color="#ed9200"/>
+			<stop offset="0.5" stop-color="#126dff"/>
+			<stop offset="1" stop-color="#9acd32"/>
+		</linearGradient>
+	</defs>
+	<g>
+		<path fill="url(#d)" d="m1.99763,0l23.97151,0c1.09869,0 1.99764,0.90179 1.99764,2.00399s-0.89893,2.00399 -1.99764,2.00399l-23.97151,0c-1.09869,0 -1.99764,-0.90179 -1.99764,-2.00399s0.89893,-2.00399 1.99764,-2.00399z" id="svg_1"/>
+		<path fill="url(#d)" d="m24.13049,20.03988l23.97151,0c1.09869,0 1.99764,0.90179 1.99764,2.00399s-0.89893,2.00399 -1.99764,2.00399l-23.97151,0c-1.09869,0 -1.99764,-0.90179 -1.99764,-2.00399s0.89893,-2.00399 1.99764,-2.00399z" id="svg_2"/>
+		<ellipse transform="matrix(0.51867, 1.9357, -1.9357, 0.51867, 30.1807, -15.2844)" stroke-width="2" stroke="url(#d)" fill="none" ry="5" rx="5" id="d" cy="6" cx="12.5"/>
+	</g>
+</svg>

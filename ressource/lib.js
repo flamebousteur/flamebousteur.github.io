@@ -41,7 +41,6 @@ function $_GET(param) {
 	}
 	return vars;
 }
-var $_GET = $_GET()
 
 //change url
 function murl(url){
@@ -55,7 +54,7 @@ function copi(txt){
 }
 
 //html message
-var flamebousteur_lib_msgs = [["",0.001]]
+var flamebousteur_lib_msgs = []
 var flamebousteur_lib_msg_on = true
 function msg(txt,time){
 	if(!document.getElementById("flamebousteur_lib_msg")){
@@ -87,79 +86,6 @@ function msg(txt,time){
 	}
 	if(flamebousteur_lib_msg_on){
 		msgb()
-	}
-}
-
-
-//canvas-graph
-function ggraf(data,canvasid){
-	const xdata = data
-	let graf = data
-
-	let canvas = document.getElementById(canvasid)
-	if(canvas.getContext){
-		canvas.width = 1920;
-		canvas.height = 1080;
-		let ctx = canvas.getContext('2d');
-		ctx.clearRect(0, 0, canvas.width, canvas.height)
-		let ymin = graf[0][1]
-		let xmin = graf[0][0]
-		let ymax = graf[0][1]
-		let xmax = graf[0][0]
-		let n = 0
-		graf.forEach(element =>{
-			if(element[1] < ymin){
-				ymin = element[1]
-			}
-			if(element[0] < xmin){
-				xmin = element[0]
-			}
-			if(element[1] > ymax){
-				ymax = element[1]
-			}
-			if(element[0] > xmax){
-				xmax = element[0]
-			}
-			n++
-		})
-		ymax += 1
-		ymin -= 5
-
-		n = 0
-
-		//
-		graf.forEach(element =>{
-			graf[n][1] = graf[n][1]-ymin
-			graf[n][0] = (graf[n][0]-xmin)*canvas.width/(xmax-xmin)
-			graf[n][1] = (graf[n][1])*canvas.height/ymax
-			graf[n][1] = graf[n][1] - (graf[n][1]*2) + canvas.height
-			n++
-		})
-
-		//graphique génération
-		ctx.beginPath()
-		ctx.lineWidth = 1
-		ctx.moveTo(0,canvas.height-30)
-		ctx.lineTo(canvas.width,canvas.height-30)
-		ctx.strokeStyle = "#7a7a7a"
-		ctx.stroke()
-		for(n = 0;n < graf.length; n++){
-			ctx.beginPath()
-			ctx.arc(graf[n][0],graf[n][1], 10, 0, 2 * Math.PI)
-			ctx.fillStyle = "#5dade2"
-			ctx.fill()
-
-			if(graf[n+1]){
-				ctx.beginPath()
-				ctx.lineWidth = 10
-				ctx.moveTo(graf[n][0],graf[n][1])
-				ctx.lineTo(graf[n+1][0],graf[n+1][1])
-				ctx.strokeStyle = "#5dade2"
-				ctx.stroke()
-			}
-		}
-	}else{
-		console.log('pb')
 	}
 }
 
@@ -196,17 +122,4 @@ function delnew(id){
 	news()
 }
 
-function htmlalert(htext,onc,himg){
-	function htmlalertdel(){
-		document.getElementById("flamebousteur_lib_htmlalert").innerHTML = ""
-	}
-	if(!document.getElementById("flamebousteur_lib_htmlalert")){
-		document.body.innerHTML = document.body.innerHTML + '<div id="flamebousteur_lib_htmlalert"></div>'
-	}
-	if(himg){
-		document.getElementById("flamebousteur_lib_htmlalert").innerHTML = "<div id='flamebousteur_lib_htmlalert_x'>X</div><div class='flamebousteur_lib_htmlalert' onclick="+onc+"><img src="+himg+"></img><div>"+htext+"</div></div>"
-	}else{
-		document.getElementById("flamebousteur_lib_htmlalert").innerHTML = "<div id='flamebousteur_lib_htmlalert_x'>X</div><div class='flamebousteur_lib_htmlalert' onclick="+onc+">"+htext+"</div>"
-	}
-	document.getElementById("flamebousteur_lib_htmlalert_x").onclick = htmlalertdel
-}
+export { findex , $_COOKIE , $_GET , msg , send , news , delnew }

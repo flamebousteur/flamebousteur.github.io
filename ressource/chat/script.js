@@ -6,8 +6,8 @@ var tchatmaxmessage = 5
 var notiredy = false
 var notiok = false
 
-//const statlink = "http://localhost:8081"
-const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas"
+const statlink = "http://localhost:8081"
+//const statlink = "https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas"
 
 function chec(){
 	let xhr = new XMLHttpRequest();
