@@ -23,11 +23,11 @@ body::-webkit-scrollbar {
 }
 
 body::-webkit-scrollbar-track {
-	background: #2e4053;
+	background-color: #85929e;
 }
 
 body::-webkit-scrollbar-thumb {
-	background-color: #85929e;
+	background: #2e4053;
 }
 
 /* msg */
@@ -166,11 +166,61 @@ svg{
 }
 
 #dp-map div, .content {
-	display: grid;
-	grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-	grid-gap: 5px;
+	display: flex;
+	flex-wrap: wrap;
 	padding-block: 10px;
 	padding-inline: 5px;
+}
+
+#dp-map div > card, .content > card {
+	flex: 1 0 200px;
+	margin: 2px;
+}
+
+/* lastc */
+.lastc {
+	position: fixed;
+	bottom: 5px;
+	right: 5px;
+	z-index: 100;
+	cursor: pointer;
+
+	background-color: #222E;
+	border-radius: 10px;
+	border-block: 3px solid #000;
+	padding-inline: 15px;
+	padding-block: 5px;
+	color: white;
+	animation: lastc 1s cubic-bezier(.18,.89,.32,1.28);
+	transition: all 400ms;
+}
+
+.lastc:hover {
+	background-color: #000;
+	text-decoration: underline;
+	right: 10px;
+}
+
+#confettis {
+	position: absolute;
+	/* center from .lastc */
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	z-index: 100;
+}
+
+@keyframes lastc {
+	from {
+		/* from out */
+		transform: translateX(100%);
+		opacity: 0;
+	}
+	to   {
+		/* to in */
+		transform: translateX(0);
+		opacity: 1;
+	}
 }
 
 /* card */
@@ -189,7 +239,7 @@ card {
 	text-decoration: none;
 }
 
-card > *{
+card > * {
 	grid-area: main;
 	transition: all 400ms cubic-bezier(.23,1,.32,1);
 }
@@ -212,8 +262,8 @@ card span {
 		filter: brightness(0.5);
 	}
 	card span {
-  	opacity: 1;
-  }
+		opacity: 1;
+	}
 }
 
 card:hover img, card:hover video{ transform: scale(1.1); }
@@ -327,8 +377,16 @@ footer a{
 
 #divpage > .stats {
 	position: relative;
-	text-align: right;
-	right: 5px;
+	left: 5px;
+}
+
+#divpage > button {
+	position: relative;
+	left: 50%;
+	transform: translate(-50%, 0);
+	border-radius: 5px;
+	padding: 5px;
+	cursor: pointer;
 }
 
 /* navbar */

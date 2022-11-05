@@ -1,3 +1,10 @@
+/* for the test */
+// check nodeJS
+var isNodeJS = (typeof module !== 'undefined' && module.exports);
+if (isNodeJS) {
+	const treeCore = require("./treeCore.js");
+}
+
 function $_GET(param) {
 	var vars = {};
 	window.location.href.replace( location.hash, '' ).replace(
@@ -36,41 +43,7 @@ function geturl(url) {
 	});
 }
 
-//html message
-var flamebousteur_lib_msgs = []
-var flamebousteur_lib_msg_on = true
-function msg(txt,time){
-	if(!document.getElementById("flamebousteur_lib_msg")){
-		document.body.innerHTML = '<div id="flamebousteur_lib_msg">msg</div>'+document.body.innerHTML
-	}
-	if(typeof time != 'undefined'){
-		time = time * 1000
-	}else{
-		time = 1000
-	}
-	flamebousteur_lib_msgs.push([txt,time])
-	function msgb(){
-		flamebousteur_lib_msg_on = false
-		let msg = document.getElementById("flamebousteur_lib_msg")
-		msg.style.opacity = "1";
-		msg.innerHTML = flamebousteur_lib_msgs[0][0]
-		window.setTimeout(msgp, flamebousteur_lib_msgs[0][1]);
-		function msgp(){
-			msg.style.opacity = "0";
-			window.setTimeout(function() {
-				flamebousteur_lib_msg_on = true;
-				if(flamebousteur_lib_msgs[0]){
-					msgb(flamebousteur_lib_msgs)
-				}
-			},1000)
-			msg.innerHTML = ''
-		}
-		flamebousteur_lib_msgs.shift()
-	}
-	if(flamebousteur_lib_msg_on){
-		msgb()
-	}
-}
+var ntree = new treeCore()
 
 /* end lib */
 
@@ -231,8 +204,8 @@ function loadfile(f){
 	if (stat.files && stat.files[f]) {
 		let stats = document.createElement("div")
 		stats.className = "stats"
-		stats.innerHTML += '<span>'+stat.files[f].view+' views</span> / <span>'+stat.files[f].dowload+' downloads</span>'
-		document.getElementById("divpage").appendChild(stats)
+		stats.innerHTML += stat.files[f].view+' views / '+stat.files[f].dowload+' downloads'
+		dataie.appendChild(stats)
 	}
 	let content = document.createElement("div")
 	content.className = "content"
@@ -268,9 +241,15 @@ function loadfile(f){
 	return true
 }
 
-function loadgalries(){
+function loadgalries(low, str, off){
+	let limit = true
+	if (off == undefined) {
+		off = 10
+		limit = false
+	}
 	document.title = "Flame Bousteur - galeries";
-	document.getElementById("divpage").innerHTML = ""
+	let divp = document.getElementById("divpage")
+	divp.innerHTML = ""
 	let header = document.createElement("div")
 	header.className = "fileheader"
 	let back = document.createElement("a")
@@ -280,13 +259,66 @@ function loadgalries(){
 	let download = document.createElement("span")
 	download.innerHTML += "galeries"
 	header.appendChild(download)
-	document.getElementById("divpage").appendChild(header)
+	divp.appendChild(header)
 	let content = document.createElement("div")
-	content.className = "content"
-	for (let i = 0; i < data.galries.length; i++) {
-		setcard(data.galries[i].primg, content, false, function(){window.location="?g="+i})
+	content.style.display = "flex"
+	divp.appendChild(content)
+	let button = document.createElement("button")
+
+	if (low) {
+		content.style.display = "block"
 	}
-	document.getElementById("divpage").appendChild(content)
+
+	let loaded = 0
+	let load = function(start = str, offset = off) {
+		let images = ntree.getFiles(["*.png", "*.jpg", "*.jpeg", "*.webp"], start, offset)
+		for (let i = 0; i < images.length; i++) {
+			if (!low) {
+				content.className = "content"
+				let card = setcard(images[i], content, false, function(){window.location=images[i]})
+				if (!card) continue
+				let span = document.createElement("span")
+				span.innerHTML = images[i]
+				card.className = "scard"
+				card.appendChild(span)
+				content.appendChild(card)
+			} else {
+				let c = document.createElement("a")
+				c.setAttribute("href", images[i])
+				c.style.display = "block"
+				let img = document.createElement("img")
+				img.src = images[i]
+				img.width = 300
+				let span = document.createElement("span")
+				span.innerHTML = images[i]
+				c.appendChild(img)
+				c.appendChild(span)
+				content.appendChild(c)
+			}
+			loaded++
+		}
+		if (images.length < offset) {
+			button.style.display = "none"
+		}
+	}
+	if (ntree.tree.length != 0) {
+		let o = (off <= 10) ? off : 10
+		if (off == "all") off = o = ntree.tree.length
+		load(str, o)
+	}
+	
+	ntree.onNewTree = () => {
+		let o = (off <= 10) ? off : 10
+		if (off == "all") off = o = ntree.tree.length
+		load(str, o)
+	}
+
+	// if the user click on button, load 10 more images
+	button.innerHTML = "load more"
+	button.onclick = function() {
+		load(loaded, 20)
+	}
+	divp.appendChild(button)
 }
 
 var types = {}
@@ -360,12 +392,89 @@ function loadindex(){
 	}
 }
 
+function Particl(canvasEle, {color: colors = [], maxParticles = 50, MaxSpeed = 5, globalSpeed = 0} = {}) {
+	let ctx = canvasEle.getContext("2d")
+	// partciles start from the center right of the canvas and go to the left and random height
+	let particles = []
+	let generatedParticles = 0
+	let width = canvasEle.width
+	let height = canvasEle.height
+	let end = 0
+
+	let add = function() {
+		let x = width
+		let y = height / 2
+		let size = Math.random() * 5 + 1
+		let speed = Math.random() * MaxSpeed + 1
+		let ydirection = Math.random() * 2 - 1
+		let color
+		if (colors.length > 0) color = colors[Math.floor(Math.random() * colors.length)]
+		// random color
+		else color = `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`
+		particles.push({x, y, size, speed, color, ydirection})
+		generatedParticles++
+	}
+
+	let draw = function() {
+		ctx.clearRect(0, 0, width, height)
+		for (let i = 0; i < particles.length; i++) {
+			ctx.beginPath()
+			ctx.arc(particles[i].x, particles[i].y, particles[i].size, 0, Math.PI * 2)
+			ctx.fillStyle = particles[i].color
+			ctx.fill()
+		}
+	}
+
+	let update = function() {
+		for (let i = 0; i < particles.length; i++) {
+			particles[i].x -= particles[i].speed + globalSpeed
+			particles[i].y += particles[i].ydirection
+			particles[i].ydirection += Math.random() * 0.2 - 0.1
+			if (particles[i].x < 0) {
+				particles.splice(i, 1)
+			}
+		}
+		// end of the animation
+		if (end == 1) if (particles.length == 0) end = 2
+	}
+
+	let loop = function() {
+		draw()
+		update()
+		if (end != 2) requestAnimationFrame(loop)
+	}
+
+	let reset = () => {
+		particles = []
+		end = 0
+		generatedParticles = 0
+		loop()
+	}
+
+	let init = function(mx = maxParticles) {
+		loop()
+		// add new particles every 10ms and stop when if there is 100 particles
+		let interval = setInterval(function() {
+			if (generatedParticles < mx) {
+				add()
+			} else {
+				end = 1
+				clearInterval(interval)
+			}
+		}, 10)
+	}
+
+	let setGlobalSpeed = speed => globalSpeed = speed
+
+	return { init, stop, reset, add, draw, update, loop, setGlobalSpeed}
+}
+
 window.addEventListener("load", async function () {
 	load.addl(2,1)
 	data = JSON.parse(await geturl("/data.json"))
 	load.addld(1)
 	let parm = $_GET()
-	if (parm) {
+	if (parm["a"]) {
 		switch (parm["a"]) {
 			case 'nostat':
 				autorisation.stat = false
@@ -376,8 +485,8 @@ window.addEventListener("load", async function () {
 		case "files":
 			loadfile(pathname[1])
 			break;
-		case "galries":
-			loadgalries()
+		case "galrie":
+			loadgalries((parm["low"] ? true : false), (parm["str"] ? parm["str"] : 0), (parm["off"] ? parm["off"] : undefined))
 			break;
 		default:
 			if(parm['f'] && data.files[parm['f']]){
@@ -388,7 +497,44 @@ window.addEventListener("load", async function () {
 			break;
 	}
 	document.querySelector("html").className = 'ready'
-	tree = JSON.parse(await geturl("/tree.json"))
+	ntree.setTree(JSON.parse(await geturl("/tree.json")))
 	load.addld(1)
+	// get last creation in data
+	let last = Object.keys(data.files)[0]
+	let lastc = document.createElement("span")
+	lastc.innerHTML = 'sea my last creation : '+last
+	lastc.className = "lastc"
+	lastc.onclick = () => {
+		loadfile(last)
+		lastc.remove()
+	}
+	// confettis
+	let confettis = document.createElement("canvas")
+	confettis.id = "confettis"
+	confettis.width = window.innerWidth / 2
+	confettis.height = 100
+	confettis.style.pointerEvents = "none"
+	let part = Particl(confettis) 
+	let isMouseHover = false
+	lastc.onmouseover = () => {
+		isMouseHover = true
+		part.setGlobalSpeed(0.5)
+		part.reset()
+		let interval = setInterval(function() {
+			// add new particles every 10ms and stop when the user stop the mouse over
+			if (isMouseHover) part.add()
+			else clearInterval(interval)
+		}, 10)
+	}
+	lastc.onmouseout = () => {
+		isMouseHover = false
+		part.setGlobalSpeed(0)
+	}
+	lastc.appendChild(confettis)
+	document.body.appendChild(lastc)
+	part.init()
 //	stat = JSON.parse(await geturl("https://www.fjmessgeraete.ch/59d71404-d59e-11eb-b8bc-0242ac130003/Lucas/stat.json"))
 })
+
+// if the user go back in history load the index page
+window.addEventListener("popstate", loadindex)

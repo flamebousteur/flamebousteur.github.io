@@ -19,6 +19,18 @@
 				"/video/fractals/render 5.mp4"
 			]
 		},
+		"canap":{
+			"color":["#286659","#6A8544","#779FAD"],
+			"type":"blender",
+			"download":false,
+			"images":[
+				"/img/galerie/test decord bw 5.png",
+				"/img/galerie/test decord bw 4.png",
+				"/img/galerie/test decord bw 3.png",
+				"/img/galerie/test decord bw 2.png",
+				"/img/galerie/test decord bw.png"
+			]
+		},
 		"game-of-life":{
 			"hidden":true,
 			"type":"code",
