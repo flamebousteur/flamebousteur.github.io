@@ -1,3 +1,6 @@
+const vertion = "3.0.0"
+console.log('v'+vertion)
+
 /* for the test */
 // check nodeJS
 var isNodeJS = (typeof module !== 'undefined' && module.exports);
@@ -43,9 +46,104 @@ function geturl(url) {
 	});
 }
 
+// cookie gestion
+function setCookie(cname, cvalue, exdays = null) {
+	var d = new Date();
+	var expires = "";
+	if (exdays != null) {
+		d.setTime(d.getTime() + (exdays*24*60*60*1000));
+		expires = "expires="+ d.toUTCString() + ";";
+	}
+	document.cookie = cname + "=" + cvalue + ";" + expires + "path=/; secure; samesite=strict";
+}
+
+function getCookie(cname) {
+	var name = cname + "=";
+	var decodedCookie = decodeURIComponent(document.cookie);
+	var ca = decodedCookie.split(';');
+	for(var i = 0; i < ca.length; i++) {
+		var c = ca[i];
+		while (c.charAt(0) == ' ') {
+			c = c.substring(1);
+		}
+		if (c.indexOf(name) == 0) {
+			return c.substring(name.length, c.length);
+		}
+	}
+	return false;
+}
+
+function delCookie(cname = null) {
+	if (cname == null) {
+		// delete all cookie
+		var cookies = document.cookie.split(";");
+		for (var i = 0; i < cookies.length; i++) {
+			var cookie = cookies[i];
+			var eqPos = cookie.indexOf("=");
+			var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
+			document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
+		}
+	} else {
+		// delete one cookie
+		document.cookie = cname + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+	}
+}
+
 var ntree = new treeCore()
 
+//send a XMLHttpRequest
+function send(url,msg){
+	let xhr = new XMLHttpRequest();
+	xhr.open("GET", url , true);
+	xhr.send(msg);
+}
+
 /* end lib */
+// statistics gestion
+var stats = {
+	indexLoaded: false,
+	files: [],
+	stat: true,
+	statlink: statlink ? statlink : false,
+	save: function(){
+		setCookie("stats", JSON.stringify({file: this.files, indexLoaded: this.indexLoaded, stat: this.stat}))
+	},
+	load: function(){
+		var stats = getCookie("stats")
+		if (stats == false) return // no stats cookie
+		stats = JSON.parse(stats)
+		this.files = stats.file
+		this.indexLoaded = stats.indexLoaded
+		this.stat = stats.stat
+	},
+	download: function (f) {
+		if (!this.stat) return
+		send(this.statlink+"index.php?d=a&f="+f)
+	},
+	newFiles: function (f) {
+		if (this.files.includes(f)) return
+		this.files.push(f)
+		if (!this.stat) return
+		var _GET = $_GET()
+		if(_GET['l']) send(this.statlink+"index.php?f="+f+"&l="+_GET['l'])
+		else send(this.statlink+"index.php?f="+f)
+		this.save()
+	},
+	loadIndex: function () {
+		if (this.indexLoaded) return
+		this.indexLoaded = true	
+		this.save()
+		if (!this.stat) return
+		var _GET = $_GET()
+		if(_GET['l']) send(this.statlink+"index.php?f=index&l="+_GET["l"])
+		else send(this.statlink+"index.php?f=index")
+	},
+	noStats: function () {
+		this.stat = false
+		this.save()
+	}
+}
+stats.load()
 
 var load = {
 	toload:0,
@@ -53,6 +151,7 @@ var load = {
 	loaded:0,
 	percent:0,
 	onloadchange:function(){
+		if (!document.querySelector(".chargementbar")) return
 		// logo
 		if (this.toloadlogo > this.loaded) this.logoload(true)
 		else this.logoload(false)
@@ -72,6 +171,7 @@ var load = {
 		this.onloadchange()
 	},
 	logoload:function(start = false){
+		if (!document.getElementById("loader")) return
 		if (start) document.getElementById("loader").style.visibility = "visible";
 		else document.getElementById("loader").style.visibility = "hidden";
 	}
@@ -120,9 +220,6 @@ function setcard(url, contentElement = null, iframe = false, onclick = null, atr
 var data = []
 var pathname = location.pathname.split('/')
 pathname = pathname.slice(1,pathname.length)
-var autorisation = {
-	stat:true
-}
 var stat = {}
 
 const pages = {
@@ -157,10 +254,12 @@ const pages = {
 }
 
 function downloadfile (f) {
-	if(data.files[f]) window.location.href = '/zip/'+f+'/'+f+'.zip'
+	stats.download(f)
+	if(data.files[f]) window.open('/zip/'+f+'/'+f+'.zip', '_blank')
 }
 
 function loadfile(f){
+	stats.newFiles(f)
 	document.title = "Flame Bousteur - "+f;
 	if (data.files[f] == undefined) return false
 	// reset the page
@@ -176,9 +275,9 @@ function loadfile(f){
 	if (data.files[f].download) {
 		download.innerHTML += "download: "
 		download.className = "dl"
+		download.onclick = () => downloadfile(f)
 	}
 	download.innerHTML += f
-	download.setAttribute("onclick","downloadfile('"+f+"')")
 	header.appendChild(download)
 	document.getElementById("divpage").appendChild(header)
 	let datae = document.createElement("div")
@@ -469,6 +568,43 @@ function Particl(canvasEle, {color: colors = [], maxParticles = 50, MaxSpeed = 5
 	return { init, stop, reset, add, draw, update, loop, setGlobalSpeed}
 }
 
+/*dev stat function =======================================================*/
+
+function devstatimg(d){
+	document.getElementById('dt').innerHTML = '';
+	for (const element in stat["files"][d]["web-site"]) 
+		document.getElementById('dt').innerHTML += element+' : '+stat["files"][d]["web-site"][element]+'<br>';
+	document.getElementById('dtd').innerHTML = 'view: '+stat["files"][d]["view"]+' | dowload: '+stat["files"][d]["dowload"]
+}
+
+function devstat(){
+	statpage = `<table style="background-color: #fff">
+	<td>
+		<table id="stat">
+			<thead>
+				<tr>
+					<td></td>
+					<td>view</td>
+					<td>dowload</td>
+				</tr>
+			</thead>
+		</table>
+	</td>
+	<td>
+		<table>
+			<tr id="dt"></tr>
+			<tr id="dtd"></tr>
+		</table>
+</table>`;
+	document.body.innerHTML = statpage;
+
+	for (const element in stat["files"]) {
+		txt = document.getElementById('stat').innerHTML
+		txt = txt + '<tr onmouseover="devstatimg(\''+element+'\')"><td>'+element+'</td><td>'+stat["files"][element]["view"]+'</td><td>'+stat["files"][element]["dowload"]+'</td></tr>'
+		document.getElementById('stat').innerHTML = txt
+	}
+}
+
 window.addEventListener("load", async function () {
 	load.addl(2,1)
 	data = JSON.parse(await geturl("/data.json"))
@@ -477,7 +613,8 @@ window.addEventListener("load", async function () {
 	if (parm["a"]) {
 		switch (parm["a"]) {
 			case 'nostat':
-				autorisation.stat = false
+				stats.noStats()
+				console.log("stats stop")
 				break;
 		}
 	}
@@ -488,6 +625,9 @@ window.addEventListener("load", async function () {
 		case "galrie":
 			loadgalries((parm["low"] ? true : false), (parm["str"] ? parm["str"] : 0), (parm["off"] ? parm["off"] : undefined))
 			break;
+		case "stat":
+			devstat()
+			break;
 		default:
 			if(parm['f'] && data.files[parm['f']]){
 				loadfile(parm['f']);
@@ -496,6 +636,7 @@ window.addEventListener("load", async function () {
 			}
 			break;
 	}
+	stats.loadIndex()
 	document.querySelector("html").className = 'ready'
 	ntree.setTree(JSON.parse(await geturl("/tree.json")))
 	load.addld(1)
