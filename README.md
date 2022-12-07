@@ -52,3 +52,7 @@ stat.json: variable stat
     }
 }
 ```
+
+to do:
+- chargementbar:css:z-index at top
+- change 4K / HD image in the main page to HD or less quality (720 ...)
