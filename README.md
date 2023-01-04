@@ -3,9 +3,8 @@
 this is just a website to show my projects
 
 ### get the data of my projects
-you can use my project data at https://flamebousteur.github.io/data.json
 
-you can also use my javascript library at https://flamebousteur.github.io/ressource/lib.js
+you can use my project's datas at https://flamebousteur.github.io/data.json
 
 
 project images:
